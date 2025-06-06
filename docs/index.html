@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pasu Seva</title>
+ <link href="./dist/output.css" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet" />
+    <style>
+    /* Carousel animation: slide continuously to left */
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+    .carousel-wrapper {
+      display: flex;
+      width: 200%; /* twice the container width for smooth looping */
+      animation: scroll-left 30s linear infinite;
+    }
+
+      #services h1,
+  #services h2 {
+    font-family: 'Bakbak One', cursive;
+  }
+
+  #services p,
+  #services ul,
+  #services li,
+  #services button {
+    font-family: 'Hind', sans-serif;
+  }
+
+    #about h2 {
+      font-family: 'Bakbak One', cursive;
+    }
+    #about p {
+      font-family: 'Hind', sans-serif;
+    }
+
+
+   .font-bakbak {
+  font-family: 'Bakbak One', sans-serif;
+}
+.font-hind {
+  font-family: 'Hind', sans-serif;
+}
+
+
+ 
+
+
+ 
+  </style>
+
+</head>
+<body class="bg-white">
+
+  <!-- ✅ Navbar starts -->
+  <!-- Header/Navbar -->
+<header class="bg-pasuseva-yellow1 text-pasuseva-green shadow-md relative z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center py-2 px-6">
+    <!-- Logo -->
+    <a href="#" class="flex items-center space-x-2">
+      <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Logo" class="h-16   object-cover" />
+     
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="space-x-6 hidden md:flex font-medium">
+      <a href="#home" class="hover:text-pasuseva-orange">Home</a>
+      <a href="#about" class="hover:text-pasuseva-orange">About</a>
+      <a href="#services" class="hover:text-pasuseva-orange">Services</a>
+      <a href="join.html" class="hover:text-pasuseva-orange">Join Us</a>
+      <a href="#contact" class="hover:text-pasuseva-orange">Contact</a>
+    </nav>
+
+    <!-- Hamburger -->
+    <div class="md:hidden">
+      <button id="menu-toggle" class="text-3xl focus:outline-none z-50 relative">☰</button>
+    </div>
+  </div>
+
+
+  <!-- Mobile Dropdown -->
+<div id="mobile-menu"
+  class="hidden absolute top-full left-1/2 transform -translate-x-1/2 w-[90%] mt-2 flex flex-col py-4 px-6 bg-white text-pasuseva-green rounded-md shadow-md space-y-3 md:hidden z-40">
+  <a href="#home" class="hover:text-pasuseva-orange">Home</a>
+  <a href="#about" class="hover:text-pasuseva-orange">About</a>
+  <a href="#services" class="hover:text-pasuseva-orange">Services</a>
+  <a href="join.html" class="hover:text-pasuseva-orange">Join Us</a>
+  <a href="#contact" class="hover:text-pasuseva-orange">Contact</a>
+</div>
+
+</header>
+
+  <!-- ✅ Navbar ends -->
+
+
+<div class="slider-wrapper relative overflow-hidden h-[90vh]">
+  <div class="slides flex flex-nowrap transition-transform duration-500 ease-in-out">
+    
+    <!-- Slide 1 -->
+    <div class="slide flex-shrink-0 w-screen h-[90vh] bg-cover bg-center" 
+         style="background-image: url('./assets/pasu6.avif');"></div>
+
+    <!-- Slide 2 -->
+    <div class="slide flex-shrink-0 w-screen h-[90vh] bg-cover bg-center" 
+         style="background-image: url('./assets/pasu2.avif');"></div>
+
+    <!-- Slide 3 -->
+    <div class="slide flex-shrink-0 w-screen h-[90vh] bg-cover bg-center" 
+         style="background-image: url('./assets/pasu3.avif');"></div>
+
+    <!-- Slide 4 -->
+    <div class="slide flex-shrink-0 w-screen h-[90vh] bg-cover bg-center" 
+         style="background-image: url('./assets/pasu7.avif');"></div>
+
+    <!-- Slide 5 -->
+    <div class="slide flex-shrink-0 w-screen h-[90vh] bg-cover bg-center" 
+         style="background-image: url('./assets/pasu2.avif');"></div>
+
+  </div>
+
+  <!-- Controller Dots -->
+  <div class="slider-controls absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="1"></span>
+    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="2"></span>
+    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="3"></span>
+    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="4"></span>
+    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="5"></span>
+  </div>
+</div>
+
+
+<!-- about us -->
+<section id="about" class="bg-pasuseva-white py-12 px-6 sm:px-10 md:px-20 lg:px-32">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">
+      About Pasuseva
+    </h2>
+
+    <div class="flex flex-col md:flex-row gap-10 items-start">
+      <!-- Image container with gradient corners -->
+      <div class="w-full md:w-1/2 relative rounded-xl overflow-hidden">
+        <!-- Top-left gradient border -->
+        <div class="absolute top-0 left-0 h-1 w-1/2 bg-gradient-to-r from-pasuseva-orange to-transparent z-20"></div>
+
+        <!-- Bottom-right gradient border -->
+        <div class="absolute bottom-0 right-0 h-1 w-1/2 bg-gradient-to-l from-pasuseva-orange to-transparent z-20"></div>
+
+        <img src="./assets/female-farmer-taking-care-cow.jpg" alt="About Pasuseva"
+             class="w-full h-auto object-cover rounded-xl shadow-lg" />
+      </div>
+
+      <!-- Text content with bottom-right green border -->
+      <div class="w-full md:w-1/2 flex flex-col justify-start text-black relative pb-6">
+        <p class="text-lg leading-relaxed mb-4">
+          <span class="font-bold text-xl text-pasuseva-yellow3">Pasuseva</span> is a compassionate initiative focused on improving animal healthcare and empowering rural farmers across India.
+        </p>
+        <p class="text-lg leading-relaxed mb-4">
+          We deliver essential veterinary services, conduct awareness drives, and provide hands-on training to support animal welfare and sustainable rural development.
+        </p>
+        <p class="text-lg leading-relaxed mb-4">
+          Our mobile veterinary units and periodic health camps have already reached remote villages, ensuring timely treatment for livestock and increasing farmer awareness about modern animal care practices.
+        </p>
+        <p class="text-lg leading-relaxed">
+          With a dedicated team and a vision for a healthier livestock ecosystem, Pasuseva continues to bridge the gap between traditional care and scientific veterinary methods, enhancing both animal health and farmer livelihoods.
+        </p>
+
+        <!-- Bottom-right green border with margin-top -->
+         <div class="absolute bottom-0 right-0 h-1 w-1/2 bg-gradient-to-l from-pasuseva-orange to-transparent z-20"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- service section -->
+
+
+
+<section id="services" class="bg-pasuseva-white py-12 px-6 sm:px-10 md:px-20 lg:px-32">
+  <div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">Services</h1>
+
+    <div class="flex flex-wrap -mx-4 text-left items-stretch">
+
+      <!-- Card 1 -->
+      <div class="sm:w-1/2 mb-10 px-4 flex">
+        <div class="relative bg-white shadow-lg hover:scale-[1.02] transition-transform overflow-hidden flex flex-col justify-between min-h-[480px] h-full w-full rounded-md p-0">
+
+          <!-- Image Container -->
+          <div class="relative">
+            <img alt="Gaushala Loan Yojna" src="./assets/pasu8.avif" class="object-cover h-64 w-full rounded-t-md z-10 relative">
+
+            <!-- Top-left gradient border -->
+            <div class="absolute top-0 left-0 h-1 w-1/2 bg-gradient-to-r from-pasuseva-orange to-transparent z-20"></div>
+
+            <!-- Bottom-right gradient border -->
+            <div class="absolute bottom-0 right-0 h-1 w-1/2 bg-gradient-to-l from-pasuseva-orange to-transparent z-20"></div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-6 flex flex-col flex-grow justify-between text-black bg-white z-10 relative">
+            <div>
+              <h2 class="text-2xl font-bold mb-2 text-pasuseva-green">Gaushala Loan Yojna</h2>
+              <p class="text-base mb-3">
+                Financial support for farmers to establish and modernize Gaushalas for improved cattle care.
+              </p>
+              <ul class="text-sm mb-6 space-y-2">
+                <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>Low-interest loans for infrastructure</li>
+                <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>Subsidy on fodder and equipment</li>
+                <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>Regular veterinary support</li>
+              </ul>
+            </div>
+           <div class="mt-auto pt-4 flex justify-center">
+  <a href="yojna-detail.html">
+    <button class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
+      Apply Now
+    </button>
+  </a>
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="sm:w-1/2 mb-10 px-4 flex">
+        <div class="relative bg-white shadow-lg hover:scale-[1.02] transition-transform overflow-hidden flex flex-col justify-between min-h-[480px] h-full w-full rounded-md p-0">
+
+          <!-- Image Container -->
+          <div class="relative">
+            <img alt="Bakri Palan Yojna" src="./assets/pasu3.avif" class="object-cover h-64 w-full rounded-t-md z-10 relative">
+
+            <!-- Top-left gradient border -->
+            <div class="absolute top-0 left-0 h-1 w-1/2 bg-gradient-to-r from-pasuseva-orange to-transparent z-20"></div>
+
+            <!-- Bottom-right gradient border -->
+            <div class="absolute bottom-0 right-0 h-1 w-1/2 bg-gradient-to-l from-pasuseva-orange to-transparent z-20"></div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-6 flex flex-col flex-grow justify-between text-black bg-white z-10 relative">
+            <div>
+              <h2 class="text-2xl font-bold mb-2 text-pasuseva-green">Bakri Palan Loan Yojna</h2>
+              <p class="text-base mb-3">
+                Empowering individuals with loans and training for profitable goat farming and livelihood.
+              </p>
+              <ul class="text-sm mb-6 space-y-2">
+                <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>Loan for purchasing goats and sheds</li>
+                <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>Goat healthcare training</li>
+                <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>Market access and support</li>
+              </ul>
+            </div>
+            <div class="mt-auto pt-4 flex justify-center">
+  <a href="yojna-detail.html">
+    <button class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
+      Apply Now
+    </button>
+  </a>
+</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- Recognition Section -->
+<!-- ========== SECTION 1: OUR RECOGNITIONS ========== -->
+<section class="text-pasuseva-green body-font relative bg-pasuseva-white py-12 px-6 sm:px-10 md:px-20 lg:px-32 font-sans">
+  <div class="text-center mb-10">
+    <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10 font-bakbak">
+      Our Recognitions
+    </h2> 
+  </div>
+
+  <!-- Add container wrapper for centering and consistent max width -->
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center overflow-hidden">
+      <button data-slider="recognition" data-dir="prev"
+        class="flex-shrink-0 bg-pasuseva-green text-white p-3 rounded-full shadow-md hover:bg-pasuseva-orange">
+        &#10094;
+      </button>
+      <div class="w-4"></div>
+
+      <div class="overflow-hidden w-full">
+        <div id="recognition-slider" class="flex transition-transform duration-500 ease-in-out">
+          <!-- Repeat logo blocks -->
+          <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+          <!-- Add more logos as needed -->
+        </div>
+      </div>
+
+      <div class="w-4"></div>
+      <button data-slider="recognition" data-dir="next"
+        class="flex-shrink-0 bg-pasuseva-green text-white p-3 rounded-full shadow-md hover:bg-pasuseva-orange">
+        &#10095;
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== SECTION 2: INCUBATED & FUNDED BY ========== -->
+<section class="text-pasuseva-green body-font relative bg-pasuseva-white py-12 px-6 sm:px-10 md:px-24 lg:px-32 font-sans">
+  <div class="text-center mb-10">
+    <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10 font-bakbak">
+      WE ARE TRUSTED INCUBATED & founded by
+    </h2>
+  </div>
+
+  <!-- ✅ Responsive container wrapper -->
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center overflow-hidden">
+      <button data-slider="incubated" data-dir="prev"
+        class="flex-shrink-0 bg-pasuseva-green text-white p-3 rounded-full shadow-md hover:bg-pasuseva-orange">
+        &#10094;
+      </button>
+      <div class="w-4"></div>
+
+      <div class="overflow-hidden w-full">
+        <div id="incubated-slider" class="flex transition-transform duration-500 ease-in-out">
+          <!-- Repeat these logo blocks as needed -->
+          <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+          <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 2" class="object-contain w-full h-28" />
+          </div>
+          <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 3" class="object-contain w-full h-28" />
+          </div>
+          <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 4" class="object-contain w-full h-28" />
+          </div>
+          <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 5" class="object-contain w-full h-28" />
+          </div>
+          <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 6" class="object-contain w-full h-28" />
+          </div>
+          <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 7" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+           <div class="flex-shrink-0 w-48 mx-4">
+            <img src="./assets/Logo-01.png" alt="Logo 1" class="object-contain w-full h-28" />
+          </div>
+          <!-- Add more logos as needed -->
+        </div>
+      </div>
+
+      <div class="w-4"></div>
+      <button data-slider="incubated" data-dir="next"
+        class="flex-shrink-0 bg-pasuseva-green text-white p-3 rounded-full shadow-md hover:bg-pasuseva-orange">
+        &#10095;
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- contact -->
+
+
+<!-- Contact Section -->
+<section class="text-pasuseva-green body-font relative bg-pasuseva-white py-12 px-6 sm:px-10 md:px-24 lg:px-32 font-[Hind]" id="contact">
+  <div class="container mx-auto flex flex-col sm:flex-row gap-4">
+
+    <!-- Contact Form -->
+    <div class="order-1 sm:order-2 lg:w-1/3 md:w-1/2 bg-pasuseva-white px-6 mx-auto flex flex-col md:ml-auto w-full">
+      <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">Get In Touch</h2>
+      <p class="leading-relaxed mb-5 text-gray-700">Have questions? Reach out to us and we’ll be happy to help!</p>
+
+      <!-- Name -->
+      <div class="relative mb-4">
+        <label for="name" class="leading-7 text-sm text-gray-700">Name</label>
+        <input type="text" id="name" name="name"
+          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
+      </div>
+
+      <!-- Email -->
+      <div class="relative mb-4">
+        <label for="email" class="leading-7 text-sm text-gray-700">Email</label>
+        <input type="email" id="email" name="email"
+          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
+      </div>
+
+      <!-- Message -->
+      <div class="relative mb-4">
+        <label for="message" class="leading-7 text-sm text-gray-700">Message</label>
+        <textarea id="message" name="message"
+          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 h-32 text-base outline-none text-gray-700 py-2 px-3 resize-none transition duration-200 ease-in-out"></textarea>
+      </div>
+
+      <!-- Button -->
+      <button class="text-white bg-pasuseva-green hover:bg-pasuseva-greenDark transition duration-300 border-0 py-2 px-6 rounded text-lg font-medium">
+        Send Message
+      </button>
+      <p class="text-xs text-gray-500 mt-3">We aim to respond within 24 hours. Thank you for contacting Miracle India Exam Center.</p>
+    </div>
+
+    <!-- Map and Address -->
+    <div class="order-2 sm:order-1 lg:w-2/3 md:w-1/2 bg-pasuseva-yellow1 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-start justify-start relative mt-4 sm:mt-0 h-auto min-h-full">
+
+      <!-- Map -->
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.939794269459!2d85.23805106508895!3d25.57366971766175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f2a198fde0961b%3A0x8ff48dd32432937b!2sMiracle%20India%20Exam%20Centre!5e0!3m2!1sen!2sin!4v1747740703682!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        class="absolute inset-0 h-full"
+        frameborder="0"
+        style="border:0; filter: grayscale(1) contrast(1.2) opacity(0.4);"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="map"
+        marginheight="0"
+        marginwidth="0"
+        scrolling="no"
+      ></iframe>
+
+      <!-- Address Details -->
+      <div class="bg-white relative flex flex-wrap py-6 rounded-md shadow-md w-full z-10">
+        <div class="lg:w-1/2 px-6 mb-4">
+          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">ADDRESS</h2>
+          <p class="mt-1 text-sm">NH-30, Bypass Rd, near Indian Oil, Narayan Nagar, Karmalichack, Patna, Bihar 800009</p>
+          <p class="mt-2 text-sm text-gray-700">Hours: <span class="font-medium text-gray-900">Open 24 hours</span></p>
+        </div>
+        <div class="lg:w-1/2 px-6">
+          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">EMAIL</h2>
+          <a href="mailto:info@miracleindiaexam.com" class="text-pasuseva-orange leading-relaxed text-sm">info@miracleindiaexam.com</a>
+          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">PHONE</h2>
+          <p class="leading-relaxed text-sm">8961367676</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<footer class="bg-pasuseva-green text-white body-font">
+  <div class="container mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col py-12 px-6 sm:px-10 md:px-20 lg:px-32">
+ <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+  <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+    <img src="./assets/pasuseva-logo2-removebg-preview.png" alt="Pasu Seva Logo" class=" h-10    object-contain" />
+    <!-- <span class="ml-3 text-xl">Pasu Seva</span> -->
+  </a>
+  <p class="mt-2 text-sm text-pasuseva-yellow2">Caring for animals with love and dedication.</p>
+</div>
+
+    <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-pasuseva-yellow3 tracking-widest text-sm mb-3">SERVICES</h2>
+        <nav class="list-none mb-10">
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Animal Shelter</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Veterinary Care</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Adoption Programs</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Community Outreach</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-pasuseva-yellow3 tracking-widest text-sm mb-3">RESOURCES</h2>
+        <nav class="list-none mb-10">
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Blog</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Events</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Volunteer</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Donate</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-pasuseva-yellow3 tracking-widest text-sm mb-3">ABOUT US</h2>
+        <nav class="list-none mb-10">
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Our Mission</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Team</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Careers</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Contact</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 class="title-font font-medium text-pasuseva-yellow3 tracking-widest text-sm mb-3">LEGAL</h2>
+        <nav class="list-none mb-10">
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Privacy Policy</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Terms of Use</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Sitemap</a></li>
+          <li><a href="#" class="text-white hover:text-pasuseva-orange">Disclaimer</a></li>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="bg-pasuseva-green px-6 sm:px-10 md:px-20 lg:px-32 py-4">
+    <div class="container mx-auto flex flex-wrap flex-col sm:flex-row text-white">
+      <p class="text-sm text-center sm:text-left">© 2025 Pasu Seva —
+        <a href="#" class="text-pasuseva-orange ml-1" target="_blank" rel="noopener noreferrer">@pasuseva</a>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start space-x-3">
+        <a href="#" class="text-white hover:text-pasuseva-orange" aria-label="Facebook">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+          </svg>
+        </a>
+        <a href="#" class="text-white hover:text-pasuseva-orange" aria-label="Twitter">
+          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+          </svg>
+        </a>
+        <a href="#" class="text-white hover:text-pasuseva-orange" aria-label="Instagram">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        </a>
+        <a href="#" class="text-white hover:text-pasuseva-orange" aria-label="LinkedIn">
+          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+            <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+          </svg>
+        </a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+
+<script src="./js/main.js" >
+
+</script>
+
+</body>
+</html>
