@@ -560,7 +560,7 @@
 
     try {
       // 1. Create Razorpay Order
-      const response = await fetch('http://localhost:5000/api/payment/create-order', {
+      const response = await fetch('https://api.pasuseva.thundergits.com/api/payment/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -587,7 +587,7 @@
         theme: { color: "#4CAF50" },
         handler: async function (response) {
           // 3. Send payment + form data to server
-          await fetch('http://localhost:5000/api/payment/verify-payment', {
+          await fetch('https://api.pasuseva.thundergits.com/api/payment/verify-payment', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
