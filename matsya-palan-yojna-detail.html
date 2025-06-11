@@ -76,7 +76,7 @@
     <!-- Overlay content -->
     <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-center px-4">
       <h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
-        Gausala Yojna
+        मत्स्य पालन योजना
       </h1>
       <p class="text-white text-base md:text-lg lg:text-xl max-w-2xl">
         Empowering communities through the care and protection of cattle — learn how the Gausala Yojna is making a
@@ -91,7 +91,7 @@
   <section id="gaushala-yojna" class="bg-pasuseva-white py-12 px-6 sm:px-10 md:px-20 lg:px-32">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">
-        Gaushala Loan Yojna
+        मत्स्य पालन योजना
       </h2>
 
       <div class="flex flex-col md:flex-row gap-10 items-start">
@@ -104,28 +104,32 @@
           <div class="absolute bottom-0 right-0 h-1 w-1/2 bg-gradient-to-l from-pasuseva-orange to-transparent z-20">
           </div>
 
-          <img src="./assets/pasu8.avif" alt="Gaushala Loan Yojna"
+          <img src="./assets/machhali-palan-slide.jpg" alt="Gaushala Loan Yojna"
             class="w-full h-auto object-cover rounded-xl shadow-lg" />
         </div>
 
         <!-- Text Content -->
         <div class="w-full md:w-1/2 flex flex-col justify-start text-black relative pb-6">
           <p class="text-lg leading-relaxed mb-4">
-            The <span class="font-bold text-pasuseva-green">Gaushala Loan Yojna</span> is a visionary scheme aimed at
-            supporting rural communities, NGOs, and farmers in building and modernizing Gaushalas (cattle shelters).
+            The <span class="font-bold text-pasuseva-green">मत्स्य पालन योजना</span>, जिसका उद्देश्य ग्रामीण समुदायों,
+            गैर-सरकारी संगठनों (NGOs) और किसानों को गौशालाओं के निर्माण और आधुनिकीकरण में सहायता प्रदान करना है।
+            यह पहल पशु कल्याण को बढ़ावा देने, ग्रामीण रोजगार सृजन करने और संरचित वित्तीय सहायता व सहायता प्रणालियों के
+            माध्यम से टिकाऊ पशुपालन सुनिश्चित करने पर केंद्रित है।
           </p>
           <p class="text-lg leading-relaxed mb-4">
-            The initiative focuses on enhancing animal welfare, creating rural employment, and ensuring sustainable
-            livestock management through structured financial aid and support systems.
+            इस योजना के लाभार्थी निम्नलिखित सुविधाओं का लाभ उठा सकते हैं:
+            गौशाला के ढांचागत विकास के लिए कम ब्याज दर पर ऋण
+            चारा और पशु देखभाल उपकरणों पर सब्सिडी
+            पशु चिकित्सा सेवाओं और प्रशिक्षण कार्यक्रमों के लिए सहायता
           </p>
           <p class="text-lg leading-relaxed mb-4">
-            Beneficiaries of this scheme can access low-interest loans for infrastructure development, avail subsidies
-            on fodder and cattle-care equipment, and receive support for veterinary services and training programs.
+            यह पहल न केवल भारत की गौवंशीय विरासत को संरक्षित करती है, बल्कि पशुपालन के इर्द-गिर्द उद्यमिता को बढ़ावा
+            देकर ग्रामीण अर्थव्यवस्था को भी सशक्त बनाती है।
           </p>
-          <p class="text-lg leading-relaxed">
+          <!-- <p class="text-lg leading-relaxed">
             This initiative not only preserves India’s cattle heritage but also uplifts the rural economy by encouraging
             entrepreneurship around animal husbandry.
-          </p>
+          </p> -->
 
           <!-- Bottom-right gradient -->
           <div class="absolute bottom-0 right-0 h-1 w-1/2 bg-gradient-to-l from-pasuseva-orange to-transparent z-20">
@@ -395,48 +399,149 @@
   <!-- Apply Now CTA -->
   <!-- Apply Now CTA -->
   <section class="bg-white py-12 px-6 sm:px-10 md:px-24 lg:px-32" id="application-form">
-    <div class="max-w-xl mx-auto bg-white px-6 flex flex-col w-full">
-      <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">Apply for Gaushala Loan Yojna</h2>
-      <p class="leading-relaxed mb-5 text-gray-700 text-center">Fill out the application to apply for support under our
-        Gaushala Loan Yojna scheme.</p>
+    <div class="max-w-3xl mx-auto bg-white px-6 flex flex-col w-full">
+      <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">मत्स्य पालन योजना के लिए आवेदन करें</h2>
+      <p class="leading-relaxed mb-5 text-gray-700 text-center">
+        हमारी मत्स्य पालन योजना के अंतर्गत सहायता प्राप्त करने हेतु आवेदन फॉर्म भरें।
+      </p>
 
-      <!-- Full Name -->
-      <div class="relative mb-4">
-        <label for="name" class="leading-7 text-sm text-gray-700">Full Name</label>
-        <input type="text" id="name" name="name"
-          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
+
+
+
+      <div class="max-w-max mx-auto p-6 bg-white rounded shadow-md">
+        <form class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <!-- पूरा नाम -->
+          <div>
+            <label for="fullName" class="text-sm text-gray-700">पूरा नाम</label>
+            <input type="text" id="fullName" name="fullName"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- पिता का नाम -->
+          <div>
+            <label for="fatherName" class="text-sm text-gray-700">पिता का नाम</label>
+            <input type="text" id="fatherName" name="fatherName"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- जन्म तिथि -->
+          <div>
+            <label for="dob" class="text-sm text-gray-700">जन्म तिथि (DD/MM/YYYY)</label>
+            <input type="date" id="dob" name="dob"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- मोबाइल नंबर -->
+          <div>
+            <label for="phone" class="text-sm text-gray-700">मोबाइल नंबर</label>
+            <input type="tel" id="phone" name="phone"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- ईमेल आईडी -->
+          <div>
+            <label for="email" class="text-sm text-gray-700">ईमेल आईडी</label>
+            <input type="email" id="email" name="email"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- पासपोर्ट साइज फोटो -->
+          <div>
+            <label for="photo" class="text-sm text-gray-700">पासपोर्ट साइज फोटो</label>
+            <input type="file" id="photo" name="photo" accept="image/*"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- पूरा पता -->
+          <div class="sm:col-span-2 lg:col-span-3">
+            <label for="address" class="text-sm text-gray-700">पूरा पता</label>
+            <textarea id="address" name="address"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 h-24 text-base outline-none text-gray-700 py-2 px-3 resize-none"></textarea>
+          </div>
+
+          <!-- राज्य -->
+          <div>
+            <label for="state" class="text-sm text-gray-700">राज्य</label>
+            <input type="text" id="state" name="state"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- जिला -->
+          <div>
+            <label for="district" class="text-sm text-gray-700">जिला</label>
+            <input type="text" id="district" name="district"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- ब्लॉक -->
+          <div>
+            <label for="block" class="text-sm text-gray-700">ब्लॉक</label>
+            <input type="text" id="block" name="block"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- उच्चतम योग्यता -->
+          <div>
+            <label for="education" class="text-sm text-gray-700">उच्चतम योग्यता</label>
+            <input type="text" id="education" name="education"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- प्रतिशत -->
+          <div>
+            <label for="percentage" class="text-sm text-gray-700">प्रतिशत (%)</label>
+            <input type="number" id="percentage" name="percentage" step="0.01"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- उत्तीर्ण वर्ष -->
+          <div>
+            <label for="passYear" class="text-sm text-gray-700">उत्तीर्ण वर्ष</label>
+            <input type="text" id="passYear" name="passYear"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- आधार नंबर -->
+          <div>
+            <label for="aadhaar" class="text-sm text-gray-700">आधार नंबर</label>
+            <input type="text" id="aadhaar" name="aadhaar"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- आधार कार्ड फ्रंट -->
+          <div>
+            <label for="aadhaarFront" class="text-sm text-gray-700">आधार कार्ड फ्रंट फोटो</label>
+            <input type="file" id="aadhaarFront" name="aadhaarFront" accept="image/*"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- आधार कार्ड बैक -->
+          <div>
+            <label for="aadhaarBack" class="text-sm text-gray-700">आधार कार्ड बैक फोटो</label>
+            <input type="file" id="aadhaarBack" name="aadhaarBack" accept="image/*"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- ज़मीन दस्तावेज़ -->
+          <div class="sm:col-span-2 lg:col-span-3">
+            <label for="landDocs" class="text-sm text-gray-700">ज़मीन दस्तावेज़ (जमाबंदी/रसीद)</label>
+            <input type="file" id="landDocs" name="landDocs" accept="image/*,application/pdf"
+              class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+          </div>
+
+          <!-- Submit -->
+          <div class="sm:col-span-2 lg:col-span-3">
+            <div id="payButton" class="cursor-pointer w-full text-center bg-pasuseva-green hover:bg-pasuseva-greenDark text-white font-medium py-2 px-6
+              rounded transition duration-300">
+              आवेदन सबमिट करें (फॉर्म शुल्क: ₹2000)
+            </div>
+            <p class="text-xs text-gray-500 mt-3 text-center">हम 48 घंटे के अंदर आपसे संपर्क करेंगे।</p>
+          </div>
+        </form>
       </div>
 
-      <!-- Email -->
-      <div class="relative mb-4">
-        <label for="email" class="leading-7 text-sm text-gray-700">Email Address</label>
-        <input type="email" id="email" name="email"
-          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
-      </div>
 
-      <!-- Phone Number -->
-      <div class="relative mb-4">
-        <label for="phone" class="leading-7 text-sm text-gray-700">Phone Number</label>
-        <input type="tel" id="phone" name="phone"
-          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
-      </div>
-
-      <!-- Project Description -->
-      <div class="relative mb-6">
-        <label for="project" class="leading-7 text-sm text-gray-700">Describe your Gaushala project</label>
-        <textarea id="project" name="project"
-          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 h-32 text-base outline-none text-gray-700 py-2 px-3 resize-none transition duration-200 ease-in-out"></textarea>
-      </div>
-
-      <!-- Submit Button -->
-      <button id="payButton"
-        class="text-white bg-pasuseva-green hover:bg-pasuseva-greenDark transition duration-300 border-0 py-2 px-6 rounded text-lg font-medium">
-        Submit Application
-      </button>
-
-      <p class="text-xs text-gray-500 mt-3 text-center">We will review your application and get back to you within 48
-        hours.</p>
-    </div>
   </section>
 
 
@@ -541,59 +646,92 @@
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-  document.getElementById('payButton').addEventListener('click', async function () {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const project = document.getElementById('project').value.trim();
+  document.getElementById('payButton').addEventListener('click', async function (e) {
+    e.preventDefault();
 
-    if (!name || !email || !phone || !project) {
-      alert("Please fill all fields.");
-      return;
+    const getValue = id => document.getElementById(id)?.value?.trim() || "";
+    const getFile = id => document.getElementById(id)?.files?.[0] || null;
+
+    // Collect text fields
+    const formData = {
+      fullName: getValue('fullName'),
+      fatherName: getValue('fatherName'),
+      dob: getValue('dob'),
+      phone: getValue('phone'),
+      email: getValue('email'),
+      address: getValue('address'),
+      state: getValue('state'),
+      district: getValue('district'),
+      block: getValue('block'),
+      education: getValue('education'),
+      percentage: getValue('percentage'),
+      passYear: getValue('passYear'),
+      aadhaar: getValue('aadhaar')
+    };
+    // Check required fields
+    for (const key in formData) {
+      if (!formData[key]) {
+        alert(`Please fill: ${key}`);
+        return;
+      }
     }
+    // Optional: Collect files
+    const files = {
+      photo: getFile('photo'),
+      aadhaarFront: getFile('aadhaarFront'),
+      aadhaarBack: getFile('aadhaarBack'),
+      landDocs: getFile('landDocs')
+    };
 
     try {
-      // 1. Create Razorpay Order
-      const response = await fetch('http://localhost:5000/api/payment/create-order', {
+      // 1. Create Razorpay Order (send basic details to backend)
+      const orderPayload = new FormData();
+      orderPayload.append("amount", "2000"); // ₹500
+      orderPayload.append("currency", "INR");
+      orderPayload.append("receipt", "matsya_" + Date.now());
+
+      for (const key in formData) orderPayload.append(key, formData[key]);
+      for (const key in files) orderPayload.append(key, files[key]);
+
+      const response = await fetch('https://api.pasuseva.thundergits.com/api/payment/create-order', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: 100, // ₹500
-          currency: 'INR',
-          receipt: 'gaushala_' + Date.now(),
-          notes: { name, email, phone, project }
-        })
+        body: orderPayload
       });
 
       const data = await response.json();
       if (!data || !data.order) throw new Error("Order creation failed");
 
-      // 2. Open Razorpay Checkout
+      // 2. Razorpay Checkout
       const options = {
-        key: "rzp_test_kOfu7jn9tzGbj4", // Replace with your Razorpay Key ID
+        key: "rzp_test_kOfu7jn9tzGbj4", // Replace with your live/test key
         amount: data.order.amount,
         currency: data.order.currency,
         name: "Pasuseva Foundation",
-        description: "Gaushala Loan Application",
+        description: "Matsya Loan Application",
         order_id: data.order.id,
-        prefill: { name, email, contact: phone },
-        notes: { project },
+        prefill: {
+          name: formData.fullName,
+          email: formData.email,
+          contact: formData.phone
+        },
+        notes: {
+          block: formData.block,
+          state: formData.state
+        },
         theme: { color: "#4CAF50" },
         handler: async function (response) {
-          // 3. Send payment + form data to server
-          await fetch('http://localhost:5000/api/payment/verify-payment', {
+
+          await fetch('https://api.pasuseva.thundergits.com/api/payment/verify-payment', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
-              userDetails: { name, email, phone, project }
+
             })
           });
 
           window.location.replace("./payment_success.html");
-          // Redirect to thank you page
         }
       };
 
