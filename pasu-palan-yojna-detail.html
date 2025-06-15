@@ -665,6 +665,16 @@
         return;
       }
     }
+
+    if (formData['phone'].length < 10) {
+      alert("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    if (formData['aadhaar'].length < 12) {
+      alert("Please enter a valid 12-digit Aadhaar number.");
+      return;
+    }
     // Optional: Collect files
     const files = {
       photo: getFile('photo'),
