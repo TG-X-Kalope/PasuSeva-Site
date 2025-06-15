@@ -131,9 +131,9 @@
           <p class="text-gray-700 mb-2">Support our field team in delivering medical care to animals in need.</p>
           <p class="text-sm text-gray-500 mb-4">Location: Bihar | Type: Full-Time</p>
 
-          <button
+          <button onclick="handleJoinUsClick('Veterinary Assistant')"
             class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
-            Submit Application
+            Join Us
           </button>
 
           <!-- Bottom Gradient Bar -->
@@ -156,9 +156,9 @@
           <p class="text-gray-700 mb-2">Lead and organize awareness campaigns across different regions.</p>
           <p class="text-sm text-gray-500 mb-4">Location: Remote | Type: Part-Time</p>
 
-          <button
+          <button onclick="handleJoinUsClick('Campaign Coordinator')"
             class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
-            Submit Application
+            Join Us
           </button>
 
           <div
@@ -180,9 +180,9 @@
           <p class="text-gray-700 mb-2">Help us spread awareness and engage with local communities and youth.</p>
           <p class="text-sm text-gray-500 mb-4">Location: Flexible | Type: Volunteer</p>
 
-          <button
+          <button onclick="handleJoinUsClick('Outreach Volunteer')"
             class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
-            Submit Application
+            Join Us
           </button>
 
           <div
@@ -261,14 +261,13 @@
 
               <!-- Area of Interest -->
               <div>
-                <label for="position" class="leading-7 text-sm text-gray-700">Area of Interest</label>
-                <select id="position" name="position"
+                <label for="position" class="leading-7 text-sm text-gray-700">Area of Interest</label> <select
+                  id="position" name="position"
                   class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
                   <option selected disabled>Choose an option</option>
-                  <option>Veterinary Services</option>
-                  <option>Awareness Campaigns</option>
-                  <option>Rural Volunteering</option>
-                  <option>Donations & Support</option>
+                  <option>Veterinary Assistant</option>
+                  <option>Campaign Coordinator</option>
+                  <option>Outreach Volunteer</option>
                 </select>
               </div>
 
@@ -511,6 +510,47 @@
   <script src="./js/join.js"></script>
   <script src="./js/jobApplication.js"></script>
   <script src="./js/dropdown-handler.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+
+    // Function to handle Join Us button clicks
+    function handleJoinUsClick(position) {
+      // Scroll to the form
+      const formSection = document.getElementById('application-form');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // Update the Area of Interest dropdown
+      const positionSelect = document.getElementById('position');
+      if (positionSelect) {
+        // Set value with a small delay to ensure smooth scrolling completes
+        setTimeout(() => {
+          // Find the matching option
+          const option = Array.from(positionSelect.options).find(opt => opt.text === position);
+          if (option) {
+            option.selected = true;
+            
+            // Add highlight effect
+            positionSelect.style.transition = 'background-color 0.3s ease';
+            positionSelect.style.backgroundColor = '#fff3cd';
+            setTimeout(() => {
+              positionSelect.style.backgroundColor = '';
+            }, 1500);
+          }
+        }, 500);
+      }
+    }
+  </script>
 </body>
 
 </html>
