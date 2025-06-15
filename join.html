@@ -1,80 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Join Us | Pasu Seva</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/logo-01.png">
+  <link rel="apple-touch-icon" href="./assets/logo-01.png">
   <link href="./dist/output.css" rel="stylesheet" />
-<!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet" />
 
- <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
 
   <style>
-  body {
-    font-family: 'Hind', sans-serif;
-  }
-  h1, h2, h3, .font-display {
-    font-family: 'Bakbak One', cursive;
-  }
-</style>
+    body {
+      font-family: 'Hind', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-display {
+      font-family: 'Bakbak One', cursive;
+    }
+  </style>
 
 </head>
+
 <body class="bg-white">
 
   <!-- ✅ Navbar starts -->
   <!-- Header/Navbar -->
-<header class="bg-pasuseva-yellow1 text-pasuseva-green shadow-md relative z-50">
-  <div class="max-w-7xl mx-auto flex justify-between items-center py-2 px-6">
-    <!-- Logo -->
-    <a href="./index.html" class="flex items-center space-x-2">
-      <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Logo" class="h-16   object-cover" />
-     
-    </a>
+  <header class="bg-pasuseva-yellow1 text-pasuseva-green shadow-md relative z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-2 px-6">
+      <!-- Logo -->
+      <a href="./index.html" class="flex items-center space-x-2">
+        <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Logo" class="h-16   object-cover" />
 
-    <!-- Desktop Nav -->
-    <nav class="space-x-6 hidden md:flex font-medium">
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="space-x-6 hidden md:flex font-medium">
+        <a href="./index.html#home" class="hover:text-pasuseva-orange">Home</a>
+        <a href="./index.html#about" class="hover:text-pasuseva-orange">About</a>
+        <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
+        <a href="#join" class="hover:text-pasuseva-orange">Join Us</a>
+        <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
+      </nav>
+
+      <!-- Hamburger -->
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-3xl focus:outline-none z-50 relative">☰</button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu"
+      class="hidden absolute top-full left-1/2 transform -translate-x-1/2 w-[90%] mt-2 flex flex-col py-4 px-6 bg-white text-pasuseva-green rounded-md shadow-md space-y-3 md:hidden z-40">
       <a href="./index.html#home" class="hover:text-pasuseva-orange">Home</a>
       <a href="./index.html#about" class="hover:text-pasuseva-orange">About</a>
       <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
       <a href="#join" class="hover:text-pasuseva-orange">Join Us</a>
       <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
-    </nav>
-
-    <!-- Hamburger -->
-    <div class="md:hidden">
-      <button id="menu-toggle" class="text-3xl focus:outline-none z-50 relative">☰</button>
     </div>
-  </div>
 
-  <!-- Mobile Dropdown -->
-  <!-- Mobile Dropdown -->
-<div id="mobile-menu"
-  class="hidden absolute top-full left-1/2 transform -translate-x-1/2 w-[90%] mt-2 flex flex-col py-4 px-6 bg-white text-pasuseva-green rounded-md shadow-md space-y-3 md:hidden z-40">
-   <a href="./index.html#home" class="hover:text-pasuseva-orange">Home</a>
-      <a href="./index.html#about" class="hover:text-pasuseva-orange">About</a>
-      <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
-      <a href="#join" class="hover:text-pasuseva-orange">Join Us</a>
-      <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
-</div>
-
-</header>
+  </header>
 
   <!-- ✅ Navbar ends -->
 
 
-<div class="relative overflow-hidden h-[70vh] w-full">
-  <div class="w-full h-full bg-cover bg-center" 
-       style="background-image: url('./assets/joinhero3.jpg');">
+  <div class="relative overflow-hidden h-[70vh] w-full">
+    <div class="w-full h-full bg-cover bg-center" style="background-image: url('./assets/joinhero3.jpg');">
+    </div>
   </div>
-</div>
 
 
-<!-- <section class="bg-pasuseva-yellow1 py-12 px-6 sm:px-10 md:px-20 lg:px-32 text-pasuseva-green">
+  <!-- <section class="bg-pasuseva-yellow1 py-12 px-6 sm:px-10 md:px-20 lg:px-32 text-pasuseva-green">
   <div class="max-w-6xl mx-auto text-center">
     <h2 class="text-4xl sm:text-5xl font-extrabold mb-6">Why Choose Pasu Seva?</h2>
     <p class="text-lg sm:text-xl mb-10 text-pasuseva-green">
@@ -98,287 +107,410 @@
 </section> -->
 
 
-<section class="bg-white py-12 px-4 sm:px-6 md:px-10 lg:px-20 text-black">
-  <div class="max-w-7xl mx-auto">
-    <h2 class="text-3xl font-semibold mb-6 text-pasuseva-orange text-center">Job Openings</h2>
-    <p class="text-center text-gray-700 mb-10">Join our passionate team and help us bring positive change to rural communities.</p>
+  <section class="bg-white py-12 px-4 sm:px-6 md:px-10 lg:px-20 text-black">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-3xl font-semibold mb-6 text-pasuseva-orange text-center">Job Openings</h2>
+      <p class="text-center text-gray-700 mb-10">Join our passionate team and help us bring positive change to rural
+        communities.</p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Job Card 1 -->
-      <div class="relative bg-white rounded-md p-6 shadow-md hover:shadow-lg transition-all">
-        <!-- Top Gradient Bar -->
-        <div class="absolute top-0 left-0 w-32 h-1 rounded-md bg-gradient-to-r from-pasuseva-orange to-transparent z-20"></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Title with Icon -->
-        <div class="flex items-center gap-2 text-pasuseva-green mb-2">
-          <i class="fas fa-stethoscope text-lg"></i>
-          <h3 class="text-xl font-semibold">Veterinary Assistant</h3>
+        <!-- Job Card 1 -->
+        <div class="relative bg-white rounded-md p-6 shadow-md hover:shadow-lg transition-all">
+          <!-- Top Gradient Bar -->
+          <div
+            class="absolute top-0 left-0 w-32 h-1 rounded-md bg-gradient-to-r from-pasuseva-orange to-transparent z-20">
+          </div>
+
+          <!-- Title with Icon -->
+          <div class="flex items-center gap-2 text-pasuseva-green mb-2">
+            <i class="fas fa-stethoscope text-lg"></i>
+            <h3 class="text-xl font-semibold">Veterinary Assistant</h3>
+          </div>
+
+          <p class="text-gray-700 mb-2">Support our field team in delivering medical care to animals in need.</p>
+          <p class="text-sm text-gray-500 mb-4">Location: Bihar | Type: Full-Time</p>
+
+          <button
+            class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
+            Submit Application
+          </button>
+
+          <!-- Bottom Gradient Bar -->
+          <div
+            class="absolute bottom-0 right-0 w-32 h-1 rounded-full bg-gradient-to-l from-pasuseva-orange to-transparent z-20">
+          </div>
         </div>
 
-        <p class="text-gray-700 mb-2">Support our field team in delivering medical care to animals in need.</p>
-        <p class="text-sm text-gray-500 mb-4">Location: Bihar | Type: Full-Time</p>
+        <!-- Job Card 2 -->
+        <div class="relative bg-white rounded-md p-6 shadow-md hover:shadow-lg transition-all">
+          <div
+            class="absolute top-0 left-0 w-32 h-1 rounded-md bg-gradient-to-r from-pasuseva-orange to-transparent z-20">
+          </div>
 
-        <button class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
-          Submit Application
-        </button>
+          <div class="flex items-center gap-2 text-pasuseva-green mb-2">
+            <i class="fas fa-bullhorn text-lg"></i>
+            <h3 class="text-xl font-semibold">Campaign Coordinator</h3>
+          </div>
 
-        <!-- Bottom Gradient Bar -->
-        <div class="absolute bottom-0 right-0 w-32 h-1 rounded-full bg-gradient-to-l from-pasuseva-orange to-transparent z-20"></div>
-      </div>
+          <p class="text-gray-700 mb-2">Lead and organize awareness campaigns across different regions.</p>
+          <p class="text-sm text-gray-500 mb-4">Location: Remote | Type: Part-Time</p>
 
-      <!-- Job Card 2 -->
-      <div class="relative bg-white rounded-md p-6 shadow-md hover:shadow-lg transition-all">
-        <div class="absolute top-0 left-0 w-32 h-1 rounded-md bg-gradient-to-r from-pasuseva-orange to-transparent z-20"></div>
+          <button
+            class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
+            Submit Application
+          </button>
 
-        <div class="flex items-center gap-2 text-pasuseva-green mb-2">
-          <i class="fas fa-bullhorn text-lg"></i>
-          <h3 class="text-xl font-semibold">Campaign Coordinator</h3>
+          <div
+            class="absolute bottom-0 right-0 w-32 h-1 rounded-full bg-gradient-to-l from-pasuseva-orange to-transparent z-20">
+          </div>
         </div>
 
-        <p class="text-gray-700 mb-2">Lead and organize awareness campaigns across different regions.</p>
-        <p class="text-sm text-gray-500 mb-4">Location: Remote | Type: Part-Time</p>
+        <!-- Job Card 3 -->
+        <div class="relative bg-white rounded-md p-6 shadow-md hover:shadow-lg transition-all">
+          <div
+            class="absolute top-0 left-0 w-32 h-1 rounded-md bg-gradient-to-r from-pasuseva-orange to-transparent z-20">
+          </div>
 
-        <button class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
-          Submit Application
-        </button>
+          <div class="flex items-center gap-2 text-pasuseva-green mb-2">
+            <i class="fas fa-hands-helping text-lg"></i>
+            <h3 class="text-xl font-semibold">Outreach Volunteer</h3>
+          </div>
 
-        <div class="absolute bottom-0 right-0 w-32 h-1 rounded-full bg-gradient-to-l from-pasuseva-orange to-transparent z-20"></div>
-      </div>
+          <p class="text-gray-700 mb-2">Help us spread awareness and engage with local communities and youth.</p>
+          <p class="text-sm text-gray-500 mb-4">Location: Flexible | Type: Volunteer</p>
 
-      <!-- Job Card 3 -->
-      <div class="relative bg-white rounded-md p-6 shadow-md hover:shadow-lg transition-all">
-        <div class="absolute top-0 left-0 w-32 h-1 rounded-md bg-gradient-to-r from-pasuseva-orange to-transparent z-20"></div>
+          <button
+            class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
+            Submit Application
+          </button>
 
-        <div class="flex items-center gap-2 text-pasuseva-green mb-2">
-          <i class="fas fa-hands-helping text-lg"></i>
-          <h3 class="text-xl font-semibold">Outreach Volunteer</h3>
+          <div
+            class="absolute bottom-0 right-0 w-32 h-1 rounded-full bg-gradient-to-l from-pasuseva-orange to-transparent z-20">
+          </div>
         </div>
 
-        <p class="text-gray-700 mb-2">Help us spread awareness and engage with local communities and youth.</p>
-        <p class="text-sm text-gray-500 mb-4">Location: Flexible | Type: Volunteer</p>
-
-        <button class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
-          Submit Application
-        </button>
-
-        <div class="absolute bottom-0 right-0 w-32 h-1 rounded-full bg-gradient-to-l from-pasuseva-orange to-transparent z-20"></div>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
 
 
-<section class="bg-pasuseva-orange bg-opacity-20 py-20 px-6 sm:px-10 md:px-20 lg:px-32 text-pasuseva-green">
-  <div class="max-w-6xl mx-auto text-center">
-    <h2 class="text-3xl font-semibold mb-10 text-pasuseva-orange text-center">Why Choose Pasu Seva?</h2>
-    <p class="text-lg sm:text-xl mb-10 text-pasuseva-green">
-      We’re not just an initiative, we’re a movement dedicated to animal welfare and rural empowerment.
-    </p>
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      
-      <!-- Card 1 -->
-      <div class="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition-all duration-300">
-        <div class="text-pasuseva-orange text-4xl mb-4">
-          <i class="fas fa-paw"></i>
-        </div>
-        <h3 class="text-xl font-semibold mb-2">Real Impact</h3>
-        <p class="text-gray-700">Your efforts contribute to the betterment of animal lives and rural livelihoods.</p>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition-all duration-300">
-        <div class="text-pasuseva-orange text-4xl mb-4">
-          <i class="fas fa-eye"></i>
-        </div>
-        <h3 class="text-xl font-semibold mb-2">Transparent Work</h3>
-        <p class="text-gray-700">We operate with complete transparency and measurable outcomes.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition-all duration-300">
-        <div class="text-pasuseva-orange text-4xl mb-4">
-          <i class="fas fa-hands-helping"></i>
-        </div>
-        <h3 class="text-xl font-semibold mb-2">Volunteer Friendly</h3>
-        <p class="text-gray-700">From students to professionals, anyone with compassion can contribute.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<section class="bg-pasuseva-white py-12 px-6 sm:px-10 md:px-20 lg:px-32 text-black relative">
-  <div class="max-w-5xl mx-auto relative">
-    <!-- Heading -->
-    <div class="text-center relative z-10">
-      <h2 class="text-3xl font-semibold mb-10 text-pasuseva-orange text-center">Join the Pasuseva Movement</h2>
-      <p class="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mb-10">
-        Contribute to animal welfare and rural development. Your passion can drive real change!
+  <section class="bg-pasuseva-orange bg-opacity-20 py-20 px-6 sm:px-10 md:px-20 lg:px-32 text-pasuseva-green">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-10 text-pasuseva-orange text-center">Why Choose Pasu Seva?</h2>
+      <p class="text-lg sm:text-xl mb-10 text-pasuseva-green">
+        We’re not just an initiative, we’re a movement dedicated to animal welfare and rural empowerment.
       </p>
-    </div>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-    <!-- Form Card -->
-    <div class="bg-white shadow-sm rounded-sm px-8 py-10 sm:px-12 md:px-16 lg:px-20 relative z-10 overflow-hidden">
-      
-      <!-- Gradient Borders on Card -->
-      <div class="absolute top-0 left-0 w-32 h-1 rounded-full z-20" style="background: linear-gradient(to right, #f97316, transparent);"></div>
-      <div class="absolute bottom-0 right-0 w-32 h-1 rounded-full z-20" style="background: linear-gradient(to left, #f97316, transparent);"></div>
-
-      <p class="text-center text-pasuseva-green">Fill in your details and become a part of Pasuseva.</p>
-
-      <!-- Form Starts -->
-      <form class="max-w-3xl mx-auto relative">
-        <!-- Full Name -->
-        <div class="relative mb-6 pt-10">
-          <label for="fullname" class="leading-7 text-sm text-gray-700">Full Name</label>
-          <input type="text" id="fullname" name="fullname"
-            class="w-full bg-white rounded border border-green-600 focus:border-green-700 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out"
-            placeholder="Your name">
+        <!-- Card 1 -->
+        <div class="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+          <div class="text-pasuseva-orange text-4xl mb-4">
+            <i class="fas fa-paw"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Real Impact</h3>
+          <p class="text-gray-700">Your efforts contribute to the betterment of animal lives and rural livelihoods.</p>
         </div>
 
-        <!-- Email -->
-        <div class="relative mb-6">
-          <label for="email" class="leading-7 text-sm text-gray-700">Email</label>
-          <input type="email" id="email" name="email"
-            class="w-full bg-white rounded border border-green-600 focus:border-green-700 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out"
-            placeholder="you@example.com">
+        <!-- Card 2 -->
+        <div class="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+          <div class="text-pasuseva-orange text-4xl mb-4">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Transparent Work</h3>
+          <p class="text-gray-700">We operate with complete transparency and measurable outcomes.</p>
         </div>
 
-        <!-- Phone -->
-        <div class="relative mb-6">
-          <label for="phone" class="leading-7 text-sm text-gray-700">Phone</label>
-          <input type="tel" id="phone" name="phone"
-            class="w-full bg-white rounded border border-green-600 focus:border-green-700 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out"
-            placeholder="+91...">
+        <!-- Card 3 -->
+        <div class="bg-white p-6 rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+          <div class="text-pasuseva-orange text-4xl mb-4">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Volunteer Friendly</h3>
+          <p class="text-gray-700">From students to professionals, anyone with compassion can contribute.</p>
         </div>
 
-        <!-- Area of Interest -->
-        <div class="relative mb-6">
-          <label for="interest" class="leading-7 text-sm text-gray-700">Area of Interest</label>
-          <select id="interest" name="interest"
-            class="w-full bg-white rounded border border-green-600 focus:border-green-700 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
-            <option selected disabled>Choose an option</option>
-            <option>Veterinary Services</option>
-            <option>Awareness Campaigns</option>
-            <option>Rural Volunteering</option>
-            <option>Donations & Support</option>
-          </select>
-        </div>
-
-        <!-- Why Join -->
-        <div class="relative mb-6">
-          <label for="message" class="leading-7 text-sm text-gray-700">Why do you want to join?</label>
-          <textarea id="message" name="message"
-            class="w-full bg-white rounded border border-green-600 focus:border-green-700 focus:ring-2 focus:ring-green-200 h-32 text-base outline-none text-gray-700 py-2 px-3 resize-none transition duration-200 ease-in-out"
-            placeholder="Share your thoughts..."></textarea>
-        </div>
-      </form>
-
-      <div class="text-center">
-        <button
-          class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
-          Submit Application
-        </button>
-        <p class="text-xs text-gray-500 mt-3">We’ll get back to you within 2-3 working days.</p>
-      </div>
-      <!-- Form Ends -->
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-<footer class="bg-pasuseva-green text-white body-font">
-  <div class="container mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col py-12 px-6 sm:px-10 md:px-20 lg:px-32">
- <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-    <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
-    <img src="./assets/pasuseva-logo2-removebg-preview.png" alt="Pasu Seva Logo" class=" h-10    object-contain" />
-    <!-- <span class="ml-3 text-xl">Pasu Seva</span> -->
-  </a>
-  <p class="mt-2 text-sm text-pasuseva-yellow2">Caring for animals with love and dedication.</p>
-</div>
-
-    <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
-      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-pasuseva-yellow3 tracking-widest text-sm mb-3">SERVICES</h2>
-        <nav class="list-none mb-10">
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Animal Shelter</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Veterinary Care</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Adoption Programs</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Community Outreach</a></li>
-        </nav>
-      </div>
-      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-pasuseva-yellow3 tracking-widest text-sm mb-3">RESOURCES</h2>
-        <nav class="list-none mb-10">
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Blog</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Events</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Volunteer</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Donate</a></li>
-        </nav>
-      </div>
-      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-pasuseva-yellow3 tracking-widest text-sm mb-3">ABOUT US</h2>
-        <nav class="list-none mb-10">
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Our Mission</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Team</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Careers</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Contact</a></li>
-        </nav>
-      </div>
-      <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 class="title-font font-medium text-pasuseva-yellow3 tracking-widest text-sm mb-3">LEGAL</h2>
-        <nav class="list-none mb-10">
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Privacy Policy</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Terms of Use</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Sitemap</a></li>
-          <li><a href="#" class="text-white hover:text-pasuseva-orange">Disclaimer</a></li>
-        </nav>
       </div>
     </div>
-  </div>
-  <div class="bg-pasuseva-green px-6 sm:px-10 md:px-20 lg:px-32 py-4">
-    <div class="container mx-auto flex flex-wrap flex-col sm:flex-row text-white">
-      <p class="text-sm text-center sm:text-left">© 2025 Pasu Seva —
-        <a href="#" class="text-pasuseva-orange ml-1" target="_blank" rel="noopener noreferrer">@pasuseva</a>
-      </p>
-      <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start space-x-3">
-        <a href="#" class="text-white hover:text-pasuseva-orange" aria-label="Facebook">
-          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-          </svg>
-        </a>
-        <a href="#" class="text-white hover:text-pasuseva-orange" aria-label="Twitter">
-          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-          </svg>
-        </a>
-        <a href="#" class="text-white hover:text-pasuseva-orange" aria-label="Instagram">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-          </svg>
-        </a>
-        <a href="#" class="text-white hover:text-pasuseva-orange" aria-label="LinkedIn">
-          <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-            <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-            <circle cx="4" cy="4" r="2" stroke="none"></circle>
-          </svg>
-        </a>
-      </span>
+  </section>
+
+
+  <section class="bg-pasuseva-white py-12 px-6 sm:px-10 md:px-20 lg:px-32 text-black relative">
+    <div class="max-w-5xl mx-auto relative">
+      <!-- Heading -->
+      <div class="text-center relative z-10">
+        <h2 class="text-3xl font-semibold mb-10 text-pasuseva-orange text-center">Join the Pasuseva Movement</h2>
+        <p class="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mb-10">
+          Contribute to animal welfare and rural development. Your passion can drive real change!
+        </p>
+      </div>
+
+      <section class="bg-white py-12 px-6 sm:px-10 md:px-24 lg:px-32" id="application-form">
+        <div class="max-w-3xl mx-auto bg-white px-6 flex flex-col w-full">
+          <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">मत्स्य पालन योजना के लिए आवेदन करें</h2>
+          <p class="leading-relaxed mb-5 text-gray-700 text-center">
+            हमारी मत्स्य पालन योजना के अंतर्गत सहायता प्राप्त करने हेतु आवेदन फॉर्म भरें।
+          </p>
+
+
+
+
+          <div class="max-w-max mx-auto p-6 bg-white rounded shadow-md">
+            <form class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+              <!-- Area of Interest -->
+              <div>
+                <label for="position" class="leading-7 text-sm text-gray-700">Area of Interest</label>
+                <select id="position" name="position"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+                  <option selected disabled>Choose an option</option>
+                  <option>Veterinary Services</option>
+                  <option>Awareness Campaigns</option>
+                  <option>Rural Volunteering</option>
+                  <option>Donations & Support</option>
+                </select>
+              </div>
+
+              <!-- पूरा नाम -->
+              <div>
+                <label for="fullName" class="text-sm text-gray-700">पूरा नाम</label>
+                <input type="text" id="fullName" name="fullName"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- पिता का नाम -->
+              <div>
+                <label for="fatherName" class="text-sm text-gray-700">पिता का नाम</label>
+                <input type="text" id="fatherName" name="fatherName"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- जन्म तिथि -->
+              <div>
+                <label for="dob" class="text-sm text-gray-700">जन्म तिथि (DD/MM/YYYY)</label>
+                <input type="date" id="dob" name="dob"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- मोबाइल नंबर -->
+              <div>
+                <label for="phone" class="text-sm text-gray-700">मोबाइल नंबर</label>
+                <input type="tel" id="phone" name="phone"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- ईमेल आईडी -->
+              <div>
+                <label for="email" class="text-sm text-gray-700">ईमेल आईडी</label>
+                <input type="email" id="email" name="email"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- पासपोर्ट साइज फोटो -->
+              <div>
+                <label for="photo" class="text-sm text-gray-700">पासपोर्ट साइज फोटो</label>
+                <input type="file" id="photo" name="photo" accept="image/*"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- पूरा पता -->
+              <div class="sm:col-span-2 lg:col-span-3">
+                <label for="address" class="text-sm text-gray-700">पूरा पता</label>
+                <textarea id="address" name="address"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 h-24 text-base outline-none text-gray-700 py-2 px-3 resize-none"></textarea>
+              </div>
+
+              <!-- राज्य -->
+              <div>
+                <label for="state" class="text-sm text-gray-700">राज्य</label>
+                <select id="state" name="state"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+                  <option value="">राज्य चुनें</option>
+                  <option value="Bihar">Bihar</option>
+                </select>
+              </div>
+
+              <!-- जिला -->
+              <div>
+                <label for="district" class="text-sm text-gray-700">जिला</label>
+                <select id="district" name="district"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+                  <option value="">जिला चुनें</option>
+                </select>
+              </div>
+
+              <!-- ब्लॉक -->
+              <div>
+                <label for="block" class="text-sm text-gray-700">ब्लॉक</label>
+                <select id="block" name="block"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+                  <option value="">ब्लॉक चुनें</option>
+                </select>
+              </div>
+
+              <!-- उच्चतम योग्यता -->
+              <div>
+                <label for="education" class="text-sm text-gray-700">उच्चतम योग्यता</label>
+                <input type="text" id="education" name="education"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- प्रतिशत -->
+              <div>
+                <label for="percentage" class="text-sm text-gray-700">प्रतिशत (%)</label>
+                <input type="number" id="percentage" name="percentage" step="0.01"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- उत्तीर्ण वर्ष -->
+              <div>
+                <label for="passYear" class="text-sm text-gray-700">उत्तीर्ण वर्ष</label>
+                <input type="text" id="passYear" name="passYear"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- आधार नंबर -->
+              <div>
+                <label for="aadhaar" class="text-sm text-gray-700">आधार नंबर</label>
+                <input type="text" id="aadhaar" name="aadhaar"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- आधार कार्ड फ्रंट -->
+              <div>
+                <label for="aadhaarFront" class="text-sm text-gray-700">आधार कार्ड फ्रंट फोटो</label>
+                <input type="file" id="aadhaarFront" name="aadhaarFront" accept="image/*"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- आधार कार्ड बैक -->
+              <div>
+                <label for="aadhaarBack" class="text-sm text-gray-700">आधार कार्ड बैक फोटो</label>
+                <input type="file" id="aadhaarBack" name="aadhaarBack" accept="image/*"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+
+
+              <!-- Submit -->
+              <div class="sm:col-span-2 lg:col-span-3">
+                <div id="payButton" class="cursor-pointer w-full text-center bg-pasuseva-green hover:bg-pasuseva-greenDark text-white font-medium py-2 px-6
+              rounded transition duration-300">
+                  आवेदन सबमिट करें (फॉर्म शुल्क: ₹2000)
+                </div>
+                <p class="text-xs text-gray-500 mt-3 text-center">हम 48 घंटे के अंदर आपसे संपर्क करेंगे।</p>
+              </div>
+            </form>
+          </div>
+
+
+      </section>
+
+
+
+
     </div>
-  </div>
-</footer>
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <footer class="bg-pasuseva-green text-white pt-12 pb-6 px-6 sm:px-10 md:px-20 lg:px-32">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <!-- Company Info -->
+        <div>
+          <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Pasu Seva Logo"
+            class="h-16 mb-4 bg-white rounded-lg p-2">
+          <p class="text-sm mb-4 font-hind">पशु सेवा एक ग्रामीण विकास आधारित पहल है जो पशुपालन और मत्स्य पालन के माध्यम
+            से लोगों को आत्मनिर्भर बनाने का कार्य कर रही है।</p>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">Quick Links</h3>
+          <ul class="space-y-2 font-hind">
+            <li><a href="#home" class="hover:text-pasuseva-yellow1 transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-pasuseva-yellow1 transition-colors">About Us</a></li>
+            <li><a href="#services" class="hover:text-pasuseva-yellow1 transition-colors">Services</a></li>
+            <li><a href="join.html" class="hover:text-pasuseva-yellow1 transition-colors">Join Us</a></li>
+            <li><a href="#contact" class="hover:text-pasuseva-yellow1 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">Our Services</h3>
+          <ul class="space-y-2 font-hind">
+            <li><a href="pasu-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">गाय / भैंस
+                पालन योजना</a></li>
+            <li><a href="bakri-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">बकरी पालन
+                योजना</a></li>
+            <li><a href="matsya-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">मत्स्य
+                पालन योजना</a></li>
+            <li><a href="murgi-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">मुर्गी
+                पालन योजना</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div id="contact">
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">Contact Us</h3>
+          <ul class="space-y-3 font-hind">
+            <li class="flex items-start space-x-3">
+              <i class="fas fa-map-marker-alt mt-1"></i>
+              <span>123, Rural Development Center, Sector 1, Lucknow, Uttar Pradesh - 226001</span>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i class="fas fa-phone-alt"></i>
+              <span>+91 1234567890</span>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i class="fas fa-envelope"></i>
+              <span>info@pasuseva.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Horizontal Line -->
+      <div class="border-t border-pasuseva-yellow1 opacity-30 my-6"></div>
+
+      <!-- Bottom Footer -->
+      <div class="flex flex-col md:flex-row justify-between items-center text-sm font-hind">
+        <p>&copy; 2025 Pasu Seva. All rights reserved.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 
   <script src="./js/join.js"></script>
+  <script src="./js/jobApplication.js"></script>
+  <script src="./js/dropdown-handler.js"></script>
 </body>
+
 </html>

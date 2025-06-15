@@ -1,6 +1,10 @@
 // tailwind.config.js
 module.exports = {
-  content: ["./src/**/*.{html,js}"], // Make sure this points to your files
+  content: [
+    "./*.{html,js}",
+    "./js/**/*.{html,js}",
+    "./src/**/*.{html,js,css}"
+  ],
   theme: {
     extend: {
       colors: {
@@ -10,7 +14,7 @@ module.exports = {
           yellow3: '#FBB321',
           orange: '#F9A125',
           green: '#0E4724',
-          greenDark: '#0a2e17', 
+          greenDark: '#0a2e17',
           white: '#FFFFFF',
         },
       },

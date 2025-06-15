@@ -1,0 +1,71 @@
+
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("#contact form");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+    const submitBtn = form.querySelector("button");
+    const defaultBtnHTML = submitBtn.innerHTML;
+
+    // Create loader element
+    const loader = `<svg class="animate-spin mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+    </svg>`;
+
+    // Helper: Validate email
+    const isValidEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
+    // Handle form submission
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+
+        if (!name || !email || !message) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        // Show loader
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = loader + "Sending...";
+
+        try {
+            const res = await fetch("http://localhost:4013/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, message })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                alert("✅ Message sent successfully!");
+                form.reset();
+            } else {
+                alert(data.message || "❌ Something went wrong. Try again.");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("❌ Failed to send message. Please try again later.");
+        } finally {
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = defaultBtnHTML;
+        }
+    });
+});
+
