@@ -831,16 +831,16 @@ video {
   height: 2rem;
 }
 
+.h-\[30vh\] {
+  height: 30vh;
+}
+
 .h-\[50vh\] {
   height: 50vh;
 }
 
 .h-\[70vh\] {
   height: 70vh;
-}
-
-.h-\[75vh\] {
-  height: 75vh;
 }
 
 .h-auto {
@@ -1681,6 +1681,10 @@ video {
 
   .sm\:mt-0 {
     margin-top: 0px;
+  }
+
+  .sm\:h-\[75vh\] {
+    height: 75vh;
   }
 
   .sm\:grid-cols-2 {
