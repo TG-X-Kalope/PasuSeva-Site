@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleLoading(true);
 
         try {
-            const res = await fetch("http://localhost:4013/api/job", {
+            const res = await fetch("https://api.pasuseva.thundergits.com/api/job", {
                 method: "POST",
                 body: formData,
             });
