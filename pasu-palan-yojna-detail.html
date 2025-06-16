@@ -729,6 +729,9 @@
 
           await fetch('https://api.pasuseva.thundergits.com/api/payment/verify-payment', {
             method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
