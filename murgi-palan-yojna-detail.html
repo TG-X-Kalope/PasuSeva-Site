@@ -50,6 +50,7 @@
         <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
         <a href="./join.html" class="hover:text-pasuseva-orange">Join Us</a>
         <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
+        <a target="_blank" href="https://pasuseva.netlify.app" class="hover:text-pasuseva-orange">Login</a>
       </nav>
 
       <!-- Hamburger -->
@@ -67,6 +68,7 @@
       <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
       <a href="./join.html" class="hover:text-pasuseva-orange">Join Us</a>
       <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
+      <a target="_blank" href="https://pasuseva.netlify.app" class="hover:text-pasuseva-orange">Login</a>
     </div>
 
   </header>
@@ -691,7 +693,7 @@
       const orderPayload = new FormData();
       orderPayload.append("amount", "2500"); // ₹500
       orderPayload.append("currency", "INR");
-      orderPayload.append("yojna", "Murgi Loan Yojna");
+      orderPayload.append("yojna", "Murgi Palan Yojna");
       orderPayload.append("receipt", "murgi_palan_" + Date.now());
 
       for (const key in formData) orderPayload.append(key, formData[key]);

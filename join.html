@@ -53,6 +53,7 @@
         <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
         <a href="#join" class="hover:text-pasuseva-orange">Join Us</a>
         <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
+        <a target="_blank" href="https://pasuseva.netlify.app" class="hover:text-pasuseva-orange">Login</a>
       </nav>
 
       <!-- Hamburger -->
@@ -70,6 +71,7 @@
       <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
       <a href="#join" class="hover:text-pasuseva-orange">Join Us</a>
       <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
+      <a target="_blank" href="https://pasuseva.netlify.app" class="hover:text-pasuseva-orange">Login</a>
     </div>
 
   </header>
@@ -511,10 +513,10 @@
   <script src="./js/jobApplication.js"></script>
   <script src="./js/dropdown-handler.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const menuToggle = document.getElementById('menu-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
-      
+
       if (menuToggle && mobileMenu) {
         menuToggle.addEventListener('click', () => {
           mobileMenu.classList.toggle('hidden');
@@ -529,7 +531,7 @@
       if (formSection) {
         formSection.scrollIntoView({ behavior: 'smooth' });
       }
-      
+
       // Update the Area of Interest dropdown
       const positionSelect = document.getElementById('position');
       if (positionSelect) {
@@ -539,7 +541,7 @@
           const option = Array.from(positionSelect.options).find(opt => opt.text === position);
           if (option) {
             option.selected = true;
-            
+
             // Add highlight effect
             positionSelect.style.transition = 'background-color 0.3s ease';
             positionSelect.style.backgroundColor = '#fff3cd';
