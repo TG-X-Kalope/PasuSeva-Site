@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pasu Seva</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/logo-01.png">
+  <link rel="apple-touch-icon" href="./assets/logo-01.png">
+  <link href="./dist/output.css" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet" />
+  <style>
+    /* Carousel animation: slide continuously to left */
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+
+    .carousel-wrapper {
+      display: flex;
+      width: 200%;
+      /* twice the container width for smooth looping */
+      animation: scroll-left 30s linear infinite;
+    }
+
+    #services h1,
+    #services h2 {
+      font-family: 'Bakbak One', cursive;
+    }
+
+    #services p,
+    #services ul,
+    #services li,
+    #services button {
+      font-family: 'Hind', sans-serif;
+    }
+
+    #about h2 {
+      font-family: 'Bakbak One', cursive;
+    }
+
+    #about p {
+      font-family: 'Hind', sans-serif;
+    }
+
+
+    .font-bakbak {
+      font-family: 'Bakbak One', sans-serif;
+    }
+
+    .font-hind {
+      font-family: 'Hind', sans-serif;
+    }
+  </style>
+
+</head>
+
+<body class="bg-white">
+
+  <!-- ✅ Navbar starts -->
+   <!-- Header/Navbar -->
+  <header class="bg-pasuseva-yellow1 text-pasuseva-green shadow-md relative z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-2 px-6">
+      <!-- Logo -->
+      <a href="./index.html" class="flex items-center space-x-2">
+        <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Logo" class="h-16   object-cover" />
+
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="space-x-6 hidden md:flex font-medium">
+        <a href="./index.html#home" class="hover:text-pasuseva-orange">Home</a>
+        <a href="./index.html#about" class="hover:text-pasuseva-orange">About</a>
+        <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
+        <a href="./join.html" class="hover:text-pasuseva-orange">Join Us</a>
+        <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
+        <a target="_blank" href="https://pasuseva.netlify.app" class="hover:text-pasuseva-orange">Login</a>
+      </nav>
+
+      <!-- Hamburger -->
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-3xl focus:outline-none z-50 relative">☰</button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu"
+      class="hidden absolute top-full left-1/2 transform -translate-x-1/2 w-[90%] mt-2 flex flex-col py-4 px-6 bg-white text-pasuseva-green rounded-md shadow-md space-y-3 md:hidden z-40">
+      <a href="./index.html#home" class="hover:text-pasuseva-orange">Home</a>
+      <a href="./index.html#about" class="hover:text-pasuseva-orange">About</a>
+      <a href="./index.html#services" class="hover:text-pasuseva-orange">Services</a>
+      <a href="./join.html" class="hover:text-pasuseva-orange">Join Us</a>
+      <a href="./index.html#contact" class="hover:text-pasuseva-orange">Contact</a>
+      <a target="_blank" href="https://pasuseva.netlify.app" class="hover:text-pasuseva-orange">Login</a>
+    </div>
+
+  </header>
+
+
+
+<section id="faq" class="bg-pasuseva-white py-12 px-6 sm:px-10 md:px-20 lg:px-32">
+  <div class="max-w-5xl mx-auto font-hind">
+    <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10 font-bakbak">
+      Frequently Asked Questions
+    </h2>
+
+    <div class="h-1 w-1/2 bg-gradient-to-r from-pasuseva-orange to-transparent mb-10 ml-0"></div>
+
+    <div class="space-y-8 text-lg leading-relaxed text-black">
+      
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">1. What is Pasuseva?</h3>
+        <p>
+          Pasuseva is a digital platform dedicated to animal welfare. We bridge the gap between citizens, NGOs, veterinary doctors, shelters, and volunteers to respond quickly to animal emergencies. Our services include rescue coordination, adoption assistance, medical support, and awareness campaigns. Whether it’s an injured stray or an abandoned pet, Pasuseva helps connect the right help at the right time.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">2. How can I report an animal emergency?</h3>
+        <p>
+          You can report emergencies by submitting a request through our Emergency Help form available on the homepage. Alternatively, call our listed helpline numbers. Once submitted, our backend system automatically notifies nearby volunteers and NGOs, enabling the fastest response possible. Clear photos, location details, and issue description help speed up the process.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">3. Can I volunteer with Pasuseva?</h3>
+        <p>
+          Absolutely! Whether you have medical skills, transport access, or digital outreach ability, we welcome all kinds of volunteers. You can register via our Volunteer Form, and once verified, we’ll connect you with nearby cases or projects based on your interest and availability. Training resources and coordinator support are also provided.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">4. How are donations utilized by Pasuseva?</h3>
+        <p>
+          100% of donations are used for animal treatment, medicines, shelter support, transportation, and rehabilitation. We maintain full transparency and publish monthly expense breakdowns on our website. Emergency funds are also reserved for critical rescue cases and sterilization drives. No portion of donations is used for salaries or promotions.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">5. Is my personal data safe on Pasuseva?</h3>
+        <p>
+          Yes. We use end-to-end encryption and secure servers to store your information. No personal data is shared with third parties without your consent. Only authorized team members have access to sensitive records, and all privacy practices align with current Indian IT laws. You can also request deletion of your data anytime.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">6. Can I adopt an animal through Pasuseva?</h3>
+        <p>
+          Yes, we regularly update our Adoption section with rescued animals in need of homes. You can apply through the Adoption Form, and our team will guide you through the process — including pre-adoption checks, home visits (if required), and post-adoption follow-up. All adoptions are free of cost but based on suitability.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">7. What type of animals does Pasuseva support?</h3>
+        <p>
+          While our primary focus is on street dogs and cats, we also assist with injured cows, birds, and other domestic animals. In rural or urban areas, if any animal is suffering due to injury, abandonment, or cruelty, we try our best to coordinate help either directly or through partners in that area.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">8. Does Pasuseva provide medical aid?</h3>
+        <p>
+          Yes. We work with registered veterinary doctors and clinics who provide treatment to injured or sick animals. Pasuseva can help cover costs partially or fully in emergency situations based on fund availability. We also organize periodic medical camps in areas with high stray populations to ensure basic care and vaccination.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">9. How can NGOs or shelters collaborate?</h3>
+        <p>
+          NGOs and shelters can register with us through the Partner Onboarding Form. Once verified, they’ll be added to our internal network and may receive leads for adoption, rescue, or volunteer support. Collaboration is built on trust and mutual transparency. We also promote their work on our social media platforms for visibility.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold text-pasuseva-orange font-bakbak">10. How can I contact Pasuseva for queries?</h3>
+        <p>
+          You can reach out via our Contact Us section, email us at <a href="mailto:support@pasuseva.org" class="text-pasuseva-orange underline">support@pasuseva.org</a>, or send a message via our social media handles. For emergency help, always use the emergency form. Our response team typically replies within 24 hours for general queries.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 🔶 Bottom-right border -->
+    <div class="relative mt-10">
+      <div class="absolute bottom-0 right-0 h-1 w-1/2 bg-gradient-to-l from-pasuseva-orange to-transparent"></div>
+    </div>
+  </div>
+</section>
+
+  
+
+
+   <!-- Footer Section -->
+  <footer class="bg-pasuseva-green text-white pt-12 pb-6 px-6 sm:px-10 md:px-20 lg:px-32">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <!-- Company Info -->
+        <div>
+          <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Pasu Seva Logo"
+            class="h-16 mb-4 bg-white rounded-lg p-2">
+          <p class="text-sm mb-4 font-hind">पशु सेवा एक ग्रामीण विकास आधारित पहल है जो पशुपालन और मत्स्य पालन के माध्यम
+            से लोगों को आत्मनिर्भर बनाने का कार्य कर रही है।</p>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">Quick Links</h3>
+          <ul class="space-y-2 font-hind">
+            <li><a href="#home" class="hover:text-pasuseva-yellow1 transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-pasuseva-yellow1 transition-colors">About Us</a></li>
+            <li><a href="#services" class="hover:text-pasuseva-yellow1 transition-colors">Services</a></li>
+            <li><a href="join.html" class="hover:text-pasuseva-yellow1 transition-colors">Join Us</a></li>
+            <li><a href="#contact" class="hover:text-pasuseva-yellow1 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">Our Services</h3>
+          <ul class="space-y-2 font-hind">
+            <li><a href="pasu-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">गाय / भैंस
+                पालन योजना</a></li>
+            <li><a href="bakri-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">बकरी पालन
+                योजना</a></li>
+            <li><a href="matsya-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">मत्स्य
+                पालन योजना</a></li>
+            <li><a href="murgi-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">मुर्गी
+                पालन योजना</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div id="contact">
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">Contact Us</h3>
+          <ul class="space-y-3 font-hind">
+            <li class="flex items-start space-x-3">
+              <i class="fas fa-map-marker-alt mt-1"></i>
+              <span>123, Rural Development Center, Sector 1, Lucknow, Uttar Pradesh - 226001</span>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i class="fas fa-phone-alt"></i>
+              <span>+91 1234567890</span>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i class="fas fa-envelope"></i>
+              <span>info@pasuseva.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Horizontal Line -->
+      <div class="border-t border-pasuseva-yellow1 opacity-30 my-6"></div>
+
+      <!-- Bottom Footer -->
+      <div class="flex flex-col md:flex-row justify-between items-center text-sm font-hind">
+        <p>&copy; 2025 Pasu Seva. All rights reserved.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+           <a href="./privacy-policy.html" class="hover:text-pasuseva-yellow1 transition-colors">Privacy Policy</a>
+          <a href="./t&c.html" class="hover:text-pasuseva-yellow1 transition-colors">Terms of Service</a>
+          <a href="./faq.html" class="hover:text-pasuseva-yellow1 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="./js/main.js">
+
+
+  </script>
+  <script src="./js/contact.js"></script>
+
+</body>
+
+</html>
