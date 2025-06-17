@@ -31,6 +31,24 @@
     }
 
 
+ .slider-wrapper {
+  height: 30vh; /* Default - mobile */
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .slider-wrapper {
+    height: 60vh; /* Tablet view */
+  }
+}
+
+@media (min-width: 1025px) {
+  .slider-wrapper {
+    height: calc(100vh - 96px); /* Desktop view */
+  }
+}
+
+
+
     .carousel-wrapper {
       display: flex;
       width: 200%;
@@ -115,31 +133,20 @@
   <!-- ✅ Navbar ends -->
 
 
-  <div class="slider-wrapper relative overflow-hidden h-[30vh] sm:h-[75vh] bg-black">
+ <div class="slider-wrapper relative overflow-hidden w-full">
   <div class="slides flex transition-transform ease-in-out duration-500 w-full h-full">
-
-    <!-- Slide 1 -->
+    <!-- Slides -->
     <div class="slide flex-shrink-0 w-full h-full">
-      <img src="./assets/home_slide_1.jpg"
-           class="w-full h-full object-fill" alt="Slide 1" />
+      <img src="./assets/home_slide_1.jpg" class="w-full h-full object-fill" alt="Slide 1" />
     </div>
-
-    <!-- Slide 2 -->
     <div class="slide flex-shrink-0 w-full h-full">
-      <img src="./assets/home_slide_2.jpg"
-           class="w-full h-full object-fill" alt="Slide 2" />
+      <img src="./assets/home_slide_2.jpg" class="w-full h-full object-fill" alt="Slide 2" />
     </div>
-
-    <!-- Slide 3 -->
     <div class="slide flex-shrink-0 w-full h-full">
-      <img src="./assets/home_slide_3.jpg"
-           class="w-full h-full object-fill" alt="Slide 3" />
+      <img src="./assets/home_slide_3.jpg" class="w-full h-full object-fill" alt="Slide 3" />
     </div>
-
-    <!-- Slide 4 -->
     <div class="slide flex-shrink-0 w-full h-full">
-      <img src="./assets/home_slide_4.jpg"
-           class="w-full h-full object-fill" alt="Slide 4" />
+      <img src="./assets/home_slide_4.jpg" class="w-full h-full object-fill" alt="Slide 4" />
     </div>
   </div>
 
@@ -712,7 +719,7 @@
           <a href="./t&c.html" class="hover:text-pasuseva-yellow1 transition-colors">Terms of Service</a>
           <a href="./faq.html" class="hover:text-pasuseva-yellow1 transition-colors">FAQ</a>
         </div>
-      </div> 
+      </div>
     </div>
   </footer>
 
