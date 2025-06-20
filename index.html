@@ -31,21 +31,24 @@
     }
 
 
- .slider-wrapper {
-  height: 30vh; /* Default - mobile */
-}
+    .slider-wrapper {
+      height: 30vh;
+      /* Default - mobile */
+    }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .slider-wrapper {
-    height: 60vh; /* Tablet view */
-  }
-}
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .slider-wrapper {
+        height: 60vh;
+        /* Tablet view */
+      }
+    }
 
-@media (min-width: 1025px) {
-  .slider-wrapper {
-    height: calc(100vh - 96px); /* Desktop view */
-  }
-}
+    @media (min-width: 1025px) {
+      .slider-wrapper {
+        height: calc(100vh - 96px);
+        /* Desktop view */
+      }
+    }
 
 
 
@@ -101,14 +104,14 @@
       </a>
 
       <!-- Desktop Nav -->
-     <nav class="space-x-6 hidden md:flex font-medium">
-  <a href="#home" class="hover:text-pasuseva-orange">मुख्य पृष्ठ</a>
-  <a href="#about" class="hover:text-pasuseva-orange">परिचय</a>
-  <a href="#services" class="hover:text-pasuseva-orange">योजना</a>
-  <a href="join.html" class="hover:text-pasuseva-orange">जुड़ें</a>
-  <a href="#contact" class="hover:text-pasuseva-orange">संपर्क</a>
-  <a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>
-</nav>
+      <nav class="space-x-6 hidden md:flex font-medium">
+        <a href="#home" class="hover:text-pasuseva-orange">मुख्य पृष्ठ</a>
+        <a href="#about" class="hover:text-pasuseva-orange">परिचय</a>
+        <a href="#services" class="hover:text-pasuseva-orange">योजना</a>
+        <a href="join.html" class="hover:text-pasuseva-orange">जुड़ें</a>
+        <a href="#contact" class="hover:text-pasuseva-orange">संपर्क</a>
+        <a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>
+      </nav>
 
       <!-- Hamburger -->
       <div class="md:hidden">
@@ -118,46 +121,46 @@
 
 
     <!-- Mobile Dropdown -->
-   <div id="mobile-menu"
-  class="hidden absolute top-full left-1/2 transform -translate-x-1/2 w-[90%] mt-2 flex flex-col py-4 px-6 bg-white text-pasuseva-green rounded-md shadow-md space-y-3 md:hidden z-40">
-  <a href="#home" class="hover:text-pasuseva-orange">मुख्य पृष्ठ</a>
-  <a href="#about" class="hover:text-pasuseva-orange">परिचय</a>
-  <a href="#services" class="hover:text-pasuseva-orange">योजना</a>
-  <a href="join.html" class="hover:text-pasuseva-orange">जुड़ें</a>
-  <a href="#contact" class="hover:text-pasuseva-orange">संपर्क</a>
-  <a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>
-</div>
+    <div id="mobile-menu"
+      class="hidden absolute top-full left-1/2 transform -translate-x-1/2 w-[90%] mt-2 flex flex-col py-4 px-6 bg-white text-pasuseva-green rounded-md shadow-md space-y-3 md:hidden z-40">
+      <a href="#home" class="hover:text-pasuseva-orange">मुख्य पृष्ठ</a>
+      <a href="#about" class="hover:text-pasuseva-orange">परिचय</a>
+      <a href="#services" class="hover:text-pasuseva-orange">योजना</a>
+      <a href="join.html" class="hover:text-pasuseva-orange">जुड़ें</a>
+      <a href="#contact" class="hover:text-pasuseva-orange">संपर्क</a>
+      <a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>
+    </div>
 
   </header>
 
   <!-- ✅ Navbar ends -->
 
 
- <div class="slider-wrapper relative overflow-hidden w-full">
-  <div class="slides flex transition-transform ease-in-out duration-500 w-full h-full">
-    <!-- Slides -->
-    <div class="slide flex-shrink-0 w-full h-full">
-      <img src="./assets/home_slide_1.jpg" class="w-full h-full object-fill" alt="Slide 1" />
+  <div class="slider-wrapper relative overflow-hidden w-full">
+    <div class="slides flex transition-transform ease-in-out duration-500 w-full h-full">
+      <!-- Slides -->
+      <div class="slide flex-shrink-0 w-full h-full">
+        <img src="./assets/home_slide_1.jpg" class="w-full h-full object-fill" alt="Slide 1" />
+      </div>
+      <div class="slide flex-shrink-0 w-full h-full">
+        <img src="./assets/home_slide_2.jpg" class="w-full h-full object-fill" alt="Slide 2" />
+      </div>
+      <div class="slide flex-shrink-0 w-full h-full">
+        <img src="./assets/home_slide_3.jpg" class="w-full h-full object-fill" alt="Slide 3" />
+      </div>
+      <div class="slide flex-shrink-0 w-full h-full">
+        <img src="./assets/home_slide_4.jpg" class="w-full h-full object-fill" alt="Slide 4" />
+      </div>
     </div>
-    <div class="slide flex-shrink-0 w-full h-full">
-      <img src="./assets/home_slide_2.jpg" class="w-full h-full object-fill" alt="Slide 2" />
-    </div>
-    <div class="slide flex-shrink-0 w-full h-full">
-      <img src="./assets/home_slide_3.jpg" class="w-full h-full object-fill" alt="Slide 3" />
-    </div>
-    <div class="slide flex-shrink-0 w-full h-full">
-      <img src="./assets/home_slide_4.jpg" class="w-full h-full object-fill" alt="Slide 4" />
-    </div>
-  </div>
 
-  <!-- Dots -->
-  <div class="slider-controls absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="0"></span>
-    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="1"></span>
-    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="2"></span>
-    <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="3"></span>
+    <!-- Dots -->
+    <div class="slider-controls absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+      <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="0"></span>
+      <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="1"></span>
+      <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="2"></span>
+      <span class="dot w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer" data-slide="3"></span>
+    </div>
   </div>
-</div>
 
 
 
@@ -253,17 +256,19 @@
               <div>
                 <h2 class="text-2xl font-bold mb-2 text-pasuseva-green">गाय / भैंस पालन योजना</h2>
                 <p class="text-base mb-3">
-                  किसानों को बेहतर पशु पालन के लिए गौशालाओं की स्थापना और आधुनिकीकरण हेतु वित्तीय सहायता। 
+                  किसानों को बेहतर पशु पालन के लिए गौशालाओं की स्थापना और आधुनिकीकरण हेतु वित्तीय सहायता।
 
                 </p>
 
-            
+
                 <ul class="text-sm mb-6 space-y-2">
 
-                   <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i> ₹1 लाख से ₹5 लाख तक का सहायता राशि उपलब्ध
+                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i> ₹1 लाख से ₹5 लाख तक का सहायता राशि
+                    उपलब्ध
 
                   </li>
-                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i> शेड निर्माण के लिए  ₹50,000 तक का अतिरिक्त सहायता  राशि
+                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i> शेड निर्माण के लिए ₹50,000 तक का
+                    अतिरिक्त सहायता राशि
 
                   </li>
                   <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>कुट्टी मशीन मूल्य: ₹65,000</li>
@@ -307,12 +312,14 @@
               <div>
                 <h2 class="text-2xl font-bold mb-2 text-pasuseva-green">बकरी पालन योजना</h2>
                 <p class="text-base mb-3">
-                  लाभकारी बकरी पालन और स्थायी आजीविका के लिए व्यक्तियों को सहायता राशि और प्रशिक्षण प्रदान कर सशक्त बनाया जाता
+                  लाभकारी बकरी पालन और स्थायी आजीविका के लिए व्यक्तियों को सहायता राशि और प्रशिक्षण प्रदान कर सशक्त
+                  बनाया जाता
                   है।
 
                 </p>
                 <ul class="text-sm mb-6 space-y-2">
-                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i> ₹1 लाख से ₹5 लाख तक का सहायता राशि उपलब्ध
+                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i> ₹1 लाख से ₹5 लाख तक का सहायता राशि
+                    उपलब्ध
                   </li>
                   <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>व्यक्तिगत एवं समूह दोनों योजनाएं
                     उपलब्ध</li>
@@ -360,12 +367,13 @@
 
                 </p>
                 <ul class="text-sm mb-6 space-y-2">
-                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i> ₹50,000 से ₹5 लाख तक का सहायता राशि उपलब्ध
+                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i> ₹50,000 से ₹5 लाख तक का सहायता राशि
+                    उपलब्ध
                   </li>
                   <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>तालाब, जाल, बीज, मोटर आदि के लिए
                     फाइनेंस</li>
                   <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>आसान और सुविधाजनक किस्त योजना</li>
-                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>फॉर्म शुल्क: ₹2000</li>
+                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>फॉर्म शुल्क: ₹1500</li>
                 </ul>
               </div>
               <div class="mt-auto pt-4 flex justify-center">
@@ -408,13 +416,15 @@
                   व्यावसायिक मुर्गी पालन के लिए आधुनिक तकनीक और उपकरणों के साथ वित्तीय सहायता प्रदान की जाती है।
                 </p>
                 <ul class="text-sm mb-6 space-y-2">
-                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>₹50,000 से ₹3 लाख तक का सहायता राशि उपलब्ध
-</li>
-                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>शेड निर्माण और उपकरण खरीद के लिए अतिरिक्त सहायता राशि
-</li>
+                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>₹50,000 से ₹3 लाख तक का सहायता राशि
+                    उपलब्ध
+                  </li>
+                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>शेड निर्माण और उपकरण खरीद के लिए
+                    अतिरिक्त सहायता राशि
+                  </li>
                   <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>विशेषज्ञ प्रशिक्षण और तकनीकी सहायता
                   </li>
-                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>फॉर्म शुल्क: ₹2500</li>
+                  <li><i class="fas fa-check-circle mr-2 text-pasuseva-orange"></i>फॉर्म शुल्क: ₹2000</li>
                 </ul>
               </div>
               <div class="mt-auto pt-4 flex justify-center">
@@ -503,7 +513,7 @@
     class="text-pasuseva-green body-font relative bg-pasuseva-white py-12 px-6 sm:px-10 md:px-24 lg:px-32 font-sans">
     <div class="text-center mb-10">
       <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10 font-bakbak">
-       हमारे विश्वसनीय द्वारा स्थापित ।
+        हमारे विश्वसनीय द्वारा स्थापित ।
       </h2>
     </div>
 
@@ -568,151 +578,156 @@
 
 
   <!-- Contact Section -->
- <section
-  class="text-pasuseva-green body-font relative bg-pasuseva-white py-12 px-6 sm:px-10 md:px-24 lg:px-32 font-[Hind]"
-  id="contact">
-  <div class="container mx-auto flex flex-col sm:flex-row gap-4">
+  <section
+    class="text-pasuseva-green body-font relative bg-pasuseva-white py-12 px-6 sm:px-10 md:px-24 lg:px-32 font-[Hind]"
+    id="contact">
+    <div class="container mx-auto flex flex-col sm:flex-row gap-4">
 
-    <!-- Contact Form -->
-    <form class="order-1 sm:order-2 lg:w-1/3 md:w-1/2 bg-pasuseva-white px-6 mx-auto flex flex-col md:ml-auto w-full">
-      <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">संपर्क करें</h2>
-      <p class="leading-relaxed mb-5 text-gray-700">कोई प्रश्न है? हमसे संपर्क करें, हमें आपकी सहायता करके खुशी होगी!</p>
+      <!-- Contact Form -->
+      <form class="order-1 sm:order-2 lg:w-1/3 md:w-1/2 bg-pasuseva-white px-6 mx-auto flex flex-col md:ml-auto w-full">
+        <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">संपर्क करें</h2>
+        <p class="leading-relaxed mb-5 text-gray-700">कोई प्रश्न है? हमसे संपर्क करें, हमें आपकी सहायता करके खुशी होगी!
+        </p>
 
-      <!-- Name -->
-      <div class="relative mb-4">
-        <label for="name" class="leading-7 text-sm text-gray-700">नाम</label>
-        <input type="text" id="name" name="name"
-          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
-      </div>
-
-      <!-- Email -->
-      <div class="relative mb-4">
-        <label for="email" class="leading-7 text-sm text-gray-700">ईमेल</label>
-        <input type="email" id="email" name="email"
-          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
-      </div>
-
-      <!-- Message -->
-      <div class="relative mb-4">
-        <label for="message" class="leading-7 text-sm text-gray-700">संदेश</label>
-        <textarea id="message" name="message"
-          class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 h-32 text-base outline-none text-gray-700 py-2 px-3 resize-none transition duration-200 ease-in-out"></textarea>
-      </div>
-
-      <!-- Button -->
-      <button
-        class="flex items-center justify-center text-white bg-pasuseva-green hover:bg-pasuseva-greenDark transition duration-300 border-0 py-2 px-6 rounded text-lg font-medium">
-        संदेश भेजें
-      </button>
-    </form>
-
-    <!-- Map and Address -->
-    <div
-      class="order-2 sm:order-1 lg:w-2/3 md:w-1/2 bg-pasuseva-yellow1 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-start justify-start relative mt-4 sm:mt-0 h-auto min-h-full">
-
-      <!-- Updated Map Coordinates -->
-      <iframe
-        src="https://www.google.com/maps?q=25.579833,85.102250&z=15&output=embed"
-        width="100%" height="100%" class="absolute inset-0 h-full" frameborder="0"
-        style="border:0; filter: grayscale(1) contrast(1.2) opacity(0.4);" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade" title="मानचित्र" marginheight="0" marginwidth="0"
-        scrolling="no">
-      </iframe>
-
-      <!-- पता और संपर्क -->
-      <div class="bg-white relative flex flex-wrap py-6 rounded-md shadow-md w-full z-10">
-        <div class="lg:w-1/2 px-6 mb-4">
-          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">पता</h2>
-          <p class="mt-1 text-sm">
-            विष्णुपुरी मोड़, न्यू बायपास रोड,<br />
-            बैंक ऑफ महाराष्ट्र के बगल में,<br />
-            अनीसाबाद, पटना, बिहार - 800002
-          </p>
-          <p class="mt-2 text-sm text-gray-700">समय: <span class="font-medium text-gray-900">सुबह 10 बजे से शाम 6 बजे तक</span></p>
+        <!-- Name -->
+        <div class="relative mb-4">
+          <label for="name" class="leading-7 text-sm text-gray-700">नाम</label>
+          <input type="text" id="name" name="name"
+            class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
         </div>
-        <div class="lg:w-1/2 px-6">
-          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">ईमेल</h2>
-          <a href="mailto:support@pasuseva.in"
-            class="text-pasuseva-orange leading-relaxed text-sm">support@pasuseva.in</a>
-          <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">फोन</h2>
-          <p class="leading-relaxed text-sm">+91 9473481319</p>
+
+        <!-- Email -->
+        <div class="relative mb-4">
+          <label for="email" class="leading-7 text-sm text-gray-700">ईमेल</label>
+          <input type="email" id="email" name="email"
+            class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
+        </div>
+
+        <!-- Message -->
+        <div class="relative mb-4">
+          <label for="message" class="leading-7 text-sm text-gray-700">संदेश</label>
+          <textarea id="message" name="message"
+            class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 h-32 text-base outline-none text-gray-700 py-2 px-3 resize-none transition duration-200 ease-in-out"></textarea>
+        </div>
+
+        <!-- Button -->
+        <button
+          class="flex items-center justify-center text-white bg-pasuseva-green hover:bg-pasuseva-greenDark transition duration-300 border-0 py-2 px-6 rounded text-lg font-medium">
+          संदेश भेजें
+        </button>
+      </form>
+
+      <!-- Map and Address -->
+      <div
+        class="order-2 sm:order-1 lg:w-2/3 md:w-1/2 bg-pasuseva-yellow1 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-start justify-start relative mt-4 sm:mt-0 h-auto min-h-full">
+
+        <!-- Updated Map Coordinates -->
+        <iframe src="https://www.google.com/maps?q=25.579833,85.102250&z=15&output=embed" width="100%" height="100%"
+          class="absolute inset-0 h-full" frameborder="0"
+          style="border:0; filter: grayscale(1) contrast(1.2) opacity(0.4);" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="मानचित्र" marginheight="0" marginwidth="0" scrolling="no">
+        </iframe>
+
+        <!-- पता और संपर्क -->
+        <div class="bg-white relative flex flex-wrap py-6 rounded-md shadow-md w-full z-10">
+          <div class="lg:w-1/2 px-6 mb-4">
+            <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">पता</h2>
+            <p class="mt-1 text-sm">
+              विष्णुपुरी मोड़, न्यू बायपास रोड,<br />
+              बैंक ऑफ महाराष्ट्र के बगल में,<br />
+              अनीसाबाद, पटना, बिहार - 800002
+            </p>
+            <p class="mt-2 text-sm text-gray-700">समय: <span class="font-medium text-gray-900">सुबह 10 बजे से शाम 6 बजे
+                तक</span></p>
+          </div>
+          <div class="lg:w-1/2 px-6">
+            <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs">ईमेल</h2>
+            <a href="mailto:support@pasuseva.in"
+              class="text-pasuseva-orange leading-relaxed text-sm">support@pasuseva.in</a>
+            <h2 class="title-font font-semibold text-gray-900 tracking-widest text-xs mt-4">फोन</h2>
+            <p class="leading-relaxed text-sm">+91 9473481319</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
   <!-- Footer Section -->
-<footer class="bg-pasuseva-green text-white pt-12 pb-6 px-6 sm:px-10 md:px-20 lg:px-32">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-      <!-- Company Info -->
-      <div>
-        <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Pasu Seva Logo"
-          class="h-16 mb-4 bg-white rounded-lg p-2">
-        <p class="text-sm mb-4 font-hind">
-          पशु सेवा एक ग्रामीण विकास आधारित पहल है जो पशुपालन और मत्स्य पालन के माध्यम से लोगों को आत्मनिर्भर बनाने का कार्य कर रही है।
-        </p>
-        <div class="flex space-x-4">
-          <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
+  <footer class="bg-pasuseva-green text-white pt-12 pb-6 px-6 sm:px-10 md:px-20 lg:px-32">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <!-- Company Info -->
+        <div>
+          <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Pasu Seva Logo"
+            class="h-16 mb-4 bg-white rounded-lg p-2">
+          <p class="text-sm mb-4 font-hind">
+            पशु सेवा एक ग्रामीण विकास आधारित पहल है जो पशुपालन और मत्स्य पालन के माध्यम से लोगों को आत्मनिर्भर बनाने का
+            कार्य कर रही है।
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="hover:text-pasuseva-yellow1 transition-colors">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">त्वरित लिंक</h3>
+          <ul class="space-y-2 font-hind">
+            <li><a href="#home" class="hover:text-pasuseva-yellow1 transition-colors">मुख्य पृष्ठ</a></li>
+            <li><a href="#about" class="hover:text-pasuseva-yellow1 transition-colors">परिचय</a></li>
+            <li><a href="#services" class="hover:text-pasuseva-yellow1 transition-colors">योजना</a></li>
+            <li><a href="join.html" class="hover:text-pasuseva-yellow1 transition-colors">जुड़ें</a></li>
+            <li><a href="#contact" class="hover:text-pasuseva-yellow1 transition-colors">संपर्क</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">हमारी सेवाएं</h3>
+          <ul class="space-y-2 font-hind">
+            <li><a href="pasu-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">गाय / भैंस
+                पालन योजना</a></li>
+            <li><a href="bakri-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">बकरी पालन
+                योजना</a></li>
+            <li><a href="matsya-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">मत्स्य
+                पालन योजना</a></li>
+            <li><a href="murgi-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">मुर्गी
+                पालन योजना</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div id="contact">
+          <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">हमसे संपर्क करें</h3>
+          <ul class="space-y-3 font-hind">
+            <li class="flex items-start space-x-3">
+              <i class="fas fa-map-marker-alt mt-1"></i>
+              <span>विष्णुपुरी मोड़, न्यू बायपास रोड, बैंक ऑफ महाराष्ट्र के बगल में, अनीसाबाद, पटना, बिहार 800002</span>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i class="fas fa-phone"></i>
+              <span>+91 9473481319</span>
+            </li>
+            <li class="flex items-center space-x-3">
+              <i class="fas fa-envelope"></i>
+              <span>support@pasuseva.in</span>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <!-- Quick Links -->
-      <div>
-        <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">त्वरित लिंक</h3>
-        <ul class="space-y-2 font-hind">
-          <li><a href="#home" class="hover:text-pasuseva-yellow1 transition-colors">मुख्य पृष्ठ</a></li>
-          <li><a href="#about" class="hover:text-pasuseva-yellow1 transition-colors">परिचय</a></li>
-          <li><a href="#services" class="hover:text-pasuseva-yellow1 transition-colors">योजना</a></li>
-          <li><a href="join.html" class="hover:text-pasuseva-yellow1 transition-colors">जुड़ें</a></li>
-          <li><a href="#contact" class="hover:text-pasuseva-yellow1 transition-colors">संपर्क</a></li>
-        </ul>
-      </div>
-
-      <!-- Services -->
-      <div>
-        <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">हमारी सेवाएं</h3>
-        <ul class="space-y-2 font-hind">
-          <li><a href="pasu-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">गाय / भैंस पालन योजना</a></li>
-          <li><a href="bakri-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">बकरी पालन योजना</a></li>
-          <li><a href="matsya-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">मत्स्य पालन योजना</a></li>
-          <li><a href="murgi-palan-yojna-detail.html" class="hover:text-pasuseva-yellow1 transition-colors">मुर्गी पालन योजना</a></li>
-        </ul>
-      </div>
-
-      <!-- Contact Info -->
-      <div id="contact">
-        <h3 class="text-xl font-bold mb-4 font-bakbak text-pasuseva-yellow1">हमसे संपर्क करें</h3>
-        <ul class="space-y-3 font-hind">
-          <li class="flex items-start space-x-3">
-            <i class="fas fa-map-marker-alt mt-1"></i>
-            <span>विष्णुपुरी मोड़, न्यू बायपास रोड, बैंक ऑफ महाराष्ट्र के बगल में, अनीसाबाद, पटना, बिहार 800002</span>
-          </li>
-          <li class="flex items-center space-x-3">
-            <i class="fas fa-phone"></i>
-            <span>+91 9473481319</span>
-          </li>
-          <li class="flex items-center space-x-3">
-            <i class="fas fa-envelope"></i>
-            <span>support@pasuseva.in</span>
-          </li>
-        </ul>
-      </div>
-    </div>
 
       <!-- Horizontal Line -->
       <div class="border-t border-pasuseva-yellow1 opacity-30 my-6"></div>

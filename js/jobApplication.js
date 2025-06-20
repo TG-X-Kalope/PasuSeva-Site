@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleLoading(true);
 
         try {
-            const res = await fetch("https://api.pasuseva.in/api/job", {
+            const res = await fetch("http://localhost:4012/api/job", {
                 method: "POST",
                 body: formData,
             });
