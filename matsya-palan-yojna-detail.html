@@ -748,7 +748,7 @@
       for (const key in formData) orderPayload.append(key, formData[key]);
       for (const key in files) orderPayload.append(key, files[key]);
 
-      const response = await fetch('http://localhost:4012/api/payment/create-order', {
+      const response = await fetch('https://api.pasuseva.in/api/payment/create-order', {
         method: 'POST',
         body: orderPayload
       });
@@ -775,7 +775,7 @@
         theme: { color: "#4CAF50" },
         handler: async function (response) {
           try {
-            await fetch('http://localhost:4012/api/payment/verify-payment', {
+            await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
