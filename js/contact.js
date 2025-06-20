@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         submitBtn.innerHTML = loader + "Sending...";
 
         try {
-            const res = await fetch("https://api.pasuseva.thundergits.com/api/contact", {
+            const res = await fetch("https://api.pasuseva.in/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
