@@ -30,6 +30,13 @@
     .font-display {
       font-family: 'Bakbak One', cursive;
     }
+
+    .input-error {
+      font-size: 0.875rem;
+      /* text-sm */
+      color: #dc2626;
+      /* red-600 */
+    }
   </style>
 
 </head>
@@ -57,7 +64,8 @@
         <a href="./index.html#services" class="hover:text-pasuseva-orange">योजना</a>
         <a href="#join" class="hover:text-pasuseva-orange">जुड़ें</a>
         <a href="./index.html#contact" class="hover:text-pasuseva-orange">संपर्क</a>
-<a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>      </nav>
+        <a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>
+      </nav>
 
       <!-- Hamburger -->
       <div class="md:hidden">
@@ -74,7 +82,8 @@
       <a href="./index.html#services" class="hover:text-pasuseva-orange">योजना</a>
       <a href="#join" class="hover:text-pasuseva-orange">जुड़ें</a>
       <a href="./index.html#contact" class="hover:text-pasuseva-orange">संपर्क</a>
-<a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>    </div>
+      <a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>
+    </div>
 
   </header>
 
@@ -136,7 +145,7 @@
           </p>
           <p class="text-sm text-gray-500 mb-4">स्थान -बिहार | प्रकार: पूर्णकालिक (Full-Time)</p>
 
-          <button onclick="handleJoinUsClick('Veterinary Assistant')"
+          <button onclick="handleJoinUsClick('पंचायत समन्वयक')"
             class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
             आवेदन जमा करें
           </button>
@@ -162,7 +171,7 @@
             सहयोग करें और समाज सेवा से जुड़ें।</p>
           <p class="text-sm text-gray-500 mb-4">स्थान -बिहार | प्रकार: पूर्णकालिक (Full-Time)</p>
 
-          <button onclick="handleJoinUsClick('Campaign Coordinator')"
+          <button onclick="handleJoinUsClick('प्रखंड समन्वयक')"
             class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
             आवेदन जमा करें
           </button>
@@ -187,10 +196,10 @@
             चिकित्सा सहायता दिलवाने में सहयोग करें।</p>
           <p class="text-sm text-gray-500 mb-4">स्थान -बिहार | प्रकार: पूर्णकालिक (Full-Time)</p>
 
-          <button onclick="handleJoinUsClick('Outreach Volunteer')"
+          <button onclick="handleJoinUsClick('जिला समन्वयक')"
             class="bg-gradient-to-r from-pasuseva-orange to-pasuseva-yellow1 hover:from-pasuseva-yellow1 hover:to-pasuseva-orange text-white font-semibold py-2 px-6 text-sm rounded transition-all duration-300">
             आवेदन जमा करें
-           </button>
+          </button>
 
           <div
             class="absolute bottom-0 right-0 w-32 h-1 rounded-full bg-gradient-to-l from-pasuseva-orange to-transparent z-20">
@@ -217,7 +226,8 @@
             <i class="fas fa-paw"></i>
           </div>
           <h3 class="text-xl font-semibold mb-2">वास्तविक प्रभाव</h3>
-          <p class="text-gray-700">आपके प्रयास न केवल पशुओं के जीवन को बेहतर बनाते हैं, बल्कि ग्रामीण लोगों की आजीविका को भी सशक्त करते हैं।</p>
+          <p class="text-gray-700">आपके प्रयास न केवल पशुओं के जीवन को बेहतर बनाते हैं, बल्कि ग्रामीण लोगों की आजीविका
+            को भी सशक्त करते हैं।</p>
         </div>
 
         <!-- Card 2 -->
@@ -235,7 +245,8 @@
             <i class="fas fa-hands-helping"></i>
           </div>
           <h3 class="text-xl font-semibold mb-2">स्वयंसेवकों के लिए अनुकूल</h3>
-          <p class="text-gray-700">चाहे छात्र हों या पेशेवर, सेवा भावना रखने वाला कोई भी व्यक्ति हमारे साथ जुड़कर योगदान दे सकता है।</p>
+          <p class="text-gray-700">चाहे छात्र हों या पेशेवर, सेवा भावना रखने वाला कोई भी व्यक्ति हमारे साथ जुड़कर योगदान
+            दे सकता है।</p>
         </div>
 
       </div>
@@ -255,10 +266,12 @@
 
       <section class="bg-white py-12 px-6 sm:px-10 md:px-24 lg:px-32" id="application-form">
         <div class="max-w-3xl mx-auto bg-white px-6 flex flex-col w-full">
-          <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">मत्स्य पालन योजना के लिए आवेदन करें</h2>
+          <h2 class="text-3xl font-bold text-pasuseva-orange text-center mb-10">योजना से जुड़ें</h2>
           <p class="leading-relaxed mb-5 text-gray-700 text-center">
-            हमारी मत्स्य पालन योजना के अंतर्गत सहायता प्राप्त करने हेतु आवेदन फॉर्म भरें।
+            योजना में समन्वयक के रूप में जुड़कर ग्रामीण विकास में भागीदार बनें। आवेदन फॉर्म भरें और टीम का
+            हिस्सा बनें।
           </p>
+
 
 
 
@@ -403,7 +416,7 @@
               <div class="sm:col-span-2 lg:col-span-3">
                 <div id="payButton" class="cursor-pointer w-full text-center bg-pasuseva-green hover:bg-pasuseva-greenDark text-white font-medium py-2 px-6
               rounded transition duration-300">
-                  आवेदन सबमिट करें (फॉर्म शुल्क: ₹199)
+                  आवेदन सबमिट करें
                 </div>
                 <!-- <p class="text-xs text-gray-500 mt-3 text-center">हम 48 घंटे के अंदर आपसे संपर्क करेंगे।</p> -->
               </div>
