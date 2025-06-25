@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearErrors();
         const required = [
             "position", "fullName", "fatherName", "dob", "phone", "email", "address",
-            "state", "district", "block", "education", "percentage", "passYear", "aadhaar"
+            "state", "district", "block", "education", "percentage", "passYear", "aadhaar", "experience", "industry"
         ];
         let hasError = false;
 
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleLoading(true);
 
         try {
-            const res = await fetch("https://api.pasuseva.in/api/job", {
+            const res = await fetch("http://localhost:4012/api/job", {
                 method: "POST",
                 body: formData,
             });
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     theme: { color: "#4CAF50" },
                     handler: async function (response) {
                         try {
-                            await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
+                            await fetch('http://localhost:4012/api/payment/verify-payment', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({
