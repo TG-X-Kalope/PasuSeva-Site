@@ -15,7 +15,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet" />
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
       font-family: 'Hind', sans-serif;
@@ -26,6 +26,12 @@
     h3,
     .font-display {
       font-family: 'Bakbak One', cursive;
+    }
+
+    .input-error {
+      font-size: 0.875rem;
+      color: #dc2626;
+      /* Tailwind red-600 */
     }
   </style>
 
@@ -50,7 +56,8 @@
         <a href="./index.html#services" class="hover:text-pasuseva-orange">योजना</a>
         <a href="./join.html" class="hover:text-pasuseva-orange">जुड़ें</a>
         <a href="./index.html#contact" class="hover:text-pasuseva-orange">संपर्क</a>
-<a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>      </nav>
+        <a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>
+      </nav>
 
       <!-- Hamburger -->
       <div class="md:hidden">
@@ -67,7 +74,8 @@
       <a href="./index.html#services" class="hover:text-pasuseva-orange">योजना</a>
       <a href="./join.html" class="hover:text-pasuseva-orange">जुड़ें</a>
       <a href="./index.html#contact" class="hover:text-pasuseva-orange">संपर्क</a>
-<a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>    </div>
+      <a target="_blank" href="https://admin.pasuseva.in/" class="hover:text-pasuseva-orange">लॉगिन</a>
+    </div>
 
   </header>
 
@@ -527,7 +535,7 @@
           <div class="sm:col-span-2 lg:col-span-3">
             <button id="payButton" type="button"
               class="w-full bg-pasuseva-green hover:bg-pasuseva-greenDark text-white font-medium py-2 px-6 rounded transition duration-300 flex items-center justify-center gap-2">
-              <span class="button-text">आवेदन सबमिट करें (फॉर्म शुल्क: ₹2000)</span>
+              <span class="button-text">आवेदन सबमिट करें (फॉर्म शुल्क: ₹1500)</span>
               <svg class="animate-spin h-5 w-5 text-white hidden" id="loadingSpinner" xmlns="http://www.w3.org/2000/svg"
                 fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -647,12 +655,31 @@
 <script>
   document.getElementById('payButton').addEventListener('click', async function (e) {
     e.preventDefault();
+
     const buttonText = document.querySelector('.button-text');
     const spinner = document.getElementById('loadingSpinner');
     const getValue = id => document.getElementById(id)?.value?.trim() || "";
     const getFile = id => document.getElementById(id)?.files?.[0] || null;
 
-    // Collect text fields
+    const showError = (id, message) => {
+      let input = document.getElementById(id);
+      let existingError = input.parentElement.querySelector('.input-error');
+      if (!existingError) {
+        const errorEl = document.createElement('p');
+        errorEl.className = "input-error text-red-600 text-sm mt-1";
+        errorEl.innerText = message;
+        input.parentElement.appendChild(errorEl);
+      } else {
+        existingError.innerText = message;
+      }
+    };
+
+    const clearErrors = () => {
+      document.querySelectorAll('.input-error').forEach(el => el.remove());
+    };
+
+    clearErrors();
+
     const formData = {
       fullName: getValue('fullName'),
       fatherName: getValue('fatherName'),
@@ -663,27 +690,9 @@
       state: getValue('state'),
       district: getValue('district'),
       block: getValue('block'),
-
-      aadhaar: getValue('aadhaar')
+      aadhaar: getValue('aadhaar'),
     };
-    // Check required fields
-    for (const key in formData) {
-      if (!formData[key]) {
-        alert(`Please fill: ${key}`);
-        return;
-      }
-    }
 
-    if (formData['phone'].length < 10) {
-      alert("Please enter a valid 10-digit phone number.");
-      return;
-    }
-
-    if (formData['aadhaar'].length < 12) {
-      alert("Please enter a valid 12-digit Aadhaar number.");
-      return;
-    }
-    // Optional: Collect files
     const files = {
       photo: getFile('photo'),
       aadhaarFront: getFile('aadhaarFront'),
@@ -691,15 +700,49 @@
       landDocs: getFile('landDocs')
     };
 
+    let hasError = false;
+
+    // Validation
+    for (const key in formData) {
+      if (!formData[key]) {
+        showError(key, "यह फ़ील्ड अनिवार्य है");
+        hasError = true;
+      }
+    }
+
+    if (formData.phone && (!/^\d{10}$/.test(formData.phone))) {
+      showError("phone", "10 अंकों का वैध मोबाइल नंबर दर्ज करें");
+      hasError = true;
+    }
+
+    if (formData.email && !/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
+      showError("email", "मान्य ईमेल आईडी दर्ज करें");
+      hasError = true;
+    }
+
+    if (formData.aadhaar && (!/^\d{12}$/.test(formData.aadhaar))) {
+      showError("aadhaar", "12 अंकों का वैध आधार नंबर दर्ज करें");
+      hasError = true;
+    }
+
+    for (const key in files) {
+      if (!files[key]) {
+        showError(key, "फ़ाइल अपलोड करना अनिवार्य है");
+        hasError = true;
+      }
+    }
+
+    if (hasError) return;
+
     try {
       e.target.disabled = true;
       buttonText.textContent = 'आवेदन सबमिट किया जा रहा है...';
       spinner.classList.remove('hidden');
-      // 1. Create Razorpay Order (send basic details to backend)
+
       const orderPayload = new FormData();
-      orderPayload.append("amount", "2000"); // ₹500
+      orderPayload.append("amount", "1500");
       orderPayload.append("currency", "INR");
-      orderPayload.append("yojna", "Matsya Palan Yojna");
+      orderPayload.append("yojna", "Matsya Dhan Yojna");
       orderPayload.append("receipt", "matsya_" + Date.now());
 
       for (const key in formData) orderPayload.append(key, formData[key]);
@@ -713,9 +756,8 @@
       const data = await response.json();
       if (!data || !data.order) throw new Error("Order creation failed");
 
-      // 2. Razorpay Checkout
       const options = {
-        key: "rzp_test_kOfu7jn9tzGbj4", // Replace with your live/test key
+        key: "rzp_test_kOfu7jn9tzGbj4",
         amount: data.order.amount,
         currency: data.order.currency,
         name: "Pasuseva Foundation",
@@ -732,31 +774,162 @@
         },
         theme: { color: "#4CAF50" },
         handler: async function (response) {
-
-          await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
-            method: 'POST',
-            body: JSON.stringify({
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-
-            })
-          });
-
-          window.location.replace("./payment_success.html");
+          try {
+            await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              })
+            });
+            // ✅ Generate PDF invoice
+            await generateInvoicePDF(formData, response);
+            window.location.replace("./payment_success.html");
+          } catch (error) {
+            alert("भुगतान के बाद सत्यापन विफल रहा। कृपया पुनः प्रयास करें।");
+            window.location.reload();
+          }
+        },
+        modal: {
+          ondismiss: function () {
+            alert("आपका भुगतान रद्द कर दिया गया है।");
+            window.location.reload();
+          }
         }
       };
 
       const rzp = new Razorpay(options);
       rzp.open();
+
     } catch (err) {
       console.error(err);
       e.target.disabled = false;
       buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹500)';
       spinner.classList.add('hidden');
-      alert("Something went wrong while processing payment.");
+      alert("भुगतान प्रक्रिया के दौरान कुछ गलत हो गया। कृपया पुनः प्रयास करें।");
+      window.location.reload();
     }
   });
+
+  async function generateInvoicePDF(formData, paymentResponse) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const date = new Date().toLocaleDateString("en-IN");
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 15;
+
+    // Colors
+    const primaryColor = '#2c5f2d';  // Dark green
+    const secondaryColor = '#97bc62';  // Light green
+    const accentColor = '#004b23';     // Deep green
+    const textColor = '#333333';
+    const lightColor = '#f8f9fa';
+
+    // Add green header with foundation name
+    doc.setFillColor(primaryColor);
+    doc.rect(0, 0, pageWidth, 45, 'F');
+    doc.setFontSize(18);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.text("Pasuseva Foundation", pageWidth / 2, 20, { align: 'center' });
+
+    // Invoice title and date
+    doc.setFontSize(14);
+    doc.setTextColor(255, 255, 255);
+    doc.text("Matsya Yojna Application Invoice", pageWidth / 2, 35, { align: 'center' });
+
+    doc.setFontSize(11);
+    doc.setTextColor(255, 255, 255);
+    doc.text(`Date: ${date}`, pageWidth - margin, 45, { align: 'right' });
+
+    // Applicant details section
+    const applicantYStart = 60;
+    doc.setFillColor(lightColor);
+    doc.rect(margin - 5, applicantYStart - 8, pageWidth - margin * 2, 10, 'F');
+    doc.setFontSize(12);
+    doc.setTextColor(accentColor);
+    doc.setFont("helvetica", "bold");
+    doc.text("Applicant Information", margin, applicantYStart);
+
+    doc.setFontSize(10);
+    doc.setTextColor(textColor);
+    doc.setFont("helvetica", "normal");
+    let yPos = applicantYStart + 10;
+
+    const applicantDetails = [
+      `Full Name: ${formData.fullName}`,
+      `Father's Name: ${formData.fatherName}`,
+      `Phone: ${formData.phone}`,
+      `Email: ${formData.email}`,
+      `Address: ${formData.address}`
+    ];
+
+    applicantDetails.forEach(detail => {
+      doc.text(detail, margin, yPos);
+      yPos += 8;
+    });
+
+    // Payment details section
+    const paymentYStart = yPos + 10;
+    doc.setFillColor(lightColor);
+    doc.rect(margin - 5, paymentYStart - 8, pageWidth - margin * 2, 10, 'F');
+    doc.setFontSize(12);
+    doc.setTextColor(accentColor);
+    doc.setFont("helvetica", "bold");
+    doc.text("Payment Details", margin, paymentYStart);
+
+    doc.setFontSize(10);
+    doc.setTextColor(textColor);
+    doc.setFont("helvetica", "normal");
+    yPos = paymentYStart + 10;
+
+    const paymentDetails = [
+      `Transaction ID: ${paymentResponse.razorpay_payment_id}`,
+      `Order ID: ${paymentResponse.razorpay_order_id}`,
+      `Amount Paid: ₹1500`,
+      `Payment Status: Paid`,
+      `Payment Date: ${date}`
+    ];
+
+    paymentDetails.forEach(detail => {
+      doc.text(detail, margin, yPos);
+      yPos += 8;
+    });
+
+    // Payment status badge
+    doc.setFillColor(secondaryColor);
+    doc.rect(pageWidth - 50, paymentYStart, 40, 15, 'F');
+    doc.setFontSize(10);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.text("PAID", pageWidth - 30, paymentYStart + 8, { align: 'center' });
+
+    // Thank you message
+    const messageY = yPos + 15;
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.setFont("helvetica", "italic");
+    doc.text("Thank you for supporting our Gaushala initiative!", pageWidth / 2, messageY, { align: 'center' });
+
+    // Footer note
+    const footerY = 280;
+    doc.setFontSize(8);
+    doc.setTextColor(150);
+    doc.setFont("helvetica", "normal");
+    doc.text("This is a system-generated invoice. For any queries, contact: support@pasuseva.in",
+      pageWidth / 2, footerY, { align: 'center', maxWidth: 180 });
+
+    // Add decorative border
+    doc.setDrawColor(200);
+    doc.rect(margin - 5, 45, pageWidth - margin * 2, 230);
+
+    // Save PDF
+    const fileName = `pasuseva_Invoice_${formData.fullName.replace(/\s+/g, '_')}_${date.replace(/\//g, '-')}.pdf`;
+    doc.save(fileName);
+  }
+
 </script>
 
 
