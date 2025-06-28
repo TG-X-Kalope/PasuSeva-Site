@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearErrors();
         const required = [
             "position", "fullName", "fatherName", "dob", "phone", "email", "address",
-            "state", "district", "block", "education", "percentage", "passYear", "aadhaar"
+            "state", "district", "block", "education", "percentage", "passYear", "aadhaar", "experience", "industry"
         ];
         let hasError = false;
 

@@ -315,7 +315,7 @@
               <!-- मोबाइल नंबर -->
               <div>
                 <label for="phone" class="text-sm text-gray-700">मोबाइल नंबर</label>
-                <input type="tel" id="phone" name="phone"
+                <input type="text" id="phone" name="phone"
                   class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
               </div>
 
@@ -330,6 +330,13 @@
               <div>
                 <label for="photo" class="text-sm text-gray-700">पासपोर्ट साइज फोटो</label>
                 <input type="file" id="photo" name="photo" accept="image/*"
+                  class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
+              </div>
+
+              <!-- उद्योग -->
+              <div>
+                <label for="industry" class="text-sm text-gray-700">उद्योग</label>
+                <input type="text" id="industry" name="industry"
                   class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
               </div>
 
@@ -394,9 +401,11 @@
                 <label for="education" class="text-sm text-gray-700 block mb-1">उच्चतम योग्यता</label>
                 <select id="education" name="education"
                   class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base text-gray-700 py-2 px-3 outline-none">
-                  <option value="">कृपया चयन करें</option>
-                  <option value="matric">मैट्रिकुलेशन</option>
-                  <option value="inter">इंटरमीडिएट</option>
+                  <option disabled value="">कृपया चयन करें</option>
+                  <option value="मैट्रिकुलेशन">मैट्रिकुलेशन</option>
+                  <option value="इंटरमीडिएट">इंटरमीडिएट</option>
+                  <option value="स्नातक">स्नातक</option>
+                  <option value="स्नातकोत्तर">स्नातकोत्तर</option>
                 </select>
               </div>
 
@@ -404,7 +413,7 @@
               <!-- प्रतिशत -->
               <div>
                 <label for="percentage" class="text-sm text-gray-700">प्रतिशत (%)</label>
-                <input type="number" id="percentage" name="percentage" step="0.01"
+                <input type="number" id="percentage" name="percentage" step="0.1"
                   class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
               </div>
 
