@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleLoading = (state) => {
         loading = state;
         submitBtn.innerHTML = state ? "प्रोसेस हो रहा है..." : "आवेदन सबमिट करें (फॉर्म शुल्क: ₹199)";
+        submitBtn.disabled = state;
         submitBtn.classList.toggle("opacity-50", state);
         submitBtn.classList.toggle("cursor-not-allowed", state);
     };
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
         let hasError = false;
 
+        // Text Field Validation
         required.forEach(id => {
             const value = formData.get(id)?.trim();
             if (!value) {
@@ -45,27 +47,35 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
+        // Phone validation
         const phone = formData.get("phone")?.trim();
         if (phone && !/^\d{10}$/.test(phone)) {
             showError("phone", "10 अंकों का वैध मोबाइल नंबर दर्ज करें");
             hasError = true;
         }
 
+        // Email validation
         const email = formData.get("email")?.trim();
         if (email && !/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(email)) {
             showError("email", "मान्य ईमेल आईडी दर्ज करें");
             hasError = true;
         }
 
+        // Aadhaar validation
         const aadhaar = formData.get("aadhaar")?.trim();
         if (aadhaar && !/^\d{12}$/.test(aadhaar)) {
             showError("aadhaar", "12 अंकों का वैध आधार नंबर दर्ज करें");
             hasError = true;
         }
 
+        // File Validation
         ["photo", "aadhaarFront", "aadhaarBack"].forEach(fileId => {
-            if (!formData.get(fileId)) {
-                showError(fileId, "यह फ़ोटो आवश्यक है");
+            const file = formData.get(fileId);
+            if (!file || file.size === 0) {
+                showError(fileId, "यह फ़ाइल आवश्यक है");
+                hasError = true;
+            } else if (file.size > 100 * 1024) {
+                showError(fileId, "फ़ाइल का आकार 100KB से अधिक नहीं होना चाहिए");
                 hasError = true;
             }
         });
@@ -91,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (res.ok) {
                 const options = {
-                    key: "rzp_test_kOfu7jn9tzGbj4",
+                    key: "rzp_test_kOfu7jn9tzGbj4", // Replace with production key
                     amount: data.data.amount,
                     currency: data.data.currency,
                     name: "Pasuseva Foundation",
@@ -120,7 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                 })
                             });
 
+                            // ✅ PDF Generate
                             await generateInvoicePDF(formData, response);
+
                             alert("आवेदन सफलतापूर्वक सबमिट किया गया है!");
                             window.location.replace("./payment_success.html");
                         } catch (error) {
@@ -143,8 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert(data?.message || "फॉर्म सबमिट करने में त्रुटि हुई");
             }
         } catch (err) {
-            console.log(err)
-            alert("सर्वर से कनेक्ट नहीं हो सका");
+            console.error(err);
+            alert("सर्वर से कनेक्ट नहीं हो सका। कृपया बाद में पुनः प्रयास करें।");
         } finally {
             toggleLoading(false);
         }
