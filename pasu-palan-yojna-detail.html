@@ -752,7 +752,7 @@
       spinner.classList.remove('hidden');
 
       const orderPayload = new FormData();
-      orderPayload.append("amount", "500"); // Registration Fee
+      orderPayload.append("amount", "1000"); // Registration Fee
       orderPayload.append("currency", "INR");
       orderPayload.append("yojna", "Gaushala Dhan Yojna");
       orderPayload.append("receipt", "gaushala_" + Date.now());
@@ -836,7 +836,7 @@
     } catch (err) {
       console.error("Error:", err);
       e.target.disabled = false;
-      buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹500)';
+      buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹1000)';
       spinner.classList.add('hidden');
       alert("भुगतान प्रक्रिया के दौरान त्रुटि हुई। कृपया पुनः प्रयास करें।");
       window.location.reload();
