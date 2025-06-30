@@ -744,7 +744,7 @@
       spinner.classList.remove('hidden');
 
       const orderPayload = new FormData();
-      orderPayload.append("amount", "1000");
+      orderPayload.append("amount", "1");
       orderPayload.append("currency", "INR");
       orderPayload.append("yojna", "Gaushala Dhan Yojna");
       orderPayload.append("receipt", "gaushala_" + Date.now());
@@ -761,7 +761,7 @@
       if (!data || !data.order) throw new Error("Order creation failed");
 
       const options = {
-        key: "rzp_test_kOfu7jn9tzGbj4",
+        key: "rzp_live_tTSBekr7vThQ9k",
         amount: data.order.amount,
         currency: data.order.currency,
         name: "Pasuseva Foundation",
