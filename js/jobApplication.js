@@ -150,120 +150,166 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-async function generateInvoicePDF(formData, paymentResponse) {
+async function generateInvoicePDF() {
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const date = new Date().toLocaleDateString("en-IN");
     const pageWidth = doc.internal.pageSize.getWidth();
     const margin = 15;
 
-    // Colors
-    const primaryColor = '#2c5f2d';
-    const secondaryColor = '#97bc62';
-    const accentColor = '#004b23';
-    const textColor = '#333333';
-    const lightColor = '#f8f9fa';
+    // Professional Color Scheme
+    const primaryColor = '#2c5f2d';      // Dark green
+    const secondaryColor = '#97bc62';    // Light green
+    const accentColor = '#004b23';       // Deep green
+    const lightColor = '#f8f9fa';        // Off-white
+    const borderColor = '#e0e0e0';
 
-    // Header
+    // === Letterhead-style Header ===
     doc.setFillColor(primaryColor);
-    doc.rect(0, 0, pageWidth, 30, 'F');
-    doc.setFontSize(18);
+    doc.rect(0, 0, pageWidth, 22, 'F');
+
+    // Organization name with white text
+    doc.setFontSize(16);
     doc.setTextColor(255, 255, 255);
     doc.setFont("helvetica", "bold");
-    doc.text("Pasuseva Foundation", pageWidth / 2, 20, { align: 'center' });
+    doc.text("Pasuseva Foundation", pageWidth / 2, 14, { align: 'center' });
 
-    // Title
-    doc.setFontSize(14);
-    doc.setTextColor(primaryColor);
-    doc.text("Join Us Application Invoice", pageWidth / 2, 35, { align: 'center' });
+    // Decorative line
+    doc.setDrawColor(secondaryColor);
+    doc.setLineWidth(0.5);
+    doc.line(margin, 26, pageWidth - margin, 26);
 
-    // Date
-    doc.setFontSize(11);
-    doc.setTextColor(lightColor);
-    doc.text(`Date: ${date}`, pageWidth - margin, 45, { align: 'right' });
-
-    // Applicant Info
-    const applicantYStart = 60;
-    doc.setFillColor(lightColor);
-    doc.rect(margin - 5, applicantYStart - 8, pageWidth - margin * 2, 10, 'F');
-    doc.setFontSize(12);
+    // === Title Section ===
+    doc.setFontSize(20);
     doc.setTextColor(accentColor);
     doc.setFont("helvetica", "bold");
-    doc.text("Applicant Information", margin, applicantYStart);
+    doc.text("PAYMENT RECEIPT", pageWidth / 2, 40, { align: 'center' });
 
-    doc.setFontSize(10);
-    doc.setTextColor(textColor);
+    doc.setFontSize(12);
+    doc.setTextColor(100);
     doc.setFont("helvetica", "normal");
-    let yPos = applicantYStart + 10;
+    doc.text("Join Us Application Coordinator Program", pageWidth / 2, 47, { align: 'center' });
 
-    const applicantDetails = [
-        `Full Name: ${formData.get("fullName")}`,
-        `Father's Name: ${formData.get("fatherName")}`,
-        `Phone: ${formData.get("phone")}`,
-        `Email: ${formData.get("email")}`,
-        `Address: ${formData.get("address")}`
+    // === Payment Status Badge ===
+    doc.setFillColor('#e8f5e9'); // Light green background
+    doc.rect(pageWidth - 55, 32, 50, 12, 'F');
+    doc.setFontSize(10);
+    doc.setTextColor('#2e7d32');
+    doc.setFont("helvetica", "bold");
+    doc.text("PAID", pageWidth - 30, 39, { align: 'center' });
+
+    // === Information Sections ===
+    let yPos = 60;
+
+    // Section Headers
+    const drawSectionHeader = (text, y) => {
+        doc.setFillColor(lightColor);
+        doc.rect(margin, y, pageWidth - margin * 2, 8, 'F');
+        doc.setFontSize(11);
+        doc.setTextColor(primaryColor);
+        doc.setFont("helvetica", "bold");
+        doc.text(text, margin + 5, y + 6);
+        doc.setDrawColor(borderColor);
+        doc.line(margin, y + 8, pageWidth - margin, y + 8);
+    };
+
+    // Personal Details
+    drawSectionHeader("PERSONAL DETAILS", yPos);
+    yPos += 12;
+
+    const personalDetails = [
+        { label: "Full Name:", value: formData.get("fullName") },
+        { label: "Father's Name:", value: formData.get("fatherName") },
+        { label: "Contact Number:", value: formData.get("phone") },
+        { label: "Email Address:", value: formData.get("email") },
+        { label: "Address:", value: formData.get("address") }
     ];
 
-    applicantDetails.forEach(detail => {
-        doc.text(detail, margin, yPos);
-        yPos += 8;
-    });
-
-    // Payment Info
-    const paymentYStart = yPos + 10;
-    doc.setFillColor(lightColor);
-    doc.rect(margin - 5, paymentYStart - 8, pageWidth - margin * 2, 10, 'F');
-    doc.setFontSize(12);
-    doc.setTextColor(accentColor);
-    doc.setFont("helvetica", "bold");
-    doc.text("Payment Details", margin, paymentYStart);
-
-    doc.setFontSize(10);
-    doc.setTextColor(textColor);
-    doc.setFont("helvetica", "normal");
-    yPos = paymentYStart + 10;
+    // Payment Details
+    drawSectionHeader("PAYMENT DETAILS", yPos + personalDetails.length * 10);
+    const paymentYStart = yPos + personalDetails.length * 10 + 12;
 
     const paymentDetails = [
-        `Transaction ID: ${paymentResponse.razorpay_payment_id}`,
-        `Order ID: ${paymentResponse.razorpay_order_id}`,
-        `Amount Paid: ₹199`,
-        `Payment Status: Paid`,
-        `Payment Date: ${date}`
+        { label: "Amount Paid:", value: "199.00" },
+        { label: "Amount in Words:", value: "One Hundred Ninety-Nine Only" },
+        { label: "Payment Date:", value: date },
+        { label: "Payment Method:", value: "Online (Razorpay)" },
+        { label: "Order ID:", value: paymentResponse.razorpay_order_id },
+        { label: "Transaction ID:", value: paymentResponse.razorpay_payment_id }
     ];
 
-    paymentDetails.forEach(detail => {
-        doc.text(detail, margin, yPos);
-        yPos += 8;
-    });
+    // Draw details with alternating row colors
+    const drawDetails = (data, yStart) => {
+        let currentY = yStart;
+        data.forEach((item, index) => {
+            // Alternate row background
+            if (index % 2 === 0) {
+                doc.setFillColor(245, 245, 245);
+                doc.rect(margin, currentY - 2, pageWidth - margin * 2, 10, 'F');
+            }
 
-    // PAID badge
-    doc.setFillColor(secondaryColor);
-    doc.rect(pageWidth - 50, paymentYStart, 40, 15, 'F');
-    doc.setFontSize(10);
-    doc.setTextColor(255, 255, 255);
+            // Labels
+            doc.setFontSize(10);
+            doc.setTextColor(80);
+            doc.setFont("helvetica", "bold");
+            doc.text(item.label, margin + 5, currentY + 3);
+
+            // Values
+            doc.setFont("helvetica", "normal");
+            doc.setTextColor(50);
+            doc.text(item.value, margin + 50, currentY + 3);
+
+            currentY += 10;
+        });
+        return currentY;
+    };
+
+    yPos = drawDetails(personalDetails, yPos);
+    yPos = drawDetails(paymentDetails, paymentYStart);
+
+    // === Amount Highlight ===
+    doc.setFontSize(14);
+    doc.setTextColor(primaryColor);
     doc.setFont("helvetica", "bold");
-    doc.text("PAID", pageWidth - 30, paymentYStart + 8, { align: 'center' });
+    doc.text("199.00", pageWidth - margin - 5, paymentYStart + 3, { align: "right" });
 
-    // Thank you note
-    const messageY = yPos + 15;
-    doc.setFontSize(10);
-    doc.setTextColor(100);
-    doc.setFont("helvetica", "italic");
-    doc.text("Thank you for joining as a coordinator with Pasuseva Foundation!", pageWidth / 2, messageY, { align: 'center' });
+    // === Thank You Section ===
+    yPos += 15;
+    doc.setFontSize(11);
+    doc.setTextColor(accentColor);
+    doc.setFont("helvetica", "bolditalic");
+    doc.text("Thank you for joining Pasuseva Foundation as a coordinator!", pageWidth / 2, yPos, { align: 'center' });
 
-    // Footer
-    const footerY = 280;
+    // === Authorization & Footer ===
+    yPos += 20;
+    doc.setDrawColor(borderColor);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+
+    doc.setFontSize(9);
+    doc.setTextColor(120);
+    doc.setFont("helvetica", "normal");
+    doc.text("This is a computer-generated receipt and does not require a physical signature.", pageWidth / 2, yPos + 8, { align: 'center' });
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Authorized Signatory", pageWidth - margin - 5, yPos + 20, { align: "right" });
+
+    // Organization info
     doc.setFontSize(8);
     doc.setTextColor(150);
-    doc.setFont("helvetica", "normal");
-    doc.text("This is a system-generated invoice. For queries: support@pasuseva.in", pageWidth / 2, footerY, { align: 'center' });
+    doc.text("Pasuseva Foundation • support@pasuseva.in • www.pasuseva.in", pageWidth / 2, yPos + 30, { align: 'center' });
+    doc.text("Registered NGO under Section 8 of Companies Act, 2013", pageWidth / 2, yPos + 35, { align: 'center' });
 
-    // Decorative border
-    doc.setDrawColor(200);
-    doc.rect(margin - 5, 45, pageWidth - margin * 2, 230);
+    // === Watermark ===
+    doc.setGState(new doc.GState({ opacity: 0.1 }));
+    doc.setFontSize(60);
+    doc.setTextColor(accentColor);
+    doc.setFont("helvetica", "bold");
+    doc.text("PAID", pageWidth / 2, doc.internal.pageSize.getHeight() / 2, { align: 'center', angle: 45 });
+    doc.setGState(new doc.GState({ opacity: 1 }));
 
-    // Save file
-    const fileName = `join_us_invoice_${formData.get("fullName").replace(/\s+/g, '_')}_${date.replace(/\//g, '-')}.pdf`;
+    // === Save PDF ===
+    const fileName = `Pasuseva_Receipt_${formData.get("fullName").replace(/\s+/g, '_')}_${date.replace(/\//g, '-')}.pdf`;
     doc.save(fileName);
 }
 

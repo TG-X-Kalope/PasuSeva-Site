@@ -141,7 +141,7 @@
 
           </p>
           <p class="text-lg leading-relaxed mb-4">
-            यह पहल न केवल भारत की गौवंशीय विरासत को संरक्षित करती है, बल्कि पशुपालन के इर्द-गिर्द उद्यमिता को बढ़ावा
+            यह पहल न केवल भारत की पशु विरासत को संरक्षित करती है, बल्कि पशुपालन के इर्द-गिर्द उद्यमिता को बढ़ावा
             देकर ग्रामीण अर्थव्यवस्था को भी सशक्त बनाती है।
           </p>
           <!-- <p class="text-lg leading-relaxed">
@@ -277,8 +277,8 @@
           </div>
           <div class="flex-grow sm:pl-6 mt-6 sm:mt-0">
             <h4 class="font-medium title-font text-pasuseva-orange mb-1 text-xl">ब्याज दर एवं पुनर्भुगतान</h4>
-            <p class="leading-relaxed text-gray-700">यह सहायता राशि वार्षिक 12% तक की कम ब्याज दर पर उपलब्ध है, जिसे
-              आसान किश्तों में चुकाया जा सकता है।</p>
+            <p class="leading-relaxed text-gray-700">यह सहायता राशि मासिक 1% तक की कम ब्याज दर पर उपलब्ध है, जिसे आसान
+              किश्तों में चुकाया जा सकता है।</p>
           </div>
         </div>
       </div>
@@ -569,7 +569,7 @@
         <!-- Company Info -->
         <div>
           <img src="./assets/pasuseva-logo1-removebg-preview.png" alt="Pasu Seva Logo"
-            class="h-16 mb-4 bg-white rounded-lg p-2">
+            class="h-16 mb-4 bg-transparent rounded-lg p-2">
           <p class="text-sm mb-4 font-hind">
             पशु सेवा एक ग्रामीण विकास आधारित पहल है जो पशुपालन और मत्स्य पालन के माध्यम से लोगों को आत्मनिर्भर बनाने का
             कार्य कर रही है।
@@ -642,7 +642,7 @@
 
       <!-- Bottom Footer -->
       <div class="flex flex-col md:flex-row justify-between items-center text-sm font-hind">
-        <p>&copy; 2025 पशु सेवा. सर्वाधिकार सुरक्षित।</p>
+        <p>&copy; 2024 पशु सेवा. सर्वाधिकार सुरक्षित।</p>
         <div class="flex space-x-4 mt-4 md:mt-0">
           <a href="./privacy-policy.html" class="hover:text-pasuseva-yellow1 transition-colors">Privacy Policy</a>
           <a href="./t&c.html" class="hover:text-pasuseva-yellow1 transition-colors">Terms of Service</a>
@@ -748,7 +748,7 @@
       spinner.classList.remove('hidden');
 
       const orderPayload = new FormData();
-      orderPayload.append("amount", "1000");
+      orderPayload.append("amount", "1500");
       orderPayload.append("currency", "INR");
       orderPayload.append("yojna", "Bakari Dhan Yojna");
       orderPayload.append("receipt", "bakari_" + Date.now());
@@ -828,113 +828,176 @@
     const pageWidth = doc.internal.pageSize.getWidth();
     const margin = 15;
 
-    // Colors
-    const primaryColor = '#2c5f2d';  // Dark green
-    const secondaryColor = '#97bc62';  // Light green
-    const accentColor = '#004b23';     // Deep green
-    const textColor = '#333333';
-    const lightColor = '#f8f9fa';
+    // Professional color scheme
+    const primaryColor = '#2c5f2d';      // Dark green
+    const secondaryColor = '#97bc62';    // Light green
+    const accentColor = '#004b23';       // Deep green
+    const lightColor = '#f8f9fa';        // Off-white
+    const borderColor = '#e0e0e0';
 
-    // Add green header with foundation name
+    // === Professional Header ===
     doc.setFillColor(primaryColor);
-    doc.rect(0, 0, pageWidth, 45, 'F');
+    doc.rect(0, 0, pageWidth, 40, 'F');
+
+    // Organization name
     doc.setFontSize(18);
     doc.setTextColor(255, 255, 255);
     doc.setFont("helvetica", "bold");
-    doc.text("Pasuseva Foundation", pageWidth / 2, 20, { align: 'center' });
+    doc.text("Pasuseva Foundation", pageWidth / 2, 18, { align: 'center' });
 
-    // Invoice title and date
+    // Invoice title
     doc.setFontSize(14);
-    doc.setTextColor(255, 255, 255);
-    doc.text("Bakari Yojna Application Invoice", pageWidth / 2, 35, { align: 'center' });
+    doc.text("Bakari Yojna Application Invoice", pageWidth / 2, 30, { align: 'center' });
 
-    doc.setFontSize(11);
-    doc.setTextColor(255, 255, 255);
-    doc.text(`Date: ${date}`, pageWidth - margin, 45, { align: 'right' });
-
-    // Applicant details section
-    const applicantYStart = 60;
-    doc.setFillColor(lightColor);
-    doc.rect(margin - 5, applicantYStart - 8, pageWidth - margin * 2, 10, 'F');
-    doc.setFontSize(12);
-    doc.setTextColor(accentColor);
-    doc.setFont("helvetica", "bold");
-    doc.text("Applicant Information", margin, applicantYStart);
-
+    // Date and invoice number
     doc.setFontSize(10);
-    doc.setTextColor(textColor);
-    doc.setFont("helvetica", "normal");
-    let yPos = applicantYStart + 10;
+    doc.text(`Date: ${date}`, pageWidth - margin, 45, { align: 'right' });
+    doc.text(`Invoice #: INV-${paymentResponse.razorpay_order_id.slice(-8)}`, margin, 45);
+
+    // === Applicant Information Section ===
+    const sectionHeader = (text, y) => {
+      doc.setFillColor(lightColor);
+      doc.rect(margin, y, pageWidth - margin * 2, 8, 'F');
+      doc.setFontSize(11);
+      doc.setTextColor(primaryColor);
+      doc.setFont("helvetica", "bold");
+      doc.text(text, margin + 5, y + 6);
+    };
+
+    let yPos = 60;
+    sectionHeader("APPLICANT INFORMATION", yPos);
+    yPos += 12;
 
     const applicantDetails = [
-      `Full Name: ${formData.fullName}`,
-      `Father's Name: ${formData.fatherName}`,
-      `Phone: ${formData.phone}`,
-      `Email: ${formData.email}`,
-      `Address: ${formData.address}`
+      { label: "Full Name:", value: formData.fullName },
+      { label: "Father's Name:", value: formData.fatherName },
+      { label: "Contact Number:", value: formData.phone },
+      { label: "Email Address:", value: formData.email },
+      { label: "Address:", value: formData.address }
     ];
 
-    applicantDetails.forEach(detail => {
-      doc.text(detail, margin, yPos);
-      yPos += 8;
+    // Draw details with alternating row colors
+    applicantDetails.forEach((item, index) => {
+      if (index % 2 === 0) {
+        doc.setFillColor(245, 245, 245);
+        doc.rect(margin, yPos - 2, pageWidth - margin * 2, 10, 'F');
+      }
+
+      doc.setFontSize(10);
+      doc.setTextColor(80);
+      doc.setFont("helvetica", "bold");
+      doc.text(item.label, margin + 5, yPos + 3);
+
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(50);
+      doc.text(item.value, margin + 40, yPos + 3);
+
+      yPos += 10;
     });
 
-    // Payment details section
-    const paymentYStart = yPos + 10;
-    doc.setFillColor(lightColor);
-    doc.rect(margin - 5, paymentYStart - 8, pageWidth - margin * 2, 10, 'F');
-    doc.setFontSize(12);
-    doc.setTextColor(accentColor);
-    doc.setFont("helvetica", "bold");
-    doc.text("Payment Details", margin, paymentYStart);
-
-    doc.setFontSize(10);
-    doc.setTextColor(textColor);
-    doc.setFont("helvetica", "normal");
-    yPos = paymentYStart + 10;
+    // === Payment Details Section ===
+    yPos += 8;
+    sectionHeader("PAYMENT DETAILS", yPos);
+    yPos += 12;
 
     const paymentDetails = [
-      `Transaction ID: ${paymentResponse.razorpay_payment_id}`,
-      `Order ID: ${paymentResponse.razorpay_order_id}`,
-      `Amount Paid: ₹1000`,
-      `Payment Status: Paid`,
-      `Payment Date: ${date}`
+      { label: "Transaction ID:", value: paymentResponse.razorpay_payment_id },
+      { label: "Order ID:", value: paymentResponse.razorpay_order_id },
+      { label: "Amount Paid:", value: "1500" },
+      { label: "Payment Method:", value: "Online (Razorpay)" },
+      { label: "Payment Date:", value: date }
     ];
 
-    paymentDetails.forEach(detail => {
-      doc.text(detail, margin, yPos);
-      yPos += 8;
+    // Draw payment details
+    paymentDetails.forEach((item, index) => {
+      if (index % 2 === 0) {
+        doc.setFillColor(245, 245, 245);
+        doc.rect(margin, yPos - 2, pageWidth - margin * 2, 10, 'F');
+      }
+
+      doc.setFontSize(10);
+      doc.setTextColor(80);
+      doc.setFont("helvetica", "bold");
+      doc.text(item.label, margin + 5, yPos + 3);
+
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(50);
+      doc.text(item.value, margin + 40, yPos + 3);
+
+      yPos += 10;
     });
 
-    // Payment status badge
-    doc.setFillColor(secondaryColor);
-    doc.rect(pageWidth - 50, paymentYStart, 40, 15, 'F');
+    // === Payment Status Badge ===
+    yPos += 8;
+    doc.setFillColor('#e8f5e9'); // Light green background
+    doc.rect(pageWidth - 60, yPos, 50, 12, 'F');
+    doc.setDrawColor(secondaryColor);
+    doc.setLineWidth(0.3);
+    doc.rect(pageWidth - 60, yPos, 50, 12, 'S');
+
     doc.setFontSize(10);
-    doc.setTextColor(255, 255, 255);
+    doc.setTextColor('#2e7d32');
     doc.setFont("helvetica", "bold");
-    doc.text("PAID", pageWidth - 30, paymentYStart + 8, { align: 'center' });
+    doc.text("PAID", pageWidth - 35, yPos + 8, { align: 'center' });
 
-    // Thank you message
-    const messageY = yPos + 15;
-    doc.setFontSize(10);
+    // === Amount Summary ===
+    yPos += 25;
+    doc.setDrawColor(borderColor);
+    doc.setLineWidth(0.3);
+    doc.line(pageWidth - 80, yPos, pageWidth - margin, yPos);
+
+    doc.setFontSize(12);
+    doc.setTextColor(primaryColor);
+    doc.setFont("helvetica", "bold");
+    doc.text("Total Amount:", pageWidth - 80, yPos + 8);
+    doc.text("1500", pageWidth - margin, yPos + 8, { align: 'right' });
+
+    doc.setFontSize(8);
     doc.setTextColor(100);
-    doc.setFont("helvetica", "italic");
-    doc.text("Thank you for supporting our Gaushala initiative!", pageWidth / 2, messageY, { align: 'center' });
+    doc.text("(One Thousand Five Hundred Rupees Only)", pageWidth - margin, yPos + 14, { align: 'right' });
 
-    // Footer note
-    const footerY = 280;
+    // === Thank You Message ===
+    yPos += 20;
+    doc.setFontSize(11);
+    doc.setTextColor(accentColor);
+    doc.setFont("helvetica", "bolditalic");
+    doc.text("Thank you for supporting our Gaushala initiative!", pageWidth / 2, yPos, { align: 'center' });
+
+    // === Authorization & Footer ===
+    const footerY = doc.internal.pageSize.getHeight() - 25;
+
+    doc.setDrawColor(borderColor);
+    doc.setLineWidth(0.5);
+    doc.line(margin, footerY - 15, pageWidth - margin, footerY - 15);
+
+    doc.setFontSize(8);
+    doc.setTextColor(120);
+    doc.setFont("helvetica", "normal");
+    doc.text("This is a computer-generated invoice and does not require a physical signature.",
+      pageWidth / 2, footerY - 10, { align: 'center' });
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Authorized Signatory", pageWidth - margin - 5, footerY, { align: "right" });
+
+    // Organization info
     doc.setFontSize(8);
     doc.setTextColor(150);
-    doc.setFont("helvetica", "normal");
-    doc.text("This is a system-generated invoice. For any queries, contact: support@pasuseva.in",
-      pageWidth / 2, footerY, { align: 'center', maxWidth: 180 });
+    doc.text("Pasuseva Foundation • support@pasuseva.in • www.pasuseva.in",
+      pageWidth / 2, footerY + 5, { align: 'center' });
+    doc.text("Registered NGO under Section 8 of Companies Act, 2013",
+      pageWidth / 2, footerY + 10, { align: 'center' });
 
-    // Add decorative border
-    doc.setDrawColor(200);
-    doc.rect(margin - 5, 45, pageWidth - margin * 2, 230);
+    // === Watermark ===
+    doc.setGState(new doc.GState({ opacity: 0.1 }));
+    doc.setFontSize(60);
+    doc.setTextColor(accentColor);
+    doc.setFont("helvetica", "bold");
+    doc.text("PAID", pageWidth / 2, doc.internal.pageSize.getHeight() / 2,
+      { align: 'center', angle: 45 });
+    doc.setGState(new doc.GState({ opacity: 1 }));
 
-    // Save PDF
-    const fileName = `pasuseva_Invoice_${formData.fullName.replace(/\s+/g, '_')}_${date.replace(/\//g, '-')}.pdf`;
+    // === Save PDF ===
+    const fileName = `Pasuseva_Invoice_${formData.fullName.replace(/\s+/g, '_')}_${date.replace(/\//g, '-')}.pdf`;
     doc.save(fileName);
   }
 
