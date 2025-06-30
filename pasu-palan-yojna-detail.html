@@ -733,7 +733,7 @@
       spinner.classList.remove('hidden');
 
       const orderPayload = new FormData();
-      orderPayload.append("amount", "500");
+      orderPayload.append("amount", "1000");
       orderPayload.append("currency", "INR");
       orderPayload.append("yojna", "Gaushala Dhan Yojna");
       orderPayload.append("receipt", "gaushala_" + Date.now());
@@ -779,10 +779,10 @@
             });
             // ✅ Generate PDF invoice
             await generateInvoicePDF(formData, response);
-            window.location.replace("./payment_success.html");
+            // window.location.replace("./payment_success.html");
           } catch (error) {
             alert("भुगतान के बाद सत्यापन विफल रहा। कृपया पुनः प्रयास करें।");
-            window.location.reload();
+            // window.location.reload();
           }
         },
         modal: {
@@ -888,7 +888,7 @@
     const paymentDetails = [
       { label: "Transaction ID:", value: paymentResponse.razorpay_payment_id },
       { label: "Order ID:", value: paymentResponse.razorpay_order_id },
-      { label: "Amount Paid:", value: "500" },
+      { label: "Amount Paid:", value: "1000" },
       { label: "Payment Method:", value: "Online (Razorpay)" },
       { label: "Payment Date:", value: date }
     ];
@@ -935,11 +935,11 @@
     doc.setTextColor(primaryColor);
     doc.setFont("helvetica", "bold");
     doc.text("Total Amount:", pageWidth - 80, yPos + 8);
-    doc.text("500", pageWidth - margin, yPos + 8, { align: 'right' });
+    doc.text("1000", pageWidth - margin, yPos + 8, { align: 'right' });
 
     doc.setFontSize(8);
     doc.setTextColor(100);
-    doc.text("(Five Hudred Rupees Only)", pageWidth - margin, yPos + 14, { align: 'right' });
+    doc.text("(One Thousand Rupees Only)", pageWidth - margin, yPos + 14, { align: 'right' });
 
     // === Thank You Message ===
     yPos += 20;
