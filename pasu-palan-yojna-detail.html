@@ -790,10 +790,10 @@
             });
             // ✅ Generate PDF invoice
             await generateInvoicePDF(formData, response);
-            // window.location.replace("./payment_success.html");
+            window.location.replace("./payment_success.html");
           } catch (error) {
-            alert("भुगतान के बाद सत्यापन विफल रहा। कृपया पुनः प्रयास करें।");
-            // window.location.reload();
+            // alert("भुगतान के बाद सत्यापन विफल रहा। कृपया पुनः प्रयास करें।");
+            window.location.reload();
           }
         },
         modal: {
