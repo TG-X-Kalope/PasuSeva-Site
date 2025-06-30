@@ -228,7 +228,7 @@
       <!-- Step 1 -->
       <div class="flex relative pb-20 sm:items-center md:w-2/3 mx-auto">
         <!-- vertical line -->
-        <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
+        <div class="h-full w-[2.1rem] absolute inset-0 flex items-center justify-center">
           <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
         </div>
         <!-- step number circle -->
@@ -254,7 +254,7 @@
 
       <!-- Step 2 -->
       <div class="flex relative pb-20 sm:items-center md:w-2/3 mx-auto">
-        <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
+        <div class="h-full w-[2.1rem] absolute inset-0 flex items-center justify-center">
           <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
         </div>
         <div
@@ -278,7 +278,7 @@
 
       <!-- Step 3 -->
       <div class="flex relative pb-20 sm:items-center md:w-2/3 mx-auto">
-        <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
+        <div class="h-full w-[2.1rem] absolute inset-0 flex items-center justify-center">
           <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
         </div>
         <div
@@ -303,7 +303,7 @@
 
       <!-- Step 4 -->
       <div class="flex relative pb-10 sm:items-center md:w-2/3 mx-auto">
-        <div class="h-full w-6 absolute inset-0 flex items-center justify-center">
+        <div class="h-full w-[2.1rem] absolute inset-0 flex items-center justify-center">
           <div class="h-full w-1 bg-gray-200 pointer-events-none"></div>
         </div>
         <div
@@ -733,7 +733,7 @@
       spinner.classList.remove('hidden');
 
       const orderPayload = new FormData();
-      orderPayload.append("amount", "1000");
+      orderPayload.append("amount", "500");
       orderPayload.append("currency", "INR");
       orderPayload.append("yojna", "Gaushala Dhan Yojna");
       orderPayload.append("receipt", "gaushala_" + Date.now());
@@ -888,7 +888,7 @@
     const paymentDetails = [
       { label: "Transaction ID:", value: paymentResponse.razorpay_payment_id },
       { label: "Order ID:", value: paymentResponse.razorpay_order_id },
-      { label: "Amount Paid:", value: "1000" },
+      { label: "Amount Paid:", value: "500" },
       { label: "Payment Method:", value: "Online (Razorpay)" },
       { label: "Payment Date:", value: date }
     ];
@@ -935,11 +935,11 @@
     doc.setTextColor(primaryColor);
     doc.setFont("helvetica", "bold");
     doc.text("Total Amount:", pageWidth - 80, yPos + 8);
-    doc.text("1000", pageWidth - margin, yPos + 8, { align: 'right' });
+    doc.text("500", pageWidth - margin, yPos + 8, { align: 'right' });
 
     doc.setFontSize(8);
     doc.setTextColor(100);
-    doc.text("(One Thousand Rupees Only)", pageWidth - margin, yPos + 14, { align: 'right' });
+    doc.text("(Five Hudred Rupees Only)", pageWidth - margin, yPos + 14, { align: 'right' });
 
     // === Thank You Message ===
     yPos += 20;
