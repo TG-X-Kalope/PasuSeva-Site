@@ -656,6 +656,7 @@
         <p>&copy; 2024 पशु सेवा. सर्वाधिकार सुरक्षित।</p>
         <div class="flex space-x-4 mt-4 md:mt-0">
           <a href="./privacy-policy.html" class="hover:text-pasuseva-yellow1 transition-colors">Privacy Policy</a>
+          <a href="./refund-policy.html" class="hover:text-pasuseva-yellow1 transition-colors">Refund Policy</a>
           <a href="./t&c.html" class="hover:text-pasuseva-yellow1 transition-colors">Terms of Service</a>
           <a href="./faq.html" class="hover:text-pasuseva-yellow1 transition-colors">FAQ</a>
         </div>
@@ -677,11 +678,13 @@
 
     const buttonText = document.querySelector('.button-text');
     const spinner = document.getElementById('loadingSpinner');
+
     const getValue = id => document.getElementById(id)?.value?.trim() || "";
     const getFile = id => document.getElementById(id)?.files?.[0] || null;
 
     const showError = (id, message) => {
-      let input = document.getElementById(id);
+      const input = document.getElementById(id);
+      if (!input) return;
       let existingError = input.parentElement.querySelector('.input-error');
       if (!existingError) {
         const errorEl = document.createElement('p');
@@ -721,7 +724,7 @@
 
     let hasError = false;
 
-    // Validation
+    // Form validations
     for (const key in formData) {
       if (!formData[key]) {
         showError(key, "यह फ़ील्ड अनिवार्य है");
@@ -729,7 +732,7 @@
       }
     }
 
-    if (formData.phone && (!/^\d{10}$/.test(formData.phone))) {
+    if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
       showError("phone", "10 अंकों का वैध मोबाइल नंबर दर्ज करें");
       hasError = true;
     }
@@ -739,14 +742,19 @@
       hasError = true;
     }
 
-    if (formData.aadhaar && (!/^\d{12}$/.test(formData.aadhaar))) {
+    if (formData.aadhaar && !/^\d{12}$/.test(formData.aadhaar)) {
       showError("aadhaar", "12 अंकों का वैध आधार नंबर दर्ज करें");
       hasError = true;
     }
 
+    // File required + max 100KB validation
     for (const key in files) {
-      if (!files[key]) {
+      const file = files[key];
+      if (!file) {
         showError(key, "फ़ाइल अपलोड करना अनिवार्य है");
+        hasError = true;
+      } else if (file.size > 100 * 1024) {
+        showError(key, "फ़ाइल 100KB से अधिक नहीं होनी चाहिए");
         hasError = true;
       }
     }
@@ -773,10 +781,13 @@
       });
 
       const data = await response.json();
-      if (!data || !data.order) throw new Error("Order creation failed");
+      if (!data || !data.order) {
+        alert("ऑर्डर बनाते समय समस्या हुई। कृपया बाद में पुनः प्रयास करें।");
+        throw new Error("Order creation failed");
+      }
 
       const options = {
-        key: "rzp_test_kOfu7jn9tzGbj4",
+        key: "rzp_test_kOfu7jn9tzGbj4", // ✅ Replace with live key on production
         amount: data.order.amount,
         currency: data.order.currency,
         name: "Pasuseva Foundation",
@@ -794,7 +805,7 @@
         theme: { color: "#4CAF50" },
         handler: async function (response) {
           try {
-            await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
+            const verifyRes = await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -803,11 +814,18 @@
                 razorpay_signature: response.razorpay_signature,
               })
             });
-            // ✅ Generate PDF invoice
+
+            const verifyData = await verifyRes.json();
+            if (!verifyRes.ok || !verifyData.success) {
+              alert("भुगतान सत्यापन विफल रहा। कृपया सहायता टीम से संपर्क करें।");
+              return window.location.reload();
+            }
+
             await generateInvoicePDF(formData, response);
             window.location.replace("./payment_success.html");
+
           } catch (error) {
-            alert("भुगतान के बाद सत्यापन विफल रहा। कृपया पुनः प्रयास करें।");
+            alert("भुगतान के बाद सत्यापन में त्रुटि हुई। कृपया पुनः प्रयास करें।");
             window.location.reload();
           }
         },
@@ -822,15 +840,21 @@
       const rzp = new Razorpay(options);
       rzp.open();
 
+      rzp.on('payment.failed', function (response) {
+        alert("भुगतान विफल रहा: " + response.error.description);
+        window.location.reload();
+      });
+
     } catch (err) {
       console.error(err);
       e.target.disabled = false;
-      buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹500)';
+      buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹1500)';
       spinner.classList.add('hidden');
-      alert("भुगतान प्रक्रिया के दौरान कुछ गलत हो गया। कृपया पुनः प्रयास करें।");
+      alert("भुगतान प्रक्रिया के दौरान त्रुटि हुई। कृपया पुनः प्रयास करें।");
       window.location.reload();
     }
   });
+
 
   async function generateInvoicePDF(formData, paymentResponse) {
     const { jsPDF } = window.jspdf;
