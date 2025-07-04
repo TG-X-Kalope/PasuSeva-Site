@@ -147,7 +147,7 @@
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   const slideContainer = document.querySelector('.slides');
   const originalSlides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentX = 0;
   let autoSlideInterval;
 
-  // Clone first and last
+  // Clone first and last slides after images are loaded
   const firstClone = originalSlides[0].cloneNode(true);
   const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
   slideContainer.appendChild(firstClone);
@@ -217,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
   }
 
-  // Drag & Touch Support
   function dragStart(e) {
     isDragging = true;
     startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
@@ -229,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isDragging) return;
     currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
     const moveX = currentX - startX;
-    slideContainer.style.transform = `translateX(${ -currentIndex * slideWidth + moveX }px)`;
+    slideContainer.style.transform = `translateX(${-currentIndex * slideWidth + moveX}px)`;
   }
 
   function dragEnd() {
@@ -262,63 +261,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
 
+// Toggle menu
+menuToggle.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent outside click from immediately closing
+  mobileMenu.classList.toggle('hidden');
+});
 
+// Click outside to close
+document.addEventListener('click', function (event) {
+  const isClickInside = mobileMenu.contains(event.target);
+  const isClickOnToggle = menuToggle.contains(event.target);
 
-  // Store positions of all sliders
-  const sliderPositions = {};
-
-  // Set common item width (w-48 + mx-4)
-  const itemWidth = 224;
-
-  // Event delegation
-  document.querySelectorAll('[data-slider]').forEach(button => {
-    button.addEventListener('click', () => {
-      const sliderName = button.getAttribute('data-slider');
-      const direction = button.getAttribute('data-dir');
-      const slider = document.getElementById(`${sliderName}-slider`);
-      const container = slider.parentElement;
-
-      // Initialize if not already
-      if (!sliderPositions[sliderName]) {
-        sliderPositions[sliderName] = 0;
-      }
-
-      const maxScroll = slider.scrollWidth - container.offsetWidth;
-
-      if (direction === 'prev') {
-        sliderPositions[sliderName] -= itemWidth;
-        if (sliderPositions[sliderName] < 0) {
-          sliderPositions[sliderName] = 0;
-        }
-      } else {
-        sliderPositions[sliderName] += itemWidth;
-        if (sliderPositions[sliderName] > maxScroll) {
-          sliderPositions[sliderName] = maxScroll;
-        }
-      }
-
-      slider.style.transform = `translateX(-${sliderPositions[sliderName]}px)`;
-    });
-  });
-
-
-
-   const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  // Toggle menu
-  menuToggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent outside click from immediately closing
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  // Click outside to close
-  document.addEventListener('click', function (event) {
-    const isClickInside = mobileMenu.contains(event.target);
-    const isClickOnToggle = menuToggle.contains(event.target);
-
-    if (!isClickInside && !isClickOnToggle) {
-      mobileMenu.classList.add('hidden');
-    }
-  });
+  if (!isClickInside && !isClickOnToggle) {
+    mobileMenu.classList.add('hidden');
+  }
+});
