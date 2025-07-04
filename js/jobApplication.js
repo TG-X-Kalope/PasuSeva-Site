@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-async function generateInvoicePDF() {
+async function generateInvoicePDF(formData, paymentResponse) {
 
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
