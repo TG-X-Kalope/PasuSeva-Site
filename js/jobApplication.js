@@ -163,30 +163,55 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-async function generateInvoicePDF(formData, paymentResponse) {
+function toDataURL(src) {
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.crossOrigin = 'Anonymous'; // Optional: use if served via CORS
+        image.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(image, 0, 0);
+            resolve(canvas.toDataURL('image/png'));
+        };
+        image.onerror = reject;
+        image.src = src;
+    });
+}
 
+async function generateInvoicePDF(formData, paymentResponse) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const date = new Date().toLocaleDateString("en-IN");
     const pageWidth = doc.internal.pageSize.getWidth();
     const margin = 15;
 
-    // Professional Color Scheme
-    const primaryColor = '#2c5f2d';      // Dark green
-    const secondaryColor = '#97bc62';    // Light green
-    const accentColor = '#004b23';       // Deep green
-    const lightColor = '#f8f9fa';        // Off-white
+    // Colors
+    const primaryColor = '#f5d225';
+    const secondaryColor = '#97bc62';
+    const accentColor = '#004b23';
+    const lightColor = '#f8f9fa';
     const borderColor = '#e0e0e0';
 
-    // === Letterhead-style Header ===
-    doc.setFillColor(primaryColor);
-    doc.rect(0, 0, pageWidth, 22, 'F');
+    // === Load local image ===
+    const logoDataUrl = await toDataURL('./assets/Logo-01.png'); // ✅ Relative to your HTML file
 
-    // Organization name with white text
-    doc.setFontSize(16);
-    doc.setTextColor(255, 255, 255);
+    // === Header Background ===
+    doc.setFillColor(primaryColor);
+    doc.rect(0, 0, pageWidth, 40, 'F');
+
+    // === Draw Logo Centered ===
+    const imgWidth = 30;
+    const imgHeight = 30;
+    const x = (pageWidth - imgWidth) / 2;
+    doc.addImage(logoDataUrl, 'PNG', x, 5, imgWidth, imgHeight);
+
+    // === Invoice Title Below Logo ===
+    doc.setFontSize(14);
+    doc.setTextColor(44, 95, 45);
     doc.setFont("helvetica", "bold");
-    doc.text("Pasuseva Foundation", pageWidth / 2, 14, { align: 'center' });
+    doc.text("Join Us Application Invoice", pageWidth / 2, 38, { align: 'center' });
 
     // Decorative line
     doc.setDrawColor(secondaryColor);
