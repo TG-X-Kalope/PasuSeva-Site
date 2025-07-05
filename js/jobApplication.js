@@ -218,24 +218,6 @@ async function generateInvoicePDF(formData, paymentResponse) {
     doc.setLineWidth(0.5);
     doc.line(margin, 26, pageWidth - margin, 26);
 
-    // === Title Section ===
-    doc.setFontSize(20);
-    doc.setTextColor(accentColor);
-    doc.setFont("helvetica", "bold");
-    doc.text("PAYMENT RECEIPT", pageWidth / 2, 40, { align: 'center' });
-
-    doc.setFontSize(12);
-    doc.setTextColor(100);
-    doc.setFont("helvetica", "normal");
-    doc.text("Join Us Application Coordinator Program", pageWidth / 2, 47, { align: 'center' });
-
-    // === Payment Status Badge ===
-    doc.setFillColor('#e8f5e9'); // Light green background
-    doc.rect(pageWidth - 55, 32, 50, 12, 'F');
-    doc.setFontSize(10);
-    doc.setTextColor('#2e7d32');
-    doc.setFont("helvetica", "bold");
-    doc.text("PAID", pageWidth - 30, 39, { align: 'center' });
 
     // === Information Sections ===
     let yPos = 60;
@@ -324,6 +306,14 @@ async function generateInvoicePDF(formData, paymentResponse) {
     doc.setDrawColor(borderColor);
     doc.line(margin, yPos, pageWidth - margin, yPos);
 
+    // === Payment Status Badge ===
+    doc.setFillColor('#e8f5e9'); // Light green background
+    doc.rect(pageWidth - 55, yPos + 27, 50, 12, 'F');
+    doc.setFontSize(10);
+    doc.setTextColor('#2e7d32');
+    doc.setFont("helvetica", "bold");
+    doc.text("PAID", pageWidth - 30, yPos + 32, { align: 'center' });
+
     doc.setFontSize(9);
     doc.setTextColor(120);
     doc.setFont("helvetica", "normal");
@@ -351,3 +341,17 @@ async function generateInvoicePDF(formData, paymentResponse) {
     doc.save(fileName);
 }
 
+// const formData = new FormData();
+// formData.set("fullName", "Ravi Kumar");
+// formData.set("fatherName", "Mahesh Kumar");
+// formData.set("phone", "9876543210");
+// formData.set("email", "ravi.kumar@example.com");
+// formData.set("address", "123, MG Road, Patna");
+
+
+// const paymentResponse = {
+//     razorpay_order_id: "order_NqV8KgXj8dRsTy",
+//     razorpay_payment_id: "pay_NqV9Mn3sZq4L6b"
+// };
+
+// generateInvoicePDF(formData, paymentResponse)
