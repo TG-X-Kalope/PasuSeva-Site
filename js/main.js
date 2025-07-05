@@ -159,7 +159,7 @@ window.addEventListener('load', () => {
   let currentX = 0;
   let autoSlideInterval;
 
-  // Clone first and last slides after images are loaded
+  // Clone first and last slides
   const firstClone = originalSlides[0].cloneNode(true);
   const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
   slideContainer.appendChild(firstClone);
@@ -214,7 +214,7 @@ window.addEventListener('load', () => {
     clearInterval(autoSlideInterval);
     autoSlideInterval = setInterval(() => {
       moveToSlide(currentIndex + 1);
-    }, 3000);
+    }, 5000);
   }
 
   function dragStart(e) {
@@ -244,15 +244,26 @@ window.addEventListener('load', () => {
     startAutoSlide();
   }
 
+  // Resize support
   window.addEventListener('resize', updateWidth);
+
+  // Mouse drag
   slideContainer.addEventListener('mousedown', dragStart);
   slideContainer.addEventListener('mousemove', dragMove);
   slideContainer.addEventListener('mouseup', dragEnd);
   slideContainer.addEventListener('mouseleave', dragEnd);
 
+  // Touch drag
   slideContainer.addEventListener('touchstart', dragStart);
   slideContainer.addEventListener('touchmove', dragMove);
   slideContainer.addEventListener('touchend', dragEnd);
+
+  // Reinitialize on tab focus (fix for blank slide issue)
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      moveToSlide(currentIndex);
+    }
+  });
 
   updateWidth();
   moveToSlide(currentIndex);
