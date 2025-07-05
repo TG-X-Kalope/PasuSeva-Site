@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     key: "rzp_live_tTSBekr7vThQ9k", // Replace with production key
                     amount: data.data.amount,
                     currency: data.data.currency,
-                    name: "Pasuseva Foundation",
+                    name: "Pasuseva",
                     description: "Join Us Application Fee",
                     order_id: data.data.id,
                     prefill: {
@@ -325,7 +325,7 @@ async function generateInvoicePDF(formData, paymentResponse) {
     // Organization info
     doc.setFontSize(8);
     doc.setTextColor(150);
-    doc.text("Pasuseva Foundation • support@pasuseva.in • www.pasuseva.in", pageWidth / 2, yPos + 30, { align: 'center' });
+    doc.text("Pasuseva • support@pasuseva.in • www.pasuseva.in", pageWidth / 2, yPos + 30, { align: 'center' });
     doc.text("Registered NGO under Section 8 of Companies Act, 2013", pageWidth / 2, yPos + 35, { align: 'center' });
 
     // === Watermark ===

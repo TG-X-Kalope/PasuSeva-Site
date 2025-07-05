@@ -159,116 +159,139 @@ window.addEventListener('load', () => {
   let currentX = 0;
   let autoSlideInterval;
 
-  // Clone first and last slides
-  const firstClone = originalSlides[0].cloneNode(true);
-  const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
-  slideContainer.appendChild(firstClone);
-  slideContainer.insertBefore(lastClone, slideContainer.firstChild);
+  // ⏳ Preload all images before cloning
+  const preloadImages = () => {
+    const images = Array.from(originalSlides).map(slide => slide.querySelector("img"));
+    return Promise.all(images.map(img => {
+      return img.complete
+        ? Promise.resolve()
+        : new Promise(res => { img.onload = img.onerror = res; });
+    }));
+  };
 
-  let allSlides = document.querySelectorAll('.slide');
+  const initSlider = () => {
+    // Clone first and last slides
+    const firstClone = originalSlides[0].cloneNode(true);
+    const lastClone = originalSlides[originalSlides.length - 1].cloneNode(true);
+    slideContainer.appendChild(firstClone);
+    slideContainer.insertBefore(lastClone, slideContainer.firstChild);
 
-  function updateWidth() {
-    slideWidth = window.innerWidth;
-    allSlides.forEach(slide => slide.style.width = `${slideWidth}px`);
-    slideContainer.style.width = `${allSlides.length * slideWidth}px`;
-    slideContainer.style.transition = 'none';
-    slideContainer.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-  }
+    const allSlides = document.querySelectorAll('.slide');
 
-  function updateDots() {
-    const realIndex = (currentIndex - 1 + originalSlides.length) % originalSlides.length;
+    function updateWidth() {
+      slideWidth = window.innerWidth;
+      allSlides.forEach(slide => slide.style.width = `${slideWidth}px`);
+      slideContainer.style.width = `${allSlides.length * slideWidth}px`;
+      slideContainer.style.transition = 'none';
+      slideContainer.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+    }
+
+    function updateDots() {
+      const realIndex = (currentIndex - 1 + originalSlides.length) % originalSlides.length;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('bg-pasuseva-orange', i === realIndex);
+        dot.classList.toggle('bg-white', i !== realIndex);
+        dot.classList.toggle('opacity-50', i !== realIndex);
+      });
+    }
+
+    function moveToSlide(index) {
+      currentIndex = index;
+      slideContainer.style.transition = 'transform 0.5s ease-in-out';
+      slideContainer.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+      updateDots();
+    }
+
+    slideContainer.addEventListener('transitionend', () => {
+      if (currentIndex === 0) {
+        slideContainer.style.transition = 'none';
+        currentIndex = originalSlides.length;
+        slideContainer.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+      } else if (currentIndex === allSlides.length - 1) {
+        slideContainer.style.transition = 'none';
+        currentIndex = 1;
+        slideContainer.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+      }
+      updateDots();
+    });
+
     dots.forEach((dot, i) => {
-      dot.classList.toggle('bg-pasuseva-orange', i === realIndex);
-      dot.classList.toggle('bg-white', i !== realIndex);
-      dot.classList.toggle('opacity-50', i !== realIndex);
+      dot.addEventListener('click', () => {
+        moveToSlide(i + 1);
+      });
     });
-  }
 
-  function moveToSlide(index) {
-    currentIndex = index;
-    slideContainer.style.transition = 'transform 0.5s ease-in-out';
-    slideContainer.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-    updateDots();
-  }
-
-  slideContainer.addEventListener('transitionend', () => {
-    if (currentIndex === 0) {
-      slideContainer.style.transition = 'none';
-      currentIndex = originalSlides.length;
-      slideContainer.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-    } else if (currentIndex === allSlides.length - 1) {
-      slideContainer.style.transition = 'none';
-      currentIndex = 1;
-      slideContainer.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+    function startAutoSlide() {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(() => {
+        moveToSlide(currentIndex + 1);
+      }, 3000);
     }
-    updateDots();
-  });
 
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      moveToSlide(i + 1);
+    function stopAutoSlide() {
+      clearInterval(autoSlideInterval);
+    }
+
+    function dragStart(e) {
+      isDragging = true;
+      startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+      slideContainer.style.transition = 'none';
+      stopAutoSlide();
+    }
+
+    function dragMove(e) {
+      if (!isDragging) return;
+      currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+      const moveX = currentX - startX;
+      slideContainer.style.transform = `translateX(${-currentIndex * slideWidth + moveX}px)`;
+    }
+
+    function dragEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      const moved = currentX - startX;
+      if (Math.abs(moved) > slideWidth / 4) {
+        if (moved < 0) moveToSlide(currentIndex + 1);
+        else moveToSlide(currentIndex - 1);
+      } else {
+        moveToSlide(currentIndex);
+      }
+      startAutoSlide();
+    }
+
+    // Resize support
+    window.addEventListener('resize', updateWidth);
+
+    // Mouse drag
+    slideContainer.addEventListener('mousedown', dragStart);
+    slideContainer.addEventListener('mousemove', dragMove);
+    slideContainer.addEventListener('mouseup', dragEnd);
+    slideContainer.addEventListener('mouseleave', dragEnd);
+
+    // Touch drag
+    slideContainer.addEventListener('touchstart', dragStart);
+    slideContainer.addEventListener('touchmove', dragMove);
+    slideContainer.addEventListener('touchend', dragEnd);
+
+    // 🧠 Handle tab visibility
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") {
+        stopAutoSlide();
+      } else if (document.visibilityState === "visible") {
+        moveToSlide(currentIndex); // refresh position
+        startAutoSlide();
+      }
     });
-  });
 
-  function startAutoSlide() {
-    clearInterval(autoSlideInterval);
-    autoSlideInterval = setInterval(() => {
-      moveToSlide(currentIndex + 1);
-    }, 5000);
-  }
-
-  function dragStart(e) {
-    isDragging = true;
-    startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-    slideContainer.style.transition = 'none';
-    clearInterval(autoSlideInterval);
-  }
-
-  function dragMove(e) {
-    if (!isDragging) return;
-    currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-    const moveX = currentX - startX;
-    slideContainer.style.transform = `translateX(${-currentIndex * slideWidth + moveX}px)`;
-  }
-
-  function dragEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    const moved = currentX - startX;
-    if (Math.abs(moved) > slideWidth / 4) {
-      if (moved < 0) moveToSlide(currentIndex + 1);
-      else moveToSlide(currentIndex - 1);
-    } else {
-      moveToSlide(currentIndex);
-    }
+    updateWidth();
+    moveToSlide(currentIndex);
     startAutoSlide();
-  }
+  };
 
-  // Resize support
-  window.addEventListener('resize', updateWidth);
-
-  // Mouse drag
-  slideContainer.addEventListener('mousedown', dragStart);
-  slideContainer.addEventListener('mousemove', dragMove);
-  slideContainer.addEventListener('mouseup', dragEnd);
-  slideContainer.addEventListener('mouseleave', dragEnd);
-
-  // Touch drag
-  slideContainer.addEventListener('touchstart', dragStart);
-  slideContainer.addEventListener('touchmove', dragMove);
-  slideContainer.addEventListener('touchend', dragEnd);
-
-  // Reinitialize on tab focus (fix for blank slide issue)
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-      moveToSlide(currentIndex);
-    }
-  });
-
-  updateWidth();
-  moveToSlide(currentIndex);
-  startAutoSlide();
+  // ✅ Wait for all images to load, then initialize slider
+  preloadImages().then(initSlider);
 });
+
 
 
 
