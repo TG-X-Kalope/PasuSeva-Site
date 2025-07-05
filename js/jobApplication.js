@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (res.ok) {
                 const options = {
-                    key: "rzp_test_kOfu7jn9tzGbj4", // Replace with production key
+                    key: "rzp_live_tTSBekr7vThQ9k", // Replace with production key
                     amount: data.data.amount,
                     currency: data.data.currency,
                     name: "Pasuseva Foundation",
