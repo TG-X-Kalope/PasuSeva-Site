@@ -530,7 +530,7 @@
           <div class="sm:col-span-2 lg:col-span-3">
             <button id="payButton" type="button"
               class="w-full bg-pasuseva-green hover:bg-pasuseva-greenDark text-white font-medium py-2 px-6 rounded transition duration-300 flex items-center justify-center gap-2">
-              <span class="button-text">आवेदन सबमिट करें (फॉर्म शुल्क: ₹1500)</span>
+              <span class="button-text">आवेदन सबमिट करें (फॉर्म शुल्क: ₹2000)</span>
               <svg class="animate-spin h-5 w-5 text-white hidden" id="loadingSpinner" xmlns="http://www.w3.org/2000/svg"
                 fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -899,8 +899,8 @@
     // Date and invoice number
     doc.setFontSize(10);
     doc.text(`Date: ${date}`, pageWidth - margin, 45, { align: 'right' });
-    doc.text(`Invoice #: INV-${paymentResponse.razorpay_order_id.slice(-8)}`, margin, 45);
-
+    const invoiceNumber = `INV-MPY${Math.floor(10000 + Math.random() * 90000)}`;
+    doc.text(`Invoice #: ${invoiceNumber}`, margin, 45);
     // === Applicant Information Section ===
     const sectionHeader = (text, y) => {
       doc.setFillColor(lightColor);
@@ -1031,8 +1031,7 @@
     doc.setTextColor(150);
     doc.text("Pasuseva • support@pasuseva.in • www.pasuseva.in",
       pageWidth / 2, footerY + 5, { align: 'center' });
-    doc.text("Registered NGO under Section 8 of Companies Act, 2013",
-      pageWidth / 2, footerY + 10, { align: 'center' });
+
 
     // === Watermark ===
     doc.setGState(new doc.GState({ opacity: 0.1 }));

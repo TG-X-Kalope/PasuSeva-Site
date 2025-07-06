@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const toggleLoading = (state) => {
         loading = state;
-        submitBtn.innerHTML = state ? "प्रोसेस हो रहा है..." : "आवेदन सबमिट करें (फॉर्म शुल्क: ₹199)";
+        submitBtn.innerHTML = state ? "प्रोसेस हो रहा है..." : "आवेदन सबमिट करें (फॉर्म शुल्क: ₹500)";
         submitBtn.disabled = state;
         submitBtn.classList.toggle("opacity-50", state);
         submitBtn.classList.toggle("cursor-not-allowed", state);
@@ -251,8 +251,8 @@ async function generateInvoicePDF(formData, paymentResponse) {
     const paymentYStart = yPos + personalDetails.length * 10 + 12;
 
     const paymentDetails = [
-        { label: "Amount Paid:", value: "199.00" },
-        { label: "Amount in Words:", value: "One Hundred Ninety-Nine Only" },
+        { label: "Amount Paid:", value: "500.00" },
+        { label: "Amount in Words:", value: "Five Hundred Only" },
         { label: "Payment Date:", value: date },
         { label: "Payment Method:", value: "Online (Razorpay)" },
         { label: "Order ID:", value: paymentResponse.razorpay_order_id },
@@ -292,7 +292,7 @@ async function generateInvoicePDF(formData, paymentResponse) {
     doc.setFontSize(14);
     doc.setTextColor(primaryColor);
     doc.setFont("helvetica", "bold");
-    doc.text("199.00", pageWidth - margin - 5, paymentYStart + 3, { align: "right" });
+    doc.text("500.00", pageWidth - margin - 5, paymentYStart + 3, { align: "right" });
 
     // === Thank You Section ===
     yPos += 15;
