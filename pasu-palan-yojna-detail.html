@@ -29,6 +29,16 @@
       font-family: 'Bakbak One', cursive;
     }
 
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
     .input-error {
       font-size: 0.875rem;
       color: #dc2626;
@@ -446,7 +456,7 @@
           <!-- मोबाइल नंबर -->
           <div>
             <label for="phone" class="text-sm text-gray-700">मोबाइल नंबर</label>
-            <input type="text" minlength="10" id="phone" name="phone"
+            <input type="number" minlength="10" id="phone" name="phone"
               class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
           </div>
 
@@ -504,7 +514,7 @@
           <!-- आधार नंबर -->
           <div>
             <label for="aadhaar" class="text-sm text-gray-700">आधार नंबर</label>
-            <input min="100000000000" max="999999999999" type="text" id="aadhaar" name="aadhaar"
+            <input type="number" id="aadhaar" name="aadhaar"
               class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
           </div>
 
@@ -660,6 +670,7 @@
 
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="./js/input-validation.js"></script>
 <script>
   document.getElementById('payButton').addEventListener('click', async function (e) {
     e.preventDefault();
@@ -1046,9 +1057,5 @@
     doc.save(fileName);
   }
 </script>
-
-
-
-
 
 </html>
