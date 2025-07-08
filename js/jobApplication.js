@@ -129,9 +129,16 @@ document.addEventListener("DOMContentLoaded", () => {
                                     from_where: "job"
                                 })
                             });
+                            const verifyData = await verifyRes.json();
+
+                            if (!verifyRes.ok || !verifyData.success) {
+                                alert("भुगतान सत्यापन विफल रहा। कृपया सहायता टीम से संपर्क करें।");
+                                return window.location.reload();
+                            }
+
 
                             // ✅ PDF Generate
-                            await generateInvoicePDF(formData, response);
+                            await generateInvoicePDF(formData, response, verifyData.registration);
 
                             alert("आवेदन सफलतापूर्वक सबमिट किया गया है!");
                             window.location.replace("./payment_success.html");
@@ -163,24 +170,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function toDataURL(src) {
+function toDataURL(src, outputWidth = 100, outputHeight = 100) {
     return new Promise((resolve, reject) => {
         const image = new Image();
-        image.crossOrigin = 'Anonymous'; // Optional: use if served via CORS
+        image.crossOrigin = 'Anonymous';
         image.onload = () => {
             const canvas = document.createElement('canvas');
-            canvas.width = image.width;
-            canvas.height = image.height;
+            canvas.width = outputWidth;
+            canvas.height = outputHeight;
             const ctx = canvas.getContext('2d');
-            ctx.drawImage(image, 0, 0);
-            resolve(canvas.toDataURL('image/png'));
+            ctx.drawImage(image, 0, 0, outputWidth, outputHeight);
+            // Use JPEG and set quality to 0.7
+            resolve(canvas.toDataURL('image/jpeg', 0.7));
         };
         image.onerror = reject;
         image.src = src;
     });
 }
 
-async function generateInvoicePDF(formData, paymentResponse) {
+
+async function generateInvoicePDF(formData, paymentResponse, reg) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const date = new Date().toLocaleDateString("en-IN");
@@ -195,7 +204,7 @@ async function generateInvoicePDF(formData, paymentResponse) {
     const borderColor = '#e0e0e0';
 
     // === Load local image ===
-    const logoDataUrl = await toDataURL('./assets/Logo-01.png'); // ✅ Relative to your HTML file
+    const logoDataUrl = await toDataURL('./assets/Logo-02.png'); // ✅ Relative to your HTML file
 
     // === Header Background ===
     doc.setFillColor(primaryColor);
@@ -205,19 +214,19 @@ async function generateInvoicePDF(formData, paymentResponse) {
     const imgWidth = 30;
     const imgHeight = 30;
     const x = (pageWidth - imgWidth) / 2;
-    doc.addImage(logoDataUrl, 'PNG', x, 5, imgWidth, imgHeight);
+    doc.addImage(logoDataUrl, 'JPEG', x, 5, imgWidth, imgHeight);
 
     // === Invoice Title Below Logo ===
     doc.setFontSize(14);
     doc.setTextColor(44, 95, 45);
     doc.setFont("helvetica", "bold");
-    doc.text("Join Us Application Invoice", pageWidth / 2, 38, { align: 'center' });
+    doc.text("Join Us Application", pageWidth / 2, 39, { align: 'center' });
 
     // Decorative line
     doc.setDrawColor(secondaryColor);
     doc.setLineWidth(0.5);
-    doc.line(margin, 26, pageWidth - margin, 26);
-
+    doc.line(margin, 40, pageWidth - margin, 40);
+    doc.text(`Application: ${reg}`, margin, 50);
 
     // === Information Sections ===
     let yPos = 60;
@@ -326,7 +335,7 @@ async function generateInvoicePDF(formData, paymentResponse) {
     doc.setFontSize(8);
     doc.setTextColor(150);
     doc.text("Pasuseva • support@pasuseva.in • www.pasuseva.in", pageWidth / 2, yPos + 30, { align: 'center' });
-    doc.text("Registered NGO under Section 8 of Companies Act, 2013", pageWidth / 2, yPos + 35, { align: 'center' });
+    doc.text("Registered under Section 8 of Companies Act, 2013", pageWidth / 2, yPos + 35, { align: 'center' });
 
     // === Watermark ===
     doc.setGState(new doc.GState({ opacity: 0.1 }));
