@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             alert("आवेदन सफलतापूर्वक सबमिट किया गया है!");
                             window.location.replace("./payment_success.html");
                         } catch (error) {
+                            console.error(error)
                             alert("भुगतान के बाद सत्यापन विफल रहा। कृपया पुनः प्रयास करें।");
                             window.location.reload();
                         }
@@ -181,7 +182,7 @@ function toDataURL(src, outputWidth = 100, outputHeight = 100) {
             const ctx = canvas.getContext('2d');
             ctx.drawImage(image, 0, 0, outputWidth, outputHeight);
             // Use JPEG and set quality to 0.7
-            resolve(canvas.toDataURL('image/jpeg', 0.7));
+            resolve(canvas.toDataURL('image/jpeg', 0.9));
         };
         image.onerror = reject;
         image.src = src;
@@ -208,7 +209,7 @@ async function generateInvoicePDF(formData, paymentResponse, reg) {
 
     // === Header Background ===
     doc.setFillColor(primaryColor);
-    doc.rect(0, 0, pageWidth, 40, 'F');
+    doc.rect(0, 0, pageWidth, 45, 'F');
 
     // === Draw Logo Centered ===
     const imgWidth = 30;
@@ -222,10 +223,7 @@ async function generateInvoicePDF(formData, paymentResponse, reg) {
     doc.setFont("helvetica", "bold");
     doc.text("Join Us Application", pageWidth / 2, 39, { align: 'center' });
 
-    // Decorative line
-    doc.setDrawColor(secondaryColor);
-    doc.setLineWidth(0.5);
-    doc.line(margin, 40, pageWidth - margin, 40);
+
     doc.text(`Application: ${reg}`, margin, 50);
 
     // === Information Sections ===
