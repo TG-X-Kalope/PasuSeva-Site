@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     theme: { color: "#4CAF50" },
                     handler: async function (response) {
                         try {
-                            await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
+                            const verifyRes = await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({
