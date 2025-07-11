@@ -116,7 +116,7 @@ async function yojnaPayment(e, amt, yojna_name, amt_word) {
             amount: data.order.amount,
             currency: data.order.currency,
             name: "Pasuseva",
-            description: "Gaushala Loan Application",
+            description: `${yojna_name} Application`,
             order_id: data.order.id,
             prefill: {
                 name: formData.fullName,
