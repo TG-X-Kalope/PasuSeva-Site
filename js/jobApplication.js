@@ -247,7 +247,7 @@ async function generateInvoicePDF(formData, paymentResponse, reg) {
 
     const personalDetails = [
         { label: "Full Name:", value: formData.get("fullName") },
-        { label: "Father's Name:", value: formData.get("fatherName") },
+        { label: "Father/Husband's Name:", value: formData.get("fatherName") },
         { label: "Contact Number:", value: formData.get("phone") },
         { label: "Email Address:", value: formData.get("email") },
         { label: "Address:", value: formData.get("address") }

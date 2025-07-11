@@ -72,7 +72,7 @@ async function generateInvoicePDF(formData, paymentResponse, amt_word) {
 
   const applicantDetails = [
     { label: "Full Name:", value: formData.fullName },
-    { label: "Father's Name:", value: formData.fatherName },
+    { label: "Father/Husband's Name:", value: formData.fatherName },
     { label: "Contact Number:", value: formData.phone },
     { label: "Email Address:", value: formData.email },
     { label: "Address:", value: formData.address }
