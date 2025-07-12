@@ -1,9 +1,8 @@
-async function yojnaPayment(e, amt, yojna_name, amt_word) {
+async function yojnaPayment(e, yojna_name) {
     e.preventDefault();
 
     const buttonText = document.querySelector('.button-text');
     const spinner = document.getElementById('loadingSpinner');
-
     const getValue = id => document.getElementById(id)?.value?.trim() || "";
     const getFile = id => document.getElementById(id)?.files?.[0] || null;
 
@@ -49,7 +48,6 @@ async function yojnaPayment(e, amt, yojna_name, amt_word) {
 
     let hasError = false;
 
-    // Field validations
     for (const key in formData) {
         if (!formData[key]) {
             showError(key, "यह फ़ील्ड अनिवार्य है");
@@ -72,7 +70,7 @@ async function yojnaPayment(e, amt, yojna_name, amt_word) {
         hasError = true;
     }
 
-    // File validations: required + max size 100KB
+
     for (const key in files) {
         const file = files[key];
         if (!file) {
@@ -91,33 +89,57 @@ async function yojnaPayment(e, amt, yojna_name, amt_word) {
         buttonText.textContent = 'आवेदन सबमिट किया जा रहा है...';
         spinner.classList.remove('hidden');
 
-        const orderPayload = new FormData();
-        orderPayload.append("amount", amt); // Registration Fee
-        orderPayload.append("currency", "INR");
-        orderPayload.append("yojna", yojna_name);
-        orderPayload.append("receipt", "gaushala_" + Date.now());
+        // 🔹 Step 1: Register Yojna Application
+        const regForm = new FormData();
+        for (const key in formData) regForm.append(key, formData[key]);
+        for (const key in files) regForm.append(key, files[key]);
+        regForm.append("yojna", yojna_name);
 
-        for (const key in formData) orderPayload.append(key, formData[key]);
-        for (const key in files) orderPayload.append(key, files[key]);
-
-        const response = await fetch('https://api.pasuseva.in/api/payment/create-order', {
-            method: 'POST',
-            body: orderPayload
+        const regRes = await fetch("https://api.pasuseva.in/api/yojna-registration", {
+            method: "POST",
+            body: regForm
         });
 
-        const data = await response.json();
-        if (!data || !data.order) {
-            alert("ऑर्डर बनाने में त्रुटि हुई। कृपया पुनः प्रयास करें।");
+        const regData = await regRes.json();
+        if (!regRes.ok || !regData?.success) {
+            alert("पंजीकरण विफल रहा। कृपया पुनः प्रयास करें।");
+            console.error("Registration error:", regData);
+            throw new Error("Yojna registration failed");
+        }
+
+        const reg = regData?.data?.reg;
+        if (!reg) throw new Error("Registration ID missing");
+
+        // 🔹 Step 2: Create Razorpay Order
+        const orderPayload = {
+
+            currency: "INR",
+            source: yojna_name,
+            reg
+
+        };
+
+        const orderRes = await fetch('https://api.pasuseva.in/api/payment/create-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderPayload)
+        });
+
+        const orderData = await orderRes.json();
+        if (!orderData?.order?.id) {
+            alert("ऑर्डर बनाने में त्रुटि हुई। कृपया बाद में प्रयास करें।");
+            console.error("Order response:", orderData);
             throw new Error("Order creation failed");
         }
 
+        // 🔹 Step 3: Razorpay Checkout
         const options = {
-            key: "rzp_live_tTSBekr7vThQ9k", // ✅ Add your Razorpay key here
-            amount: data.order.amount,
-            currency: data.order.currency,
+            key: "rzp_test_kOfu7jn9tzGbj4",
+            amount: orderData.order.amount,
+            currency: orderData.order.currency,
             name: "Pasuseva",
             description: `${yojna_name} Application`,
-            order_id: data.order.id,
+            order_id: orderData.order.id,
             prefill: {
                 name: formData.fullName,
                 email: formData.email,
@@ -141,19 +163,16 @@ async function yojnaPayment(e, amt, yojna_name, amt_word) {
                     });
 
                     const verifyData = await verifyRes.json();
-
                     if (!verifyRes.ok || !verifyData.success) {
                         alert("भुगतान सत्यापन विफल रहा। कृपया सहायता टीम से संपर्क करें।");
-                        return window.location.reload();
+                        return;
                     }
 
-                    await generateInvoicePDF(formData, verifyData, amt_word);
+                    await generateInvoicePDF(formData, verifyData);
                     window.location.replace("./payment_success.html");
-
                 } catch (error) {
-                    alert("भुगतान के बाद सत्यापन में त्रुटि हुई। कृपया पुनः प्रयास करें।");
-                    console.error("Payment verification error:", error);
-                    window.location.reload();
+                    alert("भुगतान के बाद सत्यापन में त्रुटि हुई।");
+                    console.error("Payment verify error:", error);
                 }
             },
             modal: {
@@ -167,18 +186,18 @@ async function yojnaPayment(e, amt, yojna_name, amt_word) {
         const rzp = new Razorpay(options);
         rzp.open();
 
-        // Razorpay error handler
         rzp.on('payment.failed', function (response) {
             alert("भुगतान विफल रहा: " + response.error.description);
+            console.error("Razorpay failed:", response.error);
             window.location.reload();
         });
 
     } catch (err) {
-        console.error("Error:", err);
-        e.target.disabled = false;
+        console.error("Unexpected error:", err);
+        alert("कुछ गलत हो गया। कृपया बाद में प्रयास करें।");
+    } finally {
         buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹1000)';
         spinner.classList.add('hidden');
-        alert("भुगतान प्रक्रिया के दौरान त्रुटि हुई। कृपया पुनः प्रयास करें।");
-        window.location.reload();
+        e.target.disabled = false;
     }
 }

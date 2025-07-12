@@ -17,7 +17,13 @@ function toDataURL(src, outputWidth = 100, outputHeight = 100) {
 }
 
 
-async function generateInvoicePDF(formData, paymentResponse, amt_word) {
+async function generateInvoicePDF(formData, paymentResponse) {
+  const amt_map = {
+    1000: "One Thousand",
+    1500: "One Thousand Five Hundred",
+    2000: "Two Thousand",
+    2500: "Two Thousand Five Hundred",
+  }
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   const date = new Date().toLocaleDateString("en-IN");
@@ -53,7 +59,7 @@ async function generateInvoicePDF(formData, paymentResponse, amt_word) {
   // Date and invoice number
   doc.setFontSize(10);
   doc.text(`Date: ${date}`, pageWidth - margin, 50, { align: 'right' });
-  doc.text(`Registration: ${paymentResponse.registration}`, margin, 50);
+  doc.text(`Registration: ${paymentResponse.reg}`, margin, 50);
 
 
   // === Applicant Information Section ===
@@ -92,7 +98,7 @@ async function generateInvoicePDF(formData, paymentResponse, amt_word) {
 
     doc.setFont("helvetica", "normal");
     doc.setTextColor(50);
-    doc.text(item.value, margin + 40, yPos + 3);
+    doc.text(item.value, margin + 50, yPos + 3);
 
     yPos += 10;
   });
@@ -156,7 +162,7 @@ async function generateInvoicePDF(formData, paymentResponse, amt_word) {
 
   doc.setFontSize(8);
   doc.setTextColor(100);
-  doc.text(`(${amt_word} Rupees Only)`, pageWidth - margin, yPos + 14, { align: 'right' });
+  doc.text(`(${amt_map[paymentResponse.amount]} Rupees Only)`, pageWidth - margin, yPos + 14, { align: 'right' });
 
   // === Thank You Message ===
   yPos += 20;
