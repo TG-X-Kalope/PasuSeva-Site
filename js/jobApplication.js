@@ -277,27 +277,47 @@ async function generateInvoicePDF(formData, paymentResponse, reg) {
     yPos = drawDetails(personalDetails, yPos);
     yPos = drawDetails(paymentDetails, paymentYStart);
 
-    doc.setFontSize(14);
+    // === PAID Badge and Total Section ===
+
+    // PAID badge box
+    doc.setFillColor('#e8f5e9'); // Light green background
+    doc.setDrawColor('#81c784'); // Green border
+    doc.setLineWidth(0.3);
+    doc.rect(pageWidth - margin - 55, yPos, 50, 12, 'FD');
+
+    doc.setFontSize(10);
+    doc.setTextColor('#2e7d32');
+    doc.setFont("helvetica", "bold");
+    doc.text("PAID", pageWidth - margin - 30, yPos + 8, { align: 'center' });
+
+    // Horizontal line
+    yPos += 17;
+    doc.setDrawColor(borderColor);
+    doc.setLineWidth(0.3);
+    doc.line(pageWidth - 80, yPos, pageWidth - margin, yPos);
+
+    // Amount summary
+    doc.setFontSize(12);
     doc.setTextColor(primaryColor);
     doc.setFont("helvetica", "bold");
-    doc.text("500.00", pageWidth - margin - 5, paymentYStart + 3, { align: "right" });
+    doc.text("Total Amount:", pageWidth - 80, yPos + 8);
+    doc.text("500", pageWidth - margin, yPos + 8, { align: 'right' });
 
-    yPos += 15;
+    doc.setFontSize(8);
+    doc.setTextColor(100);
+    doc.text("(Five Hundred Rupees Only)", pageWidth - margin, yPos + 14, { align: 'right' });
+
+
+    yPos += 20;
     doc.setFontSize(11);
     doc.setTextColor(accentColor);
     doc.setFont("helvetica", "bolditalic");
     doc.text("Thank you for joining Pasuseva Foundation as a coordinator!", pageWidth / 2, yPos, { align: 'center' });
 
-    yPos += 20;
+    yPos += 10;
     doc.setDrawColor(borderColor);
     doc.line(margin, yPos, pageWidth - margin, yPos);
 
-    doc.setFillColor('#e8f5e9');
-    doc.rect(pageWidth - 55, yPos + 27, 50, 12, 'F');
-    doc.setFontSize(10);
-    doc.setTextColor('#2e7d32');
-    doc.setFont("helvetica", "bold");
-    doc.text("PAID", pageWidth - 30, yPos + 32, { align: 'center' });
 
     doc.setFontSize(9);
     doc.setTextColor(120);
@@ -340,3 +360,22 @@ async function toDataURL(src, outputWidth = 100, outputHeight = 100) {
     });
 }
 
+
+// const formData = new FormData();
+// formData.set("fullName", "Aditya Verma");
+// formData.set("fatherName", "Rajeev Verma");
+// formData.set("dob", "1992-08-15");
+// formData.set("phone", "9876543210");
+// formData.set("email", "aditya.verma@example.com");
+// formData.set("address", "123, Pasu Marg, Anisabad, Patna, Bihar");
+// formData.set("state", "Bihar");
+// formData.set("district", "Patna");
+// formData.set("block", "Phulwari");
+// formData.set("aadhaar", "123456789012");
+// const paymentResponse = {
+//     razorpay_order_id: "order_JU0001EXAMPLE",
+//     razorpay_payment_id: "pay_JU123456EXAMPLE"
+// };
+
+
+// generateInvoicePDF(formData, paymentResponse, "REG1234567890")
