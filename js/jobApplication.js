@@ -323,6 +323,7 @@ async function generateInvoicePDF(formData, paymentResponse, reg) {
     doc.setTextColor(120);
     doc.setFont("helvetica", "normal");
     doc.text("This is a computer-generated receipt and does not require a physical signature.", pageWidth / 2, yPos + 8, { align: 'center' });
+    doc.text("Application Fees is non-refundable", pageWidth / 2, yPos + 18, { align: 'center' });
 
     doc.setFont("helvetica", "bold");
     doc.text("Authorized Signatory", pageWidth - margin - 5, yPos + 20, { align: "right" });

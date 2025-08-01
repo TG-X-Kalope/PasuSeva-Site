@@ -183,6 +183,7 @@ async function generateInvoicePDF(formData, paymentResponse) {
   doc.setFont("helvetica", "normal");
   doc.text("This is a computer-generated invoice and does not require a physical signature.",
     pageWidth / 2, footerY - 10, { align: 'center' });
+  doc.text("Application Fees is non-refundable", pageWidth / 2, footerY - 5, { align: 'center' });
 
   doc.setFont("helvetica", "bold");
   doc.text("Authorized Signatory", pageWidth - margin - 5, footerY, { align: "right" });

@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("#contact form");
     const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
+    const mobileInput = document.getElementById("mobile");
     const messageInput = document.getElementById("message");
     const submitBtn = form.querySelector("button");
     const defaultBtnHTML = submitBtn.innerHTML;
@@ -13,41 +13,34 @@ document.addEventListener("DOMContentLoaded", () => {
       <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
     </svg>`;
 
-    // Helper: Validate email
-    const isValidEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
-    };
+
 
     // Handle form submission
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
+        const mobile = mobileInput.value.trim();
         const message = messageInput.value.trim();
 
-        if (!name || !email || !message) {
+        if (!name || !mobile || !message) {
             alert("Please fill in all fields.");
             return;
         }
 
-        if (!isValidEmail(email)) {
-            alert("Please enter a valid email address.");
-            return;
-        }
+
 
         // Show loader
         submitBtn.disabled = true;
         submitBtn.innerHTML = loader + "Sending...";
 
         try {
-            const res = await fetch("https://api.pasuseva.in/api/contact", {
+            const res = await fetch("http://localhost:4012/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ name, email, message })
+                body: JSON.stringify({ name, mobile, message })
             });
 
             const data = await res.json();
