@@ -95,7 +95,7 @@ async function yojnaPayment(e, yojna_name) {
         for (const key in files) regForm.append(key, files[key]);
         regForm.append("yojna", yojna_name);
 
-        const regRes = await fetch("https://api.pasuseva.in/api/yojna-registration", {
+        const regRes = await fetch("https://test-api.pasuseva.in/api/yojna-registration", {
             method: "POST",
             body: regForm
         });
@@ -119,7 +119,7 @@ async function yojnaPayment(e, yojna_name) {
 
         };
 
-        const orderRes = await fetch('https://api.pasuseva.in/api/payment/create-order', {
+        const orderRes = await fetch('https://test-api.pasuseva.in/api/payment/create-order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderPayload)
@@ -134,7 +134,7 @@ async function yojnaPayment(e, yojna_name) {
 
         // 🔹 Step 3: Razorpay Checkout
         const options = {
-            key: "rzp_live_vclpZafB0isO8r",
+            key: "rzp_test_gF2PIyUYGRsN6q",
             amount: orderData.order.amount,
             currency: orderData.order.currency,
             name: "Pasuseva",
@@ -152,7 +152,7 @@ async function yojnaPayment(e, yojna_name) {
             theme: { color: "#4CAF50" },
             handler: async function (response) {
                 try {
-                    const verifyRes = await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
+                    const verifyRes = await fetch('https://test-api.pasuseva.in/api/payment/verify-payment', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

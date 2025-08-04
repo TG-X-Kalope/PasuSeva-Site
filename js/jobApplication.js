@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // Step 1: Create Job Application
-            const jobRes = await fetch("https://api.pasuseva.in/api/job", {
+            const jobRes = await fetch("https://test-api.pasuseva.in/api/job", {
                 method: "POST",
                 body: formData,
             });
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 reg
             };
 
-            const orderRes = await fetch("https://api.pasuseva.in/api/payment/create-order", {
+            const orderRes = await fetch("https://test-api.pasuseva.in/api/payment/create-order", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(orderPayload),
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Step 3: Razorpay Payment Gateway
             const options = {
-                key: "rzp_live_vclpZafB0isO8r",
+                key: "rzp_test_gF2PIyUYGRsN6q",
                 amount: orderData.order.amount,
                 currency: orderData.order.currency,
                 name: "Pasuseva",
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 theme: { color: "#4CAF50" },
                 handler: async function (response) {
                     try {
-                        const verifyRes = await fetch("https://api.pasuseva.in/api/payment/verify-payment", {
+                        const verifyRes = await fetch("https://test-api.pasuseva.in/api/payment/verify-payment", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
