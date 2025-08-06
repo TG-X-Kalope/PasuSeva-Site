@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         submitBtn.innerHTML = loader + "Sending...";
 
         try {
-            const res = await fetch("http://localhost:4012/api/contact", {
+            const res = await fetch("https://test-api.pasuseva.in/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
