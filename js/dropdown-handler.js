@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let locationData = {};
 
     // Load JSON data
-    fetch("../data/bihar_data.json")
+    fetch("./data/bihar_data.json")
         .then((response) => response.json())
         .then((data) => {
             locationData = data;
