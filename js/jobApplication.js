@@ -106,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleLoading(true);
 
         try {
-<<<<<<< HEAD
             const photoUrl = await uploadFile(document.getElementById("photo").files[0]);
             const aadhaarFrontUrl = await uploadFile(document.getElementById("aadhaarFront").files[0]);
             const aadhaarBackUrl = await uploadFile(document.getElementById("aadhaarBack").files[0]);
@@ -116,10 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append("aadhaarBack", aadhaarBackUrl);
 
             const jobRes = await fetch("https://api.pasuseva.in/api/job", {
-=======
-            // Step 1: Create Job Application
-            const jobRes = await fetch("https://test-api.pasuseva.in/api/job", {
->>>>>>> dev
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(Object.fromEntries(formData.entries())),
