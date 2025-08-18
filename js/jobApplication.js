@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             return;
                         }
 
-                        await generateInvoicePDF(formData, response, verifyData.reg);
+                        await generateInvoicePDF(formData, verifyData, verifyData.reg);
                         alert("आवेदन सफलतापूर्वक सबमिट किया गया है!");
                         window.location.replace("./payment_success.html");
                     } catch (error) {
@@ -221,6 +221,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // PDF Generation Function
 async function generateInvoicePDF(formData, paymentResponse, reg) {
+
+    const amt_map = {
+        1000: "One Thousand",
+        1500: "One Thousand Five Hundred",
+        2000: "Two Thousand",
+        2500: "Two Thousand Five Hundred",
+    }
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
     const date = new Date().toLocaleDateString("en-IN");
@@ -272,9 +279,10 @@ async function generateInvoicePDF(formData, paymentResponse, reg) {
     drawSectionHeader("PAYMENT DETAILS", yPos + personalDetails.length * 10);
     const paymentYStart = yPos + personalDetails.length * 10 + 12;
 
+    console.log(paymentResponse)
     const paymentDetails = [
-        { label: "Amount Paid:", value: "500.00" },
-        { label: "Amount in Words:", value: "Five Hundred Only" },
+        { label: "Amount Paid:", value: paymentResponse.amount },
+        { label: "Amount in Words:", value: amt_map[paymentResponse.amount] || "Unknown Amount" },
         { label: "Payment Date:", value: date },
         { label: "Payment Method:", value: "Online (Razorpay)" },
         { label: "Order ID:", value: paymentResponse.razorpay_order_id },
@@ -295,7 +303,7 @@ async function generateInvoicePDF(formData, paymentResponse, reg) {
 
             doc.setFont("helvetica", "normal");
             doc.setTextColor(50);
-            doc.text(item.value, margin + 50, currentY + 3);
+            doc.text(`${item.value}`, margin + 50, currentY + 3);
 
             currentY += 10;
         });
@@ -329,11 +337,11 @@ async function generateInvoicePDF(formData, paymentResponse, reg) {
     doc.setTextColor(primaryColor);
     doc.setFont("helvetica", "bold");
     doc.text("Total Amount:", pageWidth - 80, yPos + 8);
-    doc.text("500", pageWidth - margin, yPos + 8, { align: 'right' });
+    doc.text(`${paymentResponse.amount}`, pageWidth - margin, yPos + 8, { align: 'right' });
 
     doc.setFontSize(8);
     doc.setTextColor(100);
-    doc.text("(Five Hundred Rupees Only)", pageWidth - margin, yPos + 14, { align: 'right' });
+    doc.text(`${amt_map[paymentResponse.amount]}`, pageWidth - margin, yPos + 14, { align: 'right' });
 
 
     yPos += 20;

@@ -701,6 +701,23 @@
   <script src="./js/dropdown-handler.js"></script>
   <script>
 
+
+    document.getElementById("position").addEventListener("change", function () {
+      const selectedValue = this.value;
+      const positionSelect = document.getElementById('position');
+      const paymentBtn = document.getElementById('payButton');
+
+      // Update the payment button text based on the selected position
+      if (positionSelect && selectedValue) {
+        const jobAmount = {
+          "पंचायत समन्वयक": 500, "प्रखंड समन्वयक": 500, "जिला समन्वयक": 500, "भूमि सर्वेक्षक समन्वयक": 1000, "दस्तावेज़ सत्यापन समन्वयक": 1000, "ऋण सत्यापन समन्वयक": 1000
+        };
+        const positionText = positionSelect.options[positionSelect.selectedIndex].text;
+        if (jobAmount[positionText]) {
+          paymentBtn.innerHTML = `आवेदन सबमिट करें (फॉर्म शुल्क: ₹${jobAmount[positionText]})`;
+        }
+      }
+    })
     // Function to handle Join Us button clicks
     function handleJoinUsClick(position) {
       // Scroll to the form
@@ -711,6 +728,7 @@
 
       // Update the Area of Interest dropdown
       const positionSelect = document.getElementById('position');
+      const paymentBtn = document.getElementById('payButton');
       if (positionSelect) {
         // Set value with a small delay to ensure smooth scrolling completes
         setTimeout(() => {
@@ -720,6 +738,12 @@
             option.selected = true;
 
             // Add highlight effect
+            const jobAmount = {
+              "पंचायत समन्वयक": 500, "प्रखंड समन्वयक": 500, "जिला समन्वयक": 500, "भूमि सर्वेक्षक समन्वयक": 1000, "दस्तावेज़ सत्यापन समन्वयक": 1000, "ऋण सत्यापन समन्वयक": 1000
+            }
+            console.log(position)
+            console.log(jobAmount[position]);
+            paymentBtn.innerHTML = `आवेदन सबमिट करें (फॉर्म शुल्क: ₹${jobAmount[position]})`;
             positionSelect.style.transition = 'background-color 0.3s ease';
             positionSelect.style.backgroundColor = '#fff3cd';
             setTimeout(() => {
