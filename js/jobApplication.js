@@ -65,17 +65,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         ["photo", "aadhaarFront", "aadhaarBack"].forEach(fileId => {
-            const file = formData.get(fileId);
-            if (!file || file.size === 0) {
+            const fileInput = document.getElementById(fileId);
+            if (!fileInput.files[0]) {
                 showError(fileId, "यह फ़ाइल आवश्यक है");
                 hasError = true;
-            } else if (file.size > 100 * 1024) {
+            } else if (fileInput.files[0].size > 100 * 1024) {
                 showError(fileId, "फ़ाइल का आकार 100KB से अधिक नहीं होना चाहिए");
                 hasError = true;
             }
         });
 
         return !hasError;
+    };
+
+    const uploadFile = async (file) => {
+        const signResponse = await fetch("https://api.pasuseva.in/api/job/sign-upload");
+        const signData = await signResponse.json();
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("api_key", signData.api_key);
+        formData.append("timestamp", signData.timestamp);
+        formData.append("signature", signData.signature);
+        formData.append("folder", "pasuseva/gaushala");
+
+        const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${signData.cloud_name}/auto/upload`, {
+            method: "POST",
+            body: formData,
+        });
+
+        const uploadData = await uploadResponse.json();
+        return uploadData.secure_url;
     };
 
     submitBtn.addEventListener("click", async () => {
@@ -86,10 +106,18 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleLoading(true);
 
         try {
-            // Step 1: Create Job Application
+            const photoUrl = await uploadFile(document.getElementById("photo").files[0]);
+            const aadhaarFrontUrl = await uploadFile(document.getElementById("aadhaarFront").files[0]);
+            const aadhaarBackUrl = await uploadFile(document.getElementById("aadhaarBack").files[0]);
+
+            formData.append("photo", photoUrl);
+            formData.append("aadhaarFront", aadhaarFrontUrl);
+            formData.append("aadhaarBack", aadhaarBackUrl);
+
             const jobRes = await fetch("https://api.pasuseva.in/api/job", {
                 method: "POST",
-                body: formData,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(Object.fromEntries(formData.entries())),
             });
             const jobData = await jobRes.json();
 

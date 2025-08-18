@@ -84,30 +84,52 @@ async function yojnaPayment(e, yojna_name) {
 
     if (hasError) return;
 
+    const uploadFile = async (file) => {
+        const signResponse = await fetch("https://api.pasuseva.in/api/yojna-registration/sign-upload");
+        const signData = await signResponse.json();
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("api_key", signData.api_key);
+        formData.append("timestamp", signData.timestamp);
+        formData.append("signature", signData.signature);
+        formData.append("folder", "pasuseva/gaushala");
+
+        const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${signData.cloud_name}/auto/upload`, {
+            method: "POST",
+            body: formData,
+        });
+
+        const uploadData = await uploadResponse.json();
+        return uploadData.secure_url;
+    };
+
     try {
         e.target.disabled = true;
         buttonText.textContent = 'आवेदन सबमिट किया जा रहा है...';
         spinner.classList.remove('hidden');
 
-        // 🔹 Step 1: Register Yojna Application
-        const regForm = new FormData();
-        for (const key in formData) regForm.append(key, formData[key]);
-        for (const key in files) regForm.append(key, files[key]);
-        regForm.append("yojna", yojna_name);
+        const photoUrl = await uploadFile(files.photo);
+        const aadhaarFrontUrl = await uploadFile(files.aadhaarFront);
+        const aadhaarBackUrl = await uploadFile(files.aadhaarBack);
+        const landDocsUrl = await uploadFile(files.landDocs);
+
+        const regData = { ...formData, photo: photoUrl, aadhaarFront: aadhaarFrontUrl, aadhaarBack: aadhaarBackUrl, landDocs: landDocsUrl, yojna: yojna_name };
 
         const regRes = await fetch("https://api.pasuseva.in/api/yojna-registration", {
             method: "POST",
-            body: regForm
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(regData)
         });
 
-        const regData = await regRes.json();
-        if (!regRes.ok || !regData?.success) {
+        const regDataJson = await regRes.json();
+        if (!regRes.ok || !regDataJson?.success) {
             alert("पंजीकरण विफल रहा। कृपया पुनः प्रयास करें।");
-            console.error("Registration error:", regData);
+            console.error("Registration error:", regDataJson);
             throw new Error("Yojna registration failed");
         }
 
-        const reg = regData?.data?.reg;
+        const reg = regDataJson?.data?.reg;
         if (!reg) throw new Error("Registration ID missing");
 
         // 🔹 Step 2: Create Razorpay Order
