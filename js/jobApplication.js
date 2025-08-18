@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const uploadFile = async (file) => {
-        const signResponse = await fetch("https://api.pasuseva.in/api/job/sign-upload");
+        const signResponse = await fetch("https://test-api.pasuseva.in/api/job/sign-upload");
         const signData = await signResponse.json();
 
         const formData = new FormData();
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append("aadhaarFront", aadhaarFrontUrl);
             formData.append("aadhaarBack", aadhaarBackUrl);
 
-            const jobRes = await fetch("https://api.pasuseva.in/api/job", {
+            const jobRes = await fetch("https://test-api.pasuseva.in/api/job", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(Object.fromEntries(formData.entries())),

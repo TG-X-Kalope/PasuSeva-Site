@@ -85,7 +85,7 @@ async function yojnaPayment(e, yojna_name) {
     if (hasError) return;
 
     const uploadFile = async (file) => {
-        const signResponse = await fetch("https://api.pasuseva.in/api/yojna-registration/sign-upload");
+        const signResponse = await fetch("https://test-api.pasuseva.in/api/yojna-registration/sign-upload");
         const signData = await signResponse.json();
 
         const formData = new FormData();
