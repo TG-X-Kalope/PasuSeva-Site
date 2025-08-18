@@ -59,7 +59,7 @@
             this.panel.style.minWidth = "270px";
             this.panel.style.zIndex = "9999";
             this.panel.style.background = "#fff";
-            this.panel.style.border = "1px solid #D1D5DB"; // gray-300
+            this.panel.style.border = "1px solid #FDDC1B"; // gray-300
             this.panel.style.borderRadius = "0.375rem"; // rounded-md
             this.panel.style.boxShadow = "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)";
             this.panel.style.marginTop = "4px";

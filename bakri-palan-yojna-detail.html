@@ -16,6 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="./js/custom_datepicker.js"></script>
   <style>
     body {
       font-family: 'Hind', sans-serif;
@@ -459,7 +460,8 @@
           <!-- जन्म तिथि -->
           <div>
             <label for="dob" class="text-sm text-gray-700">जन्म तिथि (DD/MM/YYYY)</label>
-            <input type="date" id="dob" name="dob"
+            <input type="text" placeholder="Select date" data-datepicker readonly
+              style="width:240px;padding:8px;border:1px solid #FDDC1B;border-radius:6px;" id="dob" name="dob"
               class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3">
           </div>
 
