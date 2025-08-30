@@ -156,7 +156,7 @@ async function yojnaPayment(e, yojna_name) {
 
         // 🔹 Step 3: Razorpay Checkout
         const options = {
-            key: "rzp_test_gF2PIyUYGRsN6q",
+            key: "rzp_live_vclpZafB0isO8r",
             amount: orderData.order.amount,
             currency: orderData.order.currency,
             name: "Pasuseva",
