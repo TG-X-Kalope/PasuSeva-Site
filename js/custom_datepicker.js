@@ -1,3 +1,4 @@
+
 /*! CustomDatePicker (vanilla JS) - single file - no deps */
 (function () {
     class CustomDatePicker {
@@ -26,21 +27,32 @@
                     startYear: 1990,
                     defaultView: "day",
                     onChange: null,
-                    format: (d) => d.toLocaleDateString(), // default: locale string
+                    format: (d) => d.toLocaleDateString(), // default display format
                 },
                 opts
             );
 
-            // State
-            const initial = this.input.value ? new Date(this.input.value) : new Date();
-            this.displayDate = isNaN(initial.getTime()) ? new Date() : initial;
+            // ---- State (robust init) ----
+            const initialRaw = this.input.dataset.cdpValue || this.input.value;
+            const initial = initialRaw ? new Date(initialRaw) : null;
+
+            this.selectedDate =
+                initial && !isNaN(initial.getTime()) ? new Date(initial) : null;
+
+            // display month defaults to selected month (or today)
+            this.displayDate = this.selectedDate ? new Date(this.selectedDate) : new Date();
             this.currentView = this.opts.defaultView;
             this.yearRangeStart = this.opts.startYear;
             this.isOpen = false;
 
-            // Build UI
+            // Build UI + events
             this._build();
             this._bind();
+
+            // If input had a raw value but no reliable ISO attr, sync it now
+            if (this.selectedDate && !this.input.dataset.cdpValue) {
+                this.input.dataset.cdpValue = this.selectedDate.toISOString();
+            }
         }
 
         /** Build dropdown DOM once */
@@ -59,9 +71,10 @@
             this.panel.style.minWidth = "270px";
             this.panel.style.zIndex = "9999";
             this.panel.style.background = "#fff";
-            this.panel.style.border = "1px solid #FDDC1B"; // gray-300
-            this.panel.style.borderRadius = "0.375rem"; // rounded-md
-            this.panel.style.boxShadow = "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)";
+            this.panel.style.border = "1px solid #FDDC1B";
+            this.panel.style.borderRadius = "0.375rem";
+            this.panel.style.boxShadow =
+                "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)";
             this.panel.style.marginTop = "4px";
             this.panel.style.display = "none";
 
@@ -91,7 +104,7 @@
             this._injectBaseStyles();
         }
 
-        /** Basic button helper */
+        /** Basic button helper (hover respects selection) */
         _button(text, title) {
             const b = document.createElement("button");
             b.type = "button";
@@ -102,8 +115,13 @@
             b.style.border = "none";
             b.style.background = "transparent";
             b.style.cursor = "pointer";
-            b.addEventListener("mouseenter", () => (b.style.background = "#F3F4F6"));
-            b.addEventListener("mouseleave", () => (b.style.background = "transparent"));
+
+            b.addEventListener("mouseenter", () => {
+                if (!b.dataset.selected) b.style.background = "#F3F4F6";
+            });
+            b.addEventListener("mouseleave", () => {
+                if (!b.dataset.selected) b.style.background = "transparent";
+            });
             return b;
         }
 
@@ -188,14 +206,14 @@
             grid.style.gap = "8px";
 
             const years = Array.from({ length: 12 }, (_, i) => this.yearRangeStart + i);
+            const selectedYear = this.selectedDate ? this.selectedDate.getFullYear() : null;
+
             years.forEach((year) => {
                 const b = this._button(year.toString());
-                if (this.displayDate.getFullYear() === year) {
-                    b.style.background = "#3B82F6";
+                if (selectedYear === year) {
+                    b.dataset.selected = "1";
+                    b.style.background = "#FDDC1B";
                     b.style.color = "#fff";
-                } else {
-                    b.addEventListener("mouseenter", () => (b.style.background = "#E5E7EB"));
-                    b.addEventListener("mouseleave", () => (b.style.background = "transparent"));
                 }
                 b.addEventListener("click", () => {
                     const d = new Date(this.displayDate);
@@ -242,14 +260,19 @@
                 new Date(0, i).toLocaleString("default", { month: "short" })
             );
 
+            const selectedMonth = this.selectedDate ? this.selectedDate.getMonth() : null;
+            const selectedYear = this.selectedDate ? this.selectedDate.getFullYear() : null;
+
             monthNames.forEach((name, idx) => {
                 const b = this._button(name);
-                if (this.displayDate.getMonth() === idx) {
-                    b.style.background = "#3B82F6";
+                // highlight if month/year matches selected
+                if (
+                    selectedMonth === idx &&
+                    selectedYear === this.displayDate.getFullYear()
+                ) {
+                    b.dataset.selected = "1";
+                    b.style.background = "#FDDC1B";
                     b.style.color = "#fff";
-                } else {
-                    b.addEventListener("mouseenter", () => (b.style.background = "#E5E7EB"));
-                    b.addEventListener("mouseleave", () => (b.style.background = "transparent"));
                 }
                 b.addEventListener("click", () => {
                     const d = new Date(this.displayDate);
@@ -330,28 +353,25 @@
             for (let d = 1; d <= daysInMonth; d++) {
                 const btn = this._button(String(d));
                 btn.style.padding = "8px";
-                btn.addEventListener("mouseenter", () => (btn.style.background = "#E5E7EB"));
-                btn.addEventListener("mouseleave", () => {
-                    if (!btn.dataset.selected) btn.style.background = "transparent";
-                });
 
                 const candidate = new Date(y, m, d);
                 const isToday = today.toDateString() === candidate.toDateString();
-                const inputDate = this.input.value ? new Date(this.input.value) : null;
+
+                const inputDate = this.selectedDate; // use reliable state
                 const isSelected =
                     inputDate &&
-                    !isNaN(inputDate) &&
                     inputDate.getFullYear() === y &&
                     inputDate.getMonth() === m &&
                     inputDate.getDate() === d;
 
                 if (isToday && !isSelected) {
-                    btn.style.border = "1px solid #3B82F6";
+                    btn.style.border = "1px solid #FDDC1B";
                 }
+
                 if (isSelected) {
-                    btn.style.background = "#3B82F6";
-                    btn.style.color = "#fff";
                     btn.dataset.selected = "1";
+                    btn.style.background = "#FDDC1B";
+                    btn.style.color = "#fff";
                 }
 
                 btn.addEventListener("click", () => {
@@ -374,16 +394,35 @@
         }
 
         _setValue(date) {
-            this.input.value = this.opts.format(date);
+            // normalize to noon (avoid TZ edge-cases)
+            const d = new Date(
+                date.getFullYear(),
+                date.getMonth(),
+                date.getDate(),
+                12,
+                0,
+                0
+            );
+
+            this.selectedDate = d; // keep in state
+            this.input.dataset.cdpValue = d.toISOString(); // reliable persisted value
+            this.input.value = this.opts.format(d); // formatted display for users
+
             // fire native change event
             const evt = new Event("change", { bubbles: true });
             this.input.dispatchEvent(evt);
-            if (typeof this.opts.onChange === "function") this.opts.onChange(date);
+            if (typeof this.opts.onChange === "function") this.opts.onChange(d);
         }
 
         open() {
             if (this.isOpen) return;
             this.isOpen = true;
+
+            // show selected month when reopening
+            if (this.selectedDate) {
+                this.displayDate = new Date(this.selectedDate);
+            }
+
             this.panel.style.display = "block";
             this._render();
         }
