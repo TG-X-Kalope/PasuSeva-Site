@@ -1,4 +1,8 @@
+
+
 async function yojnaPayment(e, yojna_name) {
+    const base_url = 'https://test-api.pasuseva.in';
+
     e.preventDefault();
 
     const buttonText = document.querySelector('.button-text');
@@ -85,7 +89,7 @@ async function yojnaPayment(e, yojna_name) {
     if (hasError) return;
 
     const uploadFile = async (file) => {
-        const signResponse = await fetch("https://api.pasuseva.in/api/yojna-registration/sign-upload");
+        const signResponse = await fetch(`${base_url}/api/yojna-registration/sign-upload`);
         const signData = await signResponse.json();
 
         const formData = new FormData();
@@ -116,7 +120,7 @@ async function yojnaPayment(e, yojna_name) {
 
         const regData = { ...formData, photo: photoUrl, aadhaarFront: aadhaarFrontUrl, aadhaarBack: aadhaarBackUrl, landDocs: landDocsUrl, yojna: yojna_name };
 
-        const regRes = await fetch("https://api.pasuseva.in/api/yojna-registration", {
+        const regRes = await fetch(`${base_url}/api/yojna-registration`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(regData)
@@ -141,7 +145,7 @@ async function yojnaPayment(e, yojna_name) {
 
         };
 
-        const orderRes = await fetch('https://api.pasuseva.in/api/payment/create-order', {
+        const orderRes = await fetch(`${base_url}/api/payment/create-order`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderPayload)
@@ -156,7 +160,7 @@ async function yojnaPayment(e, yojna_name) {
 
         // 🔹 Step 3: Razorpay Checkout
         const options = {
-            key: "rzp_live_vclpZafB0isO8r",
+            key: "rzp_test_gF2PIyUYGRsN6q", //"rzp_test_gF2PIyUYGRsN6q",
             amount: orderData.order.amount,
             currency: orderData.order.currency,
             name: "Pasuseva",
@@ -174,7 +178,7 @@ async function yojnaPayment(e, yojna_name) {
             theme: { color: "#4CAF50" },
             handler: async function (response) {
                 try {
-                    const verifyRes = await fetch('https://api.pasuseva.in/api/payment/verify-payment', {
+                    const verifyRes = await fetch(`${base_url}/api/payment/verify-payment`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

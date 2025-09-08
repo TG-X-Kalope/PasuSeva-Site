@@ -84,6 +84,7 @@ async function generateInvoicePDF(formData, paymentResponse) {
     { label: "Address:", value: formData.address }
   ];
 
+
   // Draw details with alternating row colors
   applicantDetails.forEach((item, index) => {
     if (index % 2 === 0) {
@@ -98,7 +99,7 @@ async function generateInvoicePDF(formData, paymentResponse) {
 
     doc.setFont("helvetica", "normal");
     doc.setTextColor(50);
-    doc.text(item.value, margin + 50, yPos + 3);
+    doc.text(doc.splitTextToSize(item.value, pageWidth - margin * 2), margin + 50, yPos + 3);
 
     yPos += 10;
   });
@@ -117,23 +118,37 @@ async function generateInvoicePDF(formData, paymentResponse) {
   ];
 
   // Draw payment details
-  paymentDetails.forEach((item, index) => {
+  // Adjust layout for wrapped text
+  const labelX = margin + 5;
+  const valueX = margin + 50;
+  const availableValueWidth = pageWidth - valueX - margin;
+  const lineHeight = 5;
+
+  applicantDetails.forEach((item, index) => {
+    const valueLines = doc.splitTextToSize(item.value ?? '', availableValueWidth);
+    const linesCount = valueLines.length;
+    const rowHeight = Math.max(linesCount * lineHeight, 10);
+
+    // Draw alternating background
     if (index % 2 === 0) {
       doc.setFillColor(245, 245, 245);
-      doc.rect(margin, yPos - 2, pageWidth - margin * 2, 10, 'F');
+      doc.rect(margin, yPos - 2, pageWidth - margin * 2, rowHeight, 'F');
     }
 
+    // Draw label
     doc.setFontSize(10);
     doc.setTextColor(80);
     doc.setFont("helvetica", "bold");
-    doc.text(item.label, margin + 5, yPos + 3);
+    doc.text(item.label, labelX, yPos + 3);
 
+    // Draw value (wrapped)
     doc.setFont("helvetica", "normal");
     doc.setTextColor(50);
-    doc.text(item.value, margin + 40, yPos + 3);
+    doc.text(valueLines, valueX, yPos + 3);
 
-    yPos += 10;
+    yPos += rowHeight;
   });
+
 
   // === Payment Status Badge ===
   yPos += 8;
@@ -169,7 +184,7 @@ async function generateInvoicePDF(formData, paymentResponse) {
   doc.setFontSize(11);
   doc.setTextColor(accentColor);
   doc.setFont("helvetica", "bolditalic");
-  doc.text("Thank you for supporting our Gaushala initiative!", pageWidth / 2, yPos, { align: 'center' });
+  doc.text("Thank you for choosing pasuseva", pageWidth / 2, yPos, { align: 'center' });
 
   // === Authorization & Footer ===
   const footerY = doc.internal.pageSize.getHeight() - 25;
@@ -193,7 +208,8 @@ async function generateInvoicePDF(formData, paymentResponse) {
   doc.setTextColor(150);
   doc.text("Pasuseva • support@pasuseva.in • www.pasuseva.in",
     pageWidth / 2, footerY + 5, { align: 'center' });
-  doc.text("Registered under Section 8 of Companies Act, 2013", pageWidth / 2, yPos + 35, { align: 'center' });
+  doc.text("Shiksha Gravity Foundation Parent Company Of Pasuseva", pageWidth / 2, yPos + 35, { align: 'center' });
+  doc.text("Registered under Section 8 of Companies Act, 2013", pageWidth / 2, yPos + 40, { align: 'center' });
 
   // === Watermark ===
   doc.setGState(new doc.GState({ opacity: 0.1 }));

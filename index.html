@@ -599,22 +599,23 @@
 
         <!-- Name -->
         <div class="relative mb-4">
-          <label for="name" class="leading-7 text-sm text-gray-700">नाम</label>
-          <input type="text" id="name" name="name"
+          <label for="name" class="leading-7 text-sm text-gray-700">नाम<span class="text-red-500">*</span></label>
+          <input type="text" id="name" name="name" required
             class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
         </div>
 
         <!-- Email -->
         <div class="relative mb-4">
-          <label for="mobile" class="leading-7 text-sm text-gray-700">मोबाइल नंबर</label>
-          <input type="tel" id="mobile" name="mobile"
+          <label for="mobile" class="leading-7 text-sm"><span class="text-gray-700">मोबाइल नंबर </span><span
+              class="text-red-500">*</span></label>
+          <input required type="tel" id="mobile" name="mobile"
             class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 text-base outline-none text-gray-700 py-2 px-3 transition duration-200 ease-in-out">
         </div>
 
         <!-- Message -->
         <div class="relative mb-4">
-          <label for="message" class="leading-7 text-sm text-gray-700">संदेश</label>
-          <textarea id="message" name="message"
+          <label for="message" class="leading-7 text-sm text-gray-700">संदेश<span class="text-red-500">*</span></label>
+          <textarea required id="message" name="message"
             class="w-full bg-white rounded border border-pasuseva-yellow2 focus:border-pasuseva-orange focus:ring-2 focus:ring-pasuseva-yellow3 h-32 text-base outline-none text-gray-700 py-2 px-3 resize-none transition duration-200 ease-in-out"></textarea>
         </div>
 
