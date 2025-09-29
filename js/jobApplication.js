@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const uploadFile = async (file) => {
-        const signResponse = await fetch("https://test-api.pasuseva.in/api/job/sign-upload");
+        const signResponse = await fetch(`https://test-api.pasuseva.in/api/job/sign-upload?v=${Date.now()}`);
         const signData = await signResponse.json();
 
         const formData = new FormData();
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("folder", "pasuseva/gaushala");
 
         const uploadResponse = await fetch(
-            `https://api.cloudinary.com/v1_1/${signData.cloud_name}/auto/upload`,
+            `https://api.cloudinary.com/v1_1/${signData.cloud_name}/auto/upload?v=${Date.now()}`,
             {
                 method: "POST",
                 body: formData,
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append("aadhaarBack", aadhaarBackUrl);
 
             // Step 1: Create job/application
-            const jobRes = await fetch("https://test-api.pasuseva.in/api/job", {
+            const jobRes = await fetch(`https://test-api.pasuseva.in/api/job?v=${Date.now()}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(Object.fromEntries(formData.entries())),
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 reg,
             };
 
-            const orderRes = await fetch("https://test-api.pasuseva.in/api/payment/create-order", {
+            const orderRes = await fetch(`https://test-api.pasuseva.in/api/payment/create-order?v=${Date.now()}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(orderPayload),
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     try {
                         // Step 4: Verify payment on backend
-                        const verifyRes = await fetch("https://test-api.pasuseva.in/api/payment/verify-payment", {
+                        const verifyRes = await fetch(`https://test-api.pasuseva.in/api/payment/verify-payment?v=${Date.now()}`, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({

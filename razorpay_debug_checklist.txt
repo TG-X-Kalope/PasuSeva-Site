@@ -1,0 +1,43 @@
+Razorpay Checkout Debug & Fix Checklist (Chrome Issues)
+
+1. Script Loading
+- [ ] Ensure checkout.js is always loaded from https://checkout.razorpay.com/v1/checkout.js
+- [ ] Use cache-busting query param (e.g., ?v=...)
+- [ ] Verify in Chrome DevTools (Network tab) that the script loads with 200 status
+
+2. Caching & Service Worker
+- [ ] Check if server/CDN is caching checkout.js
+  - In DevTools → Network → Response Headers → look for Cache-Control, Expires
+  - Should be: no-store, no-cache, must-revalidate
+- [ ] Check if a Service Worker is active on your site
+  - DevTools → Application → Service Workers
+  - Ensure it does not cache razorpay.com scripts
+
+3. CDN / Proxy Rules
+- [ ] If using Cloudflare/NGINX/CDN:
+  - Confirm query string (?v=...) is respected (treated as separate resource)
+  - Add rule: Bypass cache for checkout.razorpay.com
+
+4. Cookies & SameSite
+- [ ] Ensure your site is fully on HTTPS
+- [ ] Check Razorpay cookies in DevTools → Application → Cookies
+  - Must include SameSite=None; Secure
+- [ ] Confirm browser settings do not block third-party cookies
+
+5. Browser / Extension Interference
+- [ ] Test with AdBlock, uBlock, Privacy Badger disabled
+- [ ] Incognito works → indicates extension or cached script issue
+
+6. Fallback Loader
+- [ ] Add fallback script loader to retry if checkout.js fails to load
+
+7. Console & Network Errors
+- [ ] Open DevTools → Console → check for errors (ERR_BLOCKED_BY_CLIENT, Mixed Content, CORS, cookie blocked)
+- [ ] Network tab → confirm checkout.js request status and failure reason
+
+Action Plan
+1. Extract Console + Network logs in Chrome DevTools to identify exact issue
+2. Adjust Service Worker rules to bypass caching for Razorpay scripts
+3. Set server/CDN headers: Cache-Control: no-store for checkout.js
+4. Implement fallback script loader to retry on failure
+5. Verify third-party cookie settings allow Razorpay’s checkout flow

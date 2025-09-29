@@ -89,7 +89,7 @@ async function yojnaPayment(e, yojna_name) {
     if (hasError) return;
 
     const uploadFile = async (file) => {
-        const signResponse = await fetch(`${base_url}/api/yojna-registration/sign-upload`);
+        const signResponse = await fetch(`${base_url}/api/yojna-registration/sign-upload?v=${Date.now()}`);
         const signData = await signResponse.json();
 
         const formData = new FormData();
@@ -99,7 +99,7 @@ async function yojnaPayment(e, yojna_name) {
         formData.append("signature", signData.signature);
         formData.append("folder", "pasuseva/gaushala");
 
-        const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${signData.cloud_name}/auto/upload`, {
+        const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${signData.cloud_name}/auto/upload?v=${Date.now()}`, {
             method: "POST",
             body: formData,
         });
@@ -120,7 +120,7 @@ async function yojnaPayment(e, yojna_name) {
 
         const regData = { ...formData, photo: photoUrl, aadhaarFront: aadhaarFrontUrl, aadhaarBack: aadhaarBackUrl, landDocs: landDocsUrl, yojna: yojna_name };
 
-        const regRes = await fetch(`${base_url}/api/yojna-registration`, {
+        const regRes = await fetch(`${base_url}/api/yojna-registration?v=${Date.now()}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(regData)
@@ -145,7 +145,7 @@ async function yojnaPayment(e, yojna_name) {
 
         };
 
-        const orderRes = await fetch(`${base_url}/api/payment/create-order`, {
+        const orderRes = await fetch(`${base_url}/api/payment/create-order?v=${Date.now()}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderPayload)
@@ -178,7 +178,7 @@ async function yojnaPayment(e, yojna_name) {
             theme: { color: "#4CAF50" },
             handler: async function (response) {
                 try {
-                    const verifyRes = await fetch(`${base_url}/api/payment/verify-payment`, {
+                    const verifyRes = await fetch(`${base_url}/api/payment/verify-payment?v=${Date.now()}`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
