@@ -215,8 +215,24 @@ async function yojnaPayment(e, yojna_name) {
         });
 
     } catch (err) {
-        console.error("Unexpected error:", err);
-        alert("कुछ गलत हो गया। कृपया बाद में प्रयास करें।");
+        console.error("Unexpected Error:", err);
+
+        // Extract readable error message
+        let errorMsg = "Unknown error";
+
+        if (err instanceof Error) {
+            errorMsg = err.message;
+        } else if (typeof err === "string") {
+            errorMsg = err;
+        } else {
+            try {
+                errorMsg = JSON.stringify(err);
+            } catch {
+                errorMsg = String(err);
+            }
+        }
+
+        alert("Server connection failed.\nReason: " + errorMsg);
     } finally {
         buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹1000)';
         spinner.classList.add('hidden');

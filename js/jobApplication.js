@@ -211,7 +211,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (err) {
             console.error("Unexpected Error:", err);
-            alert("सर्वर से कनेक्ट नहीं हो सका। कृपया बाद में प्रयास करें।");
+
+            // Extract readable error message
+            let errorMsg = "Unknown error";
+
+            if (err instanceof Error) {
+                errorMsg = err.message;
+            } else if (typeof err === "string") {
+                errorMsg = err;
+            } else {
+                try {
+                    errorMsg = JSON.stringify(err);
+                } catch {
+                    errorMsg = String(err);
+                }
+            }
+
+            alert("Server connection failed.\nReason: " + errorMsg);
         } finally {
             toggleLoading(false);
         }
