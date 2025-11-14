@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
 
                         // Optional: redirect main window
-                        // window.location.replace("./payment_success.html");
+                        window.location.replace("./payment_success.html");
                     } catch (error) {
                         console.error("Verification Error:", error);
                         if (popup) writeFailureToWindow(popup, "भुगतान सत्यापन में त्रुटि हुई।");
