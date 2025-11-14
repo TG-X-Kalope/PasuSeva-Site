@@ -249,9 +249,30 @@ document.addEventListener("DOMContentLoaded", () => {
                         window.location.replace("./payment_success.html");
                     } catch (error) {
                         console.error("Verification Error:", error);
-                        if (popup) writeFailureToWindow(popup, "भुगतान सत्यापन में त्रुटि हुई।");
-                        alert("भुगतान सत्यापन में त्रुटि हुई।");
-                    } finally {
+
+                        let errorMessage = "";
+
+                        if (error instanceof Error) {
+                            errorMessage = error.message;                 // Standard JS errors
+                        } else if (typeof error === "string") {
+                            errorMessage = error;                         // String errors
+                        } else if (typeof error === "object" && error !== null) {
+                            try {
+                                errorMessage = JSON.stringify(error, null, 2);  // Objects or API error details
+                            } catch {
+                                errorMessage = String(error);
+                            }
+                        } else {
+                            errorMessage = "Unknown error occurred.";     // Fallback
+                        }
+
+                        if (popup) {
+                            writeFailureToWindow(popup, "भुगतान सत्यापन में त्रुटि हुई। कारण: " + errorMessage);
+                        }
+
+                        alert("भुगतान सत्यापन में त्रुटि हुई।\n\nकारण:\n" + errorMessage);
+                    }
+                    finally {
                         toggleLoading(false);
                     }
                 },
@@ -267,9 +288,41 @@ document.addEventListener("DOMContentLoaded", () => {
             rzp.open();
         } catch (err) {
             console.error("Unexpected Error:", err);
-            alert("सर्वर से कनेक्ट नहीं हो सका। कृपया बाद में प्रयास करें।");
+
+            let errorMessage = "";
+
+            // Case 1: Normal JS Error object
+            if (err instanceof Error) {
+                errorMessage = err.message;
+            }
+
+            // Case 2: Error is a simple string
+            else if (typeof err === "string") {
+                errorMessage = err;
+            }
+
+            // Case 3: Error is an object (fetch failure, server failure)
+            else if (typeof err === "object") {
+                try {
+                    errorMessage = JSON.stringify(err, null, 2);
+                } catch {
+                    errorMessage = String(err);
+                }
+            }
+
+            // Case 4: Unknown fallback
+            if (!errorMessage) {
+                errorMessage = "Unknown error occurred.";
+            }
+
+            alert(
+                "Server connection failed.\n\n" +
+                "Reason:\n" + errorMessage
+            );
+
             toggleLoading(false);
         }
+
     });
 });
 

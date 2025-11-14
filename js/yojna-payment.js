@@ -197,9 +197,37 @@ async function yojnaPayment(e, yojna_name) {
                     await generateInvoicePDF(formData, verifyData);
                     window.location.replace("./payment_success.html");
                 } catch (error) {
-                    alert("भुगतान के बाद सत्यापन में त्रुटि हुई।");
                     console.error("Payment verify error:", error);
+
+                    let errorMessage = "";
+
+                    if (error instanceof Error) {
+                        // Standard JavaScript Error object
+                        errorMessage = error.message;
+                    }
+                    else if (typeof error === "string") {
+                        // If thrown as string
+                        errorMessage = error;
+                    }
+                    else if (typeof error === "object" && error !== null) {
+                        // If error is an object (fetch error, response error, custom thrown error)
+                        try {
+                            errorMessage = JSON.stringify(error, null, 2);
+                        } catch {
+                            errorMessage = String(error);
+                        }
+                    }
+                    else {
+                        // Fallback
+                        errorMessage = "Unknown error occurred.";
+                    }
+
+                    alert(
+                        "भुगतान के बाद सत्यापन में त्रुटि हुई।\n\n" +
+                        "कारण:\n" + errorMessage
+                    );
                 }
+
             },
             modal: {
                 ondismiss: function () {
@@ -220,8 +248,39 @@ async function yojnaPayment(e, yojna_name) {
 
     } catch (err) {
         console.error("Unexpected error:", err);
-        alert("कुछ गलत हो गया। कृपया बाद में प्रयास करें।");
-    } finally {
+
+        let errorMessage = "";
+
+        // Case 1: Standard JS Error
+        if (err instanceof Error) {
+            errorMessage = err.message;
+        }
+
+        // Case 2: String error
+        else if (typeof err === "string") {
+            errorMessage = err;
+        }
+
+        // Case 3: Error object (network, fetch, API, Razorpay failure)
+        else if (typeof err === "object" && err !== null) {
+            try {
+                errorMessage = JSON.stringify(err, null, 2);
+            } catch {
+                errorMessage = String(err);
+            }
+        }
+
+        // Fallback
+        if (!errorMessage) {
+            errorMessage = "Unknown error occurred.";
+        }
+
+        alert(
+            "कुछ गलत हो गया। कृपया बाद में प्रयास करें।\n\n" +
+            "Reason:\n" + errorMessage
+        );
+    }
+    finally {
         buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹1000)';
         spinner.classList.add('hidden');
         e.target.disabled = false;
