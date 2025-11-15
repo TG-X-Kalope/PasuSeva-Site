@@ -1,4 +1,94 @@
+async function logErrorToServer(source, errorMessage, stack) {
+    const base_url = 'https://test-api.pasuseva.in';
+    try {
+        await fetch(`${base_url}/api/log-error`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                source,
+                errorMessage,
+                stack,
+                url: window.location.href,
+                time: new Date().toISOString()
+            })
+        });
+    } catch (loggingErr) {
+        console.error("Error logging failed:", loggingErr);
+    }
+}
 
+// ===============================
+//  GLOBAL DYNAMIC ERROR POPUP
+// ===============================
+
+let popupCreated = false;
+
+function createErrorPopup() {
+    if (popupCreated) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "errorPopupOverlay";
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background = "rgba(0,0,0,0.6)";
+    overlay.style.display = "none";
+    overlay.style.zIndex = "99999";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+
+    const box = document.createElement("div");
+    box.style.background = "#fff";
+    box.style.width = "90%";
+    box.style.maxWidth = "380px";
+    box.style.borderRadius = "10px";
+    box.style.padding = "20px";
+    box.style.textAlign = "center";
+    box.style.boxShadow = "0 4px 20px rgba(0,0,0,0.3)";
+
+    const title = document.createElement("h2");
+    title.innerText = "त्रुटि";
+    title.style.fontSize = "20px";
+    title.style.marginBottom = "10px";
+    title.style.color = "red";
+    box.appendChild(title);
+
+    const msg = document.createElement("p");
+    msg.id = "errorPopupMessage";
+    msg.style.fontSize = "16px";
+    msg.style.marginBottom = "20px";
+    msg.style.color = "#333";
+    msg.style.lineHeight = "1.4";
+    box.appendChild(msg);
+
+    const btn = document.createElement("button");
+    btn.innerText = "ठीक है";
+    btn.style.background = "var(--pasuseva-orange, #f97316)";
+    btn.style.color = "#fff";
+    btn.style.padding = "10px 18px";
+    btn.style.borderRadius = "6px";
+    btn.style.border = "none";
+    btn.style.cursor = "pointer";
+    btn.style.fontSize = "16px";
+    btn.onclick = () => {
+        overlay.style.display = "none";
+    };
+    box.appendChild(btn);
+
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+
+    popupCreated = true;
+}
+
+function showErrorPopup(message) {
+    createErrorPopup();
+    document.getElementById("errorPopupMessage").innerText = message;
+    document.getElementById("errorPopupOverlay").style.display = "flex";
+}
+
+// ===============================
+// YOJNA PAYMENT FUNCTION
+// ===============================
 
 async function yojnaPayment(e, yojna_name) {
     const base_url = 'https://test-api.pasuseva.in';
@@ -51,42 +141,57 @@ async function yojnaPayment(e, yojna_name) {
     };
 
     let hasError = false;
+    let firstErrorMessage = "";
 
     for (const key in formData) {
         if (!formData[key]) {
-            showError(key, "यह फ़ील्ड अनिवार्य है");
+            const msg = "यह फ़ील्ड अनिवार्य है";
+            showError(key, msg);
+            if (!firstErrorMessage) firstErrorMessage = `${key}: ${msg}`;
             hasError = true;
         }
     }
 
     if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
-        showError("phone", "10 अंकों का वैध मोबाइल नंबर दर्ज करें");
+        const msg = "10 अंकों का वैध मोबाइल नंबर दर्ज करें";
+        showError("phone", msg);
+        if (!firstErrorMessage) firstErrorMessage = msg;
         hasError = true;
     }
 
     if (formData.email && !/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
-        showError("email", "मान्य ईमेल आईडी दर्ज करें");
+        const msg = "मान्य ईमेल आईडी दर्ज करें";
+        showError("email", msg);
+        if (!firstErrorMessage) firstErrorMessage = msg;
         hasError = true;
     }
 
     if (formData.aadhaar && !/^\d{12}$/.test(formData.aadhaar)) {
-        showError("aadhaar", "12 अंकों का वैध आधार नंबर दर्ज करें");
+        const msg = "12 अंकों का वैध आधार नंबर दर्ज करें";
+        showError("aadhaar", msg);
+        if (!firstErrorMessage) firstErrorMessage = msg;
         hasError = true;
     }
-
 
     for (const key in files) {
         const file = files[key];
         if (!file) {
-            showError(key, "फ़ाइल अपलोड करना अनिवार्य है");
+            const msg = "फ़ाइल अपलोड करना अनिवार्य है";
+            showError(key, msg);
+            if (!firstErrorMessage) firstErrorMessage = `${key}: ${msg}`;
             hasError = true;
         } else if (file.size > 100 * 1024) {
-            showError(key, "फ़ाइल 100KB से अधिक नहीं होनी चाहिए");
+            const msg = "फ़ाइल 100KB से अधिक नहीं होनी चाहिए";
+            showError(key, msg);
+            if (!firstErrorMessage) firstErrorMessage = `${key}: ${msg}`;
             hasError = true;
         }
     }
 
-    if (hasError) return;
+    if (hasError) {
+        showErrorPopup(firstErrorMessage);
+        return;
+    }
 
     const uploadFile = async (file) => {
         const signResponse = await fetch(`${base_url}/api/yojna-registration/sign-upload?v=${Date.now()}`);
@@ -99,10 +204,10 @@ async function yojnaPayment(e, yojna_name) {
         formData.append("signature", signData.signature);
         formData.append("folder", "pasuseva/gaushala");
 
-        const uploadResponse = await fetch(`https://api.cloudinary.com/v1_1/${signData.cloud_name}/auto/upload?v=${Date.now()}`, {
-            method: "POST",
-            body: formData,
-        });
+        const uploadResponse = await fetch(
+            `https://api.cloudinary.com/v1_1/${signData.cloud_name}/auto/upload?v=${Date.now()}`,
+            { method: "POST", body: formData }
+        );
 
         const uploadData = await uploadResponse.json();
         return uploadData.secure_url;
@@ -118,7 +223,14 @@ async function yojnaPayment(e, yojna_name) {
         const aadhaarBackUrl = await uploadFile(files.aadhaarBack);
         const landDocsUrl = await uploadFile(files.landDocs);
 
-        const regData = { ...formData, photo: photoUrl, aadhaarFront: aadhaarFrontUrl, aadhaarBack: aadhaarBackUrl, landDocs: landDocsUrl, yojna: yojna_name };
+        const regData = {
+            ...formData,
+            photo: photoUrl,
+            aadhaarFront: aadhaarFrontUrl,
+            aadhaarBack: aadhaarBackUrl,
+            landDocs: landDocsUrl,
+            yojna: yojna_name
+        };
 
         const regRes = await fetch(`${base_url}/api/yojna-registration?v=${Date.now()}`, {
             method: "POST",
@@ -128,22 +240,13 @@ async function yojnaPayment(e, yojna_name) {
 
         const regDataJson = await regRes.json();
         if (!regRes.ok || !regDataJson?.success) {
-            alert("पंजीकरण विफल रहा। कृपया पुनः प्रयास करें।");
-            console.error("Registration error:", regDataJson);
-            throw new Error("Yojna registration failed");
+            throw new Error(JSON.stringify(regDataJson));
         }
 
         const reg = regDataJson?.data?.reg;
         if (!reg) throw new Error("Registration ID missing");
 
-        // 🔹 Step 2: Create Razorpay Order
-        const orderPayload = {
-
-            currency: "INR",
-            source: yojna_name,
-            reg
-
-        };
+        const orderPayload = { currency: "INR", source: yojna_name, reg };
 
         const orderRes = await fetch(`${base_url}/api/payment/create-order?v=${Date.now()}`, {
             method: 'POST',
@@ -153,14 +256,11 @@ async function yojnaPayment(e, yojna_name) {
 
         const orderData = await orderRes.json();
         if (!orderData?.order?.id) {
-            alert("ऑर्डर बनाने में त्रुटि हुई। कृपया बाद में प्रयास करें।");
-            console.error("Order response:", orderData);
-            throw new Error("Order creation failed");
+            throw new Error(JSON.stringify(orderData));
         }
 
-        // 🔹 Step 3: Razorpay Checkout
         const options = {
-            key: "rzp_test_gF2PIyUYGRsN6q", //"rzp_test_gF2PIyUYGRsN6q",
+            key: "rzp_test_gF2PIyUYGRsN6q",
             amount: orderData.order.amount,
             currency: orderData.order.currency,
             name: "Pasuseva",
@@ -190,49 +290,43 @@ async function yojnaPayment(e, yojna_name) {
 
                     const verifyData = await verifyRes.json();
                     if (!verifyRes.ok || !verifyData.success) {
-                        alert("भुगतान सत्यापन विफल रहा। कृपया सहायता टीम से संपर्क करें।");
-                        return;
+                        throw new Error(JSON.stringify(verifyData));
                     }
 
                     await generateInvoicePDF(formData, verifyData);
                     window.location.replace("./payment_success.html");
-                } catch (error) {
-                    console.error("Payment verify error:", error);
 
-                    let errorMessage = "";
+                } catch (err) {
+                    let msg = "";
+                    let stack = "";
 
-                    if (error instanceof Error) {
-                        // Standard JavaScript Error object
-                        errorMessage = error.message;
-                    }
-                    else if (typeof error === "string") {
-                        // If thrown as string
-                        errorMessage = error;
-                    }
-                    else if (typeof error === "object" && error !== null) {
-                        // If error is an object (fetch error, response error, custom thrown error)
+                    if (err instanceof Error) {
+                        msg = err.message;
+                        stack = err.stack || "";
+                    } else if (typeof err === "string") {
+                        msg = err;
+                        stack = "String thrown";
+                    } else {
                         try {
-                            errorMessage = JSON.stringify(error, null, 2);
+                            msg = JSON.stringify(err);
                         } catch {
-                            errorMessage = String(error);
+                            msg = String(err);
                         }
-                    }
-                    else {
-                        // Fallback
-                        errorMessage = "Unknown error occurred.";
+                        stack = "Non-error object";
                     }
 
-                    alert(
-                        "भुगतान के बाद सत्यापन में त्रुटि हुई।\n\n" +
-                        "कारण:\n" + errorMessage
-                    );
+                    // LOG TO BACKEND
+                    logErrorToServer("yojna-payment", msg, stack);
+
+                    // SHOW POPUP
+                    showErrorPopup(msg);
                 }
 
             },
+
             modal: {
                 ondismiss: function () {
-                    alert("आपका भुगतान रद्द कर दिया गया है।");
-                    window.location.reload();
+                    showErrorPopup("आपका भुगतान रद्द कर दिया गया है।");
                 }
             }
         };
@@ -241,44 +335,33 @@ async function yojnaPayment(e, yojna_name) {
         rzp.open();
 
         rzp.on('payment.failed', function (response) {
-            alert("भुगतान विफल रहा: " + response.error.description);
-            console.error("Razorpay failed:", response.error);
-            window.location.reload();
+            showErrorPopup(response.error.description);
         });
 
     } catch (err) {
-        console.error("Unexpected error:", err);
+        let msg = "";
+        let stack = "";
 
-        let errorMessage = "";
-
-        // Case 1: Standard JS Error
         if (err instanceof Error) {
-            errorMessage = err.message;
-        }
-
-        // Case 2: String error
-        else if (typeof err === "string") {
-            errorMessage = err;
-        }
-
-        // Case 3: Error object (network, fetch, API, Razorpay failure)
-        else if (typeof err === "object" && err !== null) {
+            msg = err.message;
+            stack = err.stack || "";
+        } else if (typeof err === "string") {
+            msg = err;
+            stack = "String thrown";
+        } else {
             try {
-                errorMessage = JSON.stringify(err, null, 2);
+                msg = JSON.stringify(err);
             } catch {
-                errorMessage = String(err);
+                msg = String(err);
             }
+            stack = "Non-error object";
         }
 
-        // Fallback
-        if (!errorMessage) {
-            errorMessage = "Unknown error occurred.";
-        }
+        // LOG TO BACKEND
+        logErrorToServer("yojna-payment", msg, stack);
 
-        alert(
-            "कुछ गलत हो गया। कृपया बाद में प्रयास करें।\n\n" +
-            "Reason:\n" + errorMessage
-        );
+        // SHOW POPUP
+        showErrorPopup(msg);
     }
     finally {
         buttonText.textContent = 'आवेदन सबमिट करें (फॉर्म शुल्क: ₹1000)';
